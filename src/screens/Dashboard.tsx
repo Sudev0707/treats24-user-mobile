@@ -186,7 +186,8 @@ const Dashboard: React.FC = () => {
               </TouchableOpacity>
             </View> */}
               {/*  */}
-              <SectionHeader title="What's on your mind?" />
+              <SectionHeader title="What's on your mind?"  actionText="View all"
+                onActionPress={() => ''}  />
               <View style={styles.chipsRow}>
                 <FlatList
                   data={CATEGORIES}
