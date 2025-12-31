@@ -6,10 +6,10 @@ import AnimatedTabBar from './AnimatedTabBar';
 const TabBarWithContainer: React.FC<BottomTabBarProps> = props => {
   return (
     <View style={styles.wrapper}>
+      <AnimatedTabBar {...props} />
       <View style={styles.topContainer}>
         <Text style={styles.title}>🛒 2 items • ₹349</Text>
       </View>
-      <AnimatedTabBar {...props} />
     </View>
   );
 };
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 16,
+    zIndex: 1,
   },
   title: {
     fontSize: 15,

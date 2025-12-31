@@ -35,7 +35,7 @@ const DashboardHeader: React.FC = () => {
   return (
     <>
       <LinearGradient
-        colors={['#ffffffff', '#ffffffff']}
+        colors={['#fff8f8ff', '#ffffffff']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={DashboardHeaderStyles.LinearGradientHeader}
