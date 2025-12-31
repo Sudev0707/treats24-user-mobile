@@ -8,7 +8,7 @@ const colors = {
 
   // Backgrounds -----
   backgroundPrimary: '#0F172A',
-  backgroundLight: 'rgba(246, 247, 255, 1)',
+  backgroundLight: 'rgba(249, 250, 255, 1)',
   background: '#FFFFFF',
   // background: '#ffffffff',
   backgroundSoft: 'rgba(197, 205, 255, 0.1)',
@@ -24,6 +24,7 @@ const colors = {
   // textSecondary: '#F97316',
   textMuted: '#9CA3AF',
   textOnBrand: '#FFFFFF',
+  textWhite: '#FFFFFF',
 
   // Borders & separators
   borderMuted: '#E5E7EB',

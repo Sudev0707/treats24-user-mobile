@@ -20,13 +20,13 @@ export const cartStyle = StyleSheet.create({
     paddingTop: 20,
     borderRadius: 10,
     // borderWidth: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.backgroundSoft,
   },
   productContainer: {
     // borderWidth: 1,
     borderRadius: 10,
     backgroundColor: colors.background,
-    elevation: 2,
+    elevation: 1,
     paddingBottom: 9,
     overflow: 'hidden',
     padding: 15,
@@ -66,8 +66,8 @@ export const cartStyle = StyleSheet.create({
     marginHorizontal: 10,
   },
   foodImageBox: {
-    width: 60,
-    height: 60,
+    width: 40,
+    height: 40,
     overflow: 'hidden',
     borderRadius: 10,
     backgroundColor: colors.backgroundLight,
@@ -169,13 +169,14 @@ export const cartStyle = StyleSheet.create({
     // flexDirection: 'row',
     // justifyContent: 'space-between',
 
-    paddingVertical: 10,
+    paddingBottom: 15,
+    paddingTop:10,
     paddingHorizontal: 20,
     backgroundColor: colors.brandPrimarySoft,
     // marginTop: 20,
     // borderTopLeftRadius: 20,
     // borderTopRightRadius: 20,
-    borderRadius: 25,
+    borderRadius: 20,
   },
   totalText: {
     fontSize: 20,
@@ -210,18 +211,25 @@ export const cartStyle = StyleSheet.create({
     // borderWidth: 1,
 
     padding: 20,
-    backgroundColor: colors.background,
+    // backgroundColor: colors.background,
   },
   productinfo: {
     // borderWidth: 1,
     borderRadius: 10,
     backgroundColor: colors.background,
-    elevation: 2,
+    elevation: 1,
     paddingBottom: 9,
     // overflow: 'hidden',
     padding: 15,
     // marginBottom: 20,
   },
+  paymentRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 5,
+  },
+
+
   // Styles for random items FlatList
   randomItemContainer: {
     marginRight: 15,
@@ -230,12 +238,12 @@ export const cartStyle = StyleSheet.create({
     // borderWidth: 1,
     // padding:10,
     borderRadius: 10,
-    width: 130,
+    width: 120,
     // backgroundColor: colors.background,
   },
   randomItemImage: {
     width: '100%',
-    height: 120,
+    height: 80,
     borderRadius: 10,
     overflow: 'hidden',
     borderWidth: 1,

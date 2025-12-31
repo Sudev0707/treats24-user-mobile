@@ -54,11 +54,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#fff',
-    marginHorizontal: 16,
+    // marginHorizontal: 16,
     padding: 14,
     borderRadius: 14,
-    elevation: 2,
-    marginBottom: 7,
+    // elevation: 2,
+    // marginBottom: 7,
   },
 
   addressLeft: {

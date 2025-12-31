@@ -7,6 +7,7 @@ import {
   Animated,
   Dimensions,
   ImageSourcePropType,
+  StyleSheet,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -83,15 +84,13 @@ const FoodAddedBox: React.FC<FoodAddedBoxProps> = ({
   return (
     <View style={FoodDetailsModalStyles.popUp}>
       <View style={FoodDetailsModalStyles.box}>
-        <View>
+        {/* <View>
           <Text style={FoodDetailsModalStyles.price}>
             Total Price: ${totalPrice.toFixed(2)}
           </Text>
 
-          <Text style={FoodDetailsModalStyles.countText}>
-            {totalCount} items added
-          </Text>
-        </View>
+         
+        </View> */}
 
         {/* <Button
           title="View Cart"
@@ -100,25 +99,9 @@ const FoodAddedBox: React.FC<FoodAddedBoxProps> = ({
           style={{ width: '40%' }}
           isPhoneValid={true}
         /> */}
-        <TouchableOpacity
-          onPress={handleViewCart}
-          style={{
-            backgroundColor: colors.brandPrimary,
-            padding: 15,
-            borderRadius: 10,
-            alignItems: 'center',
-            // marginTop: 20,
-          }}
-        >
-          <Text
-            style={{
-              color: colors.textOnBrand,
-              fontSize: 16,
-              fontWeight: 'bold',
-            }}
-          >
-            View Cart
-          </Text>
+        <TouchableOpacity onPress={handleViewCart} style={style.handleViewCart}>
+          <Text style={style.countText}>{totalCount} items added</Text>
+          <Text style={style.textViewCart}>View Cart</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -126,3 +109,27 @@ const FoodAddedBox: React.FC<FoodAddedBoxProps> = ({
 };
 
 export default FoodAddedBox;
+
+const style = StyleSheet.create({
+  handleViewCart: {
+    backgroundColor: colors.brandPrimary,
+    padding: 15,
+    borderRadius: 20,
+    alignItems: 'center',
+    // marginTop: 20,
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+  },
+  textViewCart: {
+    color: colors.textOnBrand,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  countText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    // marginHorizontal: 20,
+    color: colors.textWhite,
+  },
+});

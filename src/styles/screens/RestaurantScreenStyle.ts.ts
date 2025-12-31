@@ -148,8 +148,8 @@ export const RestaurantScreenStyle = StyleSheet.create({
     borderRadius: 12,
     marginVertical: 5,
     padding: 10,
-    elevation: 3,
-    shadowColor: '#000',
+    elevation: 2,
+    shadowColor: '#0000009a',
     shadowOpacity: 0.1,
     shadowRadius: 6,
   },
@@ -163,8 +163,8 @@ export const RestaurantScreenStyle = StyleSheet.create({
     alignItems: 'center',
   },
   foodimage: {
-    width: '100%',
-    height: '100%',
+    width: '80%',
+    height: '80%',
     borderRadius: 10,
     backgroundColor: colors.backgroundLight,
   },
@@ -264,6 +264,30 @@ export const RestaurantScreenStyle = StyleSheet.create({
   countText: {
     color: colors.brandPrimary,
   },
+  contentContainer: {
+    backgroundColor: colors.background,
+    paddingTop: 15,
+    paddingHorizontal: 20,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    paddingBottom: 180,
+  },
+  deleiveryTime:{
+    alignSelf:'center',
+    borderWidth:0.5,
+    padding:15,
+    borderColor:colors.borderLight,
+    borderRadius:50, width:'100%',
+    marginBottom:15,
+    backgroundColor:colors.backgroundLight,
+    flexDirection:'row',
+    justifyContent:'center'
+  },
+  timeText:{
+    fontWeight:800,
+    textAlign:'center',
+    paddingStart:8
+  }
 });
 
 export const RestaurantHeaderStyle = StyleSheet.create({

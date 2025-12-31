@@ -307,6 +307,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
             // paddingHorizontal: 20,
             paddingTop: imageHeight - 110,
             zIndex: 1,
+            // paddingBottom:200
           }}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: scrollY } } }],
@@ -314,20 +315,18 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
           )}
           scrollEventThrottle={16}
         >
-          <View
-            style={{
-              backgroundColor: colors.background,
-              paddingTop: 10,
-              paddingHorizontal: 20,
-              borderTopLeftRadius: 25,
-              borderTopRightRadius: 25,
-            }}
-          >
+          {/*  */}
+          <View style={RestaurantScreenStyle.contentContainer}>
+            <View style={RestaurantScreenStyle.deleiveryTime}>
+              <Text style={RestaurantScreenStyle.timeText}>Deleivery Time:</Text>
+              <Text style={RestaurantScreenStyle.timeText}>10 - 20 min</Text>
+            </View>
             {/* restaurants category */}
             <FlatList
               horizontal
               data={filters}
               keyExtractor={item => item.id}
+              contentContainerStyle={{marginBottom:10}}
               showsHorizontalScrollIndicator={false}
               renderItem={({ item }) => {
                 const isActive = activeChips[item.title];
@@ -473,7 +472,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
               })}
 
             {/*  */}
-            <View style={{ padding: 16 }}>
+            <View style={{ padding: 16, backgroundColor: colors.background }}>
               <Text
                 style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 8 }}
               >

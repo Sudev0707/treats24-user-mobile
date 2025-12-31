@@ -12,6 +12,9 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../routes/AppRoutes';
 import { useScrollToHideTabBar } from '../hooks/useScrollToHideTabBar';
 import { useAppSelector } from '../hooks/useAppSelector';
 import colors from '../theme/colors';
@@ -35,15 +38,25 @@ import SectionHeader from '../components/common/SectionHeader';
 
 const { height } = Dimensions.get('window');
 
+type CartScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Cart'
+>;
+
 const Cart: React.FC = () => {
   const scrollProps = useScrollToHideTabBar();
   const cartItems = useAppSelector(selectCartItems);
   const cartTotal = useAppSelector(selectCartTotal);
+  const deleiveryFee = 30;
+  const serviceFee = 10;
+  const totalAmount = cartTotal + deleiveryFee + serviceFee;
+
   const restaurantName = useAppSelector(selectRestaurantName);
   const cartItemCount = useAppSelector(selectCartItemCount);
   const randomItems = useAppSelector(selectRandomRestaurantItems);
   const restaurantId = useAppSelector(selectRestaurantId);
   const dispatch = useDispatch();
+  const navigation = useNavigation<CartScreenNavigationProp>();
   const [loading, setLoading] = useState(true);
 
   console.log('cartItems.length', cartItems.length);
@@ -129,7 +142,7 @@ const Cart: React.FC = () => {
         />
       </SafeAreaView>
 
-      <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <View style={{ flex: 1, backgroundColor: colors.backgroundLight }}>
         {cartItems.length === 0 && !loading ? (
           <View style={cartStyle.emptyCart}>
             <Text style={cartStyle.emptyCartText}>Your cart is empty</Text>
@@ -233,7 +246,11 @@ const Cart: React.FC = () => {
             {/*  */}
             <View style={cartStyle.fullcontainer}>
               <SectionHeader
-                title={cartItems.length > 0 ? 'You Might Also Love These' : 'Add products To cart'}
+                title={
+                  cartItems.length > 0
+                    ? 'You Might Also Love These'
+                    : 'Add products To cart'
+                }
               />
               <Text>
                 add a little extra joy to your cart before you check out
@@ -313,46 +330,22 @@ const Cart: React.FC = () => {
             <View style={cartStyle.paymentSummary}>
               <View style={cartStyle.productinfo}>
                 <SectionHeader title="Payment Summary" />
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    paddingVertical: 5,
-                  }}
-                >
+                <View style={cartStyle.paymentRow}>
                   <Text>Cart Total</Text>
-                  <Text>{cartTotal}</Text>
+                  <Text>₹{cartTotal}</Text>
                 </View>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    paddingVertical: 5,
-                  }}
-                >
+                <View style={cartStyle.paymentRow}>
                   <Text>Deleivery Fee</Text>
-                  <Text>{cartTotal}</Text>
+                  <Text>₹{deleiveryFee}</Text>
                 </View>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    paddingVertical: 5,
-                  }}
-                >
+                <View style={cartStyle.paymentRow}>
                   <Text>Service fee</Text>
-                  <Text>{cartTotal}</Text>
+                  <Text>₹{serviceFee}</Text>
                 </View>
                 <View style={cartStyle.separator} />
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    paddingVertical: 5,
-                  }}
-                >
+                <View style={cartStyle.paymentRow}>
                   <Text>Total Amount</Text>
-                  <Text>{cartTotal}</Text>
+                  <Text>₹{totalAmount}</Text>
                 </View>
               </View>
             </View>
@@ -362,7 +355,11 @@ const Cart: React.FC = () => {
           <>
             <View style={cartStyle.totalContainer}>
               {/* <Text style={cartStyle.totalText}>Total: ₹{cartTotal}</Text> */}
-              <TouchableOpacity style={cartStyle.checkoutBtn}>
+              <TouchableOpacity
+                activeOpacity={0.6}
+                style={cartStyle.checkoutBtn}
+                onPress={() => navigation.navigate('Checkout')}
+              >
                 <Text style={cartStyle.checkoutBtnText}>
                   Select Addres To Pay
                 </Text>
