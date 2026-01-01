@@ -99,10 +99,10 @@ const Dashboard: React.FC = () => {
   const handleSelectedCategory = (item: CategoryItem) => {
     console.log('selected item ', item);
 
-    if (item.id === '00') {
+    if (item.id === '0') {
       // Navigate to SnacksItems for special categories
       navigation.navigate('SnacksItems', { itemType: item.name });
-    } else if (item.id === '000') {
+    } else if (item.id === '00') {
       // navigation.navigate(" ");
     }
     setSelectedCategory(item.name);
@@ -186,8 +186,11 @@ const Dashboard: React.FC = () => {
               </TouchableOpacity>
             </View> */}
               {/*  */}
-              <SectionHeader title="What's on your mind?"  actionText="View all"
-                onActionPress={() => ''}  />
+              <SectionHeader
+                title="What's on your mind?"
+                actionText="View all"
+                onActionPress={() => ''}
+              />
               <View style={styles.chipsRow}>
                 <FlatList
                   data={CATEGORIES}
@@ -201,17 +204,28 @@ const Dashboard: React.FC = () => {
                     return (
                       <>
                         <TouchableOpacity
-                          activeOpacity={0.6}
+                          activeOpacity={0.8}
                           onPress={() => handleSelectedCategory(item)}
                           style={[styles.chip, isActive && styles.chipActive]}
                         >
-                          <Image
-                            source={item.image}
-                            resizeMode="contain"
-                            width={9}
-                            height={9}
-                            style={{ width: 40, height: 40, marginRight: 5 }}
-                          />
+                          <View style={{ width: 90,
+                                height: 50,}}>
+                            <Image
+                              source={item.image}
+                              resizeMode="contain"
+                              width={4}
+                              height={4}
+                              style={{
+                               width:'100%',
+                               height:'100%',
+                                alignSelf: 'center',
+                                backgroundColor: colors.background,
+                                borderRadius: 9,
+                                // borderWidth: 1,
+                                padding:0
+                              }}
+                            />
+                          </View>
 
                           <Text
                             style={[
@@ -432,8 +446,8 @@ const Styles = StyleSheet.create({
   },
 
   offerText: {
-    fontWeight: '700',
-    color: '#ff6a00',
+    fontWeight: '800',
+    color: colors.brandSecondary,
   },
   // ===================================
   card: {

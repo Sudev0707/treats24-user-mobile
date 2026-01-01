@@ -106,7 +106,7 @@ const DashboardHeaderStyles = StyleSheet.create({
     alignItems: 'center',
     // backgroundColor: colors.card,
     borderRadius: 7,
-      backgroundColor: '#f9f9f9ff',
+      backgroundColor: '#ffffffff',
       overflow:'hidden',
     paddingHorizontal: 1,
     paddingVertical: 1,
@@ -120,7 +120,7 @@ const DashboardHeaderStyles = StyleSheet.create({
 
   searchInput: {
     flex: 1,
-    backgroundColor: '#f9f9f9ff',
+    backgroundColor: '#ffffffff',
     // borderRadius: 16,
     paddingHorizontal: 16,
     height: 44,

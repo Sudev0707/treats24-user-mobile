@@ -7,57 +7,57 @@ export const CATEGORIES = [
   {
     id: '0',
     name: 'Snacks',
-    image: require('../assets/images/foodCategory/pizza.png'),
+    image: require('../assets/images/foodCategory/snacks.png'),
   },
   {
     id: '00',
     name: '99 Store',
-    image: require('../assets/images/foodCategory/pizza.png'),
+    image: require('../assets/images/foodCategory/rupee99.png'),
   },
   {
     id: '1',
     name: 'Burgers',
-    image: require('../assets/images/foodCategory/pizza.png'),
+    image: require('../assets/images/foodCategory/burger.png'),
   },
   {
     id: '2',
     name: 'Pizza',
-    image: require('../assets/images/foodCategory/pizza.png'),
+    image: require('../assets/images/foodCategory/pizzaa.png'),
   },
   {
     id: '3',
-    name: 'Indian',
-    image: require('../assets/images/foodCategory/pizza.png'),
+    name: 'Biryani',
+    image: require('../assets/images/foodCategory/biryani.png'),
   },
   {
     id: '4',
-    name: 'South Indian',
-    image: require('../assets/images/foodCategory/pizza.png'),
+    name: 'Noodles',
+    image: require('../assets/images/foodCategory/noodles.png'),
   },
   {
     id: '5',
     name: 'Rolls & Wraps',
-    image: require('../assets/images/foodCategory/pizza.png'),
+    image: require('../assets/images/foodCategory/roll.png'),
   },
   {
     id: '6',
-    name: '',
-    image: require('../assets/images/foodCategory/pizza.png'),
+    name: 'Kebab',
+    image: require('../assets/images/foodCategory/kebab.png'),
   },
   {
     id: '7',
     name: 'Momos',
-    image: require('../assets/images/foodCategory/pizza.png'),
+    image: require('../assets/images/foodCategory/momos.png'),
   },
   {
     id: '8',
     name: 'Ice Cream',
-    image: require('../assets/images/foodCategory/pizza.png'),
+    image: require('../assets/images/foodCategory/ice cream.png'),
   },
   {
     id: '9',
     name: 'Bakery',
-    image: require('../assets/images/foodCategory/pizza.png'),
+    image: require('../assets/images/foodCategory/caake.png'),
   },
 ];
 

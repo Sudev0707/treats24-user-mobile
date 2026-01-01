@@ -12,6 +12,7 @@ export type RootStackParamList = {
   OTPVerification: undefined;
   SetLocation: undefined;
   Profile: undefined;
+  Nearby: undefined;
   Favorites: undefined;
   Deals: undefined;
   Cart: undefined;
@@ -34,7 +35,7 @@ const AppRoutes = () => {
       <TabBarProvider>
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="MainTabs"
+            initialRouteName="SplashBrand"
             screenOptions={{ headerShown: false }}
           >
             <Stack.Screen name="SplashBrand" component={Screens.SplashBrand} />
@@ -48,6 +49,7 @@ const AppRoutes = () => {
               component={Screens.SetLocation}
               options={{ presentation: 'modal' }}
             />
+            <Stack.Screen name="Nearby" component={Screens.Nearby} />
             <Stack.Screen name="Favorites" component={Screens.Favorites} />
             <Stack.Screen name="Deals" component={Screens.Deals} />
             <Stack.Screen name="Cart" component={Screens.Cart} />

@@ -8,6 +8,7 @@ import * as Screens from './Screens';
 
 export type TabParamList = {
   Home: undefined;
+  Nearby: undefined;
   Favorites: undefined;
   TastyDeals: undefined;
   MyPlate: undefined;
@@ -40,6 +41,20 @@ const TabNavigator = () => {
           tabBarIcon: ({ color, focused }) => (
             <Icon
               name={focused ? 'cutlery' : 'cutlery'}
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Nearby"
+        component={Screens.Favorites}
+        options={{
+          tabBarLabel: 'Nearby',
+          tabBarIcon: ({ color, focused }) => (
+            <Icon
+              name={focused ? 'map-marker' : 'map-marker'}
               size={24}
               color={color}
             />

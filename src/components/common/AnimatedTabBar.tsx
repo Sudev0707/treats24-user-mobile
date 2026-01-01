@@ -8,14 +8,32 @@ import {
 } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { BottomTabBar } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
 import { useTabBar } from '../../context/TabBarContext';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
+import type { CartItem } from '../../store/slices/cartSlice';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import {
+  selectCartItemCount,
+  selectCartTotal,
+  selectRestaurantName,
+} from '../../store/selectors/cartSelectors';
 
 const AnimatedTabBar: React.FC<BottomTabBarProps> = props => {
+  const { navigation } = props;
   const { isVisible } = useTabBar();
   const translateY = React.useRef(new Animated.Value(0)).current;
   const insets = useSafeAreaInsets();
+  const cartItems = useAppSelector(state => (state.cart as any).cartItems);
+  const cartTotal = useAppSelector(selectCartTotal);
+  const restaurantName = useAppSelector(selectRestaurantName);
+  const cartItemCount = useAppSelector(selectCartItemCount);
+  const cartCount = cartItems?.length || null;
+  const totalAmount = cartItems?.reduce(
+    (sum: number, item: CartItem) => sum + item.price * item.quantity,
+    0,
+  );
 
   useEffect(() => {
     Animated.spring(translateY, {
@@ -30,21 +48,27 @@ const AnimatedTabBar: React.FC<BottomTabBarProps> = props => {
 
   return (
     <View style={styles.wrapper}>
-      <Animated.View
-        style={[
-          styles.topContainer,
-          {
-            transform: [{ translateY }],
-          },
-        ]}
-      >
-        <TouchableOpacity style={styles.cartItemBotm} activeOpacity={0.8}>
-          <Text style={styles.title}>
-            View Cart • {'cartCount'} items • ₹{'totalAmount'}
-          </Text>
-        </TouchableOpacity>
-      </Animated.View>
-      {/*  */}
+      {cartItemCount > 0 && (
+        <Animated.View
+          style={[
+            styles.topContainer,
+            {
+              transform: [{ translateY }],
+            },
+          ]}
+        >
+          <TouchableOpacity
+            style={styles.cartItemBotm}
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate("Cart") }
+          >
+            <Text style={styles.title}>
+              {restaurantName} • {cartItemCount} items • ₹{cartTotal}
+            </Text>
+          </TouchableOpacity>
+        </Animated.View>
+      )}
+
       <Animated.View
         style={[
           styles.container,

@@ -35,9 +35,9 @@ const DashboardHeader: React.FC = () => {
   return (
     <>
       <LinearGradient
-        colors={['#fff8f8ff', '#ffffffff']}
+        colors={['#ffd1d1ff', '#fff6f6ff']}
         start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
+        end={{ x: 0, y: 1 }}
         style={DashboardHeaderStyles.LinearGradientHeader}
       >
         <View style={DashboardHeaderStyles.mainDashboardHeader}>
@@ -82,7 +82,7 @@ const DashboardHeader: React.FC = () => {
               editable={false}
               style={DashboardHeaderStyles.searchInput}
               placeholder="Search for dishes or restaurants"
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6d6d6dff"
             />
           </TouchableOpacity>
         </View>

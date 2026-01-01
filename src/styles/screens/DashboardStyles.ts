@@ -99,7 +99,7 @@ const DashboardStyles = StyleSheet.create({
     // flex: 1,
     paddingHorizontal: 16,
     paddingTop: 35,
-    paddingBottom: 24,
+    paddingBottom: 80,
     // backgroundColor: colors.backgroundSoft,
     backgroundColor: colors.background,
   },
@@ -190,20 +190,26 @@ const DashboardStyles = StyleSheet.create({
     marginBottom: 20,
   },
   chip: {
-    paddingStart: 4,
-    paddingEnd: 8,
-    paddingVertical: 4,
-    borderRadius: 100,
+    // paddingStart: 4,
+    // paddingEnd: 8,
+    // paddingVertical: 4,
+    padding: 5,
+    borderRadius: 9,
     backgroundColor: colors.background,
     marginRight: 8,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    // flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    elevation: 2,
+    
+    elevation: 1,
+     borderWidth:0.9,
+     borderColor: colors.background,
+     overflow:'hidden'
   },
 
   chipActive: {
-    backgroundColor: colors.brandPrimary,
+    borderWidth:0.9,
+    borderColor: colors.brandPrimary,
     shadowColor: '#ffffffff',
     shadowOffset: { width: 4, height: 4 },
     shadowOpacity: 0.8,
@@ -214,11 +220,11 @@ const DashboardStyles = StyleSheet.create({
   chipText: {
     fontSize: fonts.size.sm,
     color: colors.textSecondary,
-    fontWeight: fonts.weight.medium,
+    fontWeight: fonts.weight.bold,
   },
   chipTextActive: {
-    color: colors.textOnBrand,
-    fontWeight: '700',
+    color: colors.textBrand,
+    fontWeight: '800',
   },
   restaurantCard: {
     width: 250,

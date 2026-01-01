@@ -279,14 +279,15 @@ export const RestaurantScreenStyle = StyleSheet.create({
     borderColor:colors.borderLight,
     borderRadius:50, width:'100%',
     marginBottom:15,
-    backgroundColor:colors.backgroundLight,
+    backgroundColor:'#ffe9d6',
     flexDirection:'row',
     justifyContent:'center'
   },
   timeText:{
     fontWeight:800,
     textAlign:'center',
-    paddingStart:8
+    paddingStart:8,
+    color: '#ff6a00'
   }
 });
 
