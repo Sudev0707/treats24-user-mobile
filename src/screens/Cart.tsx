@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   View,
   Text,
@@ -47,9 +47,35 @@ const Cart: React.FC = () => {
   const scrollProps = useScrollToHideTabBar();
   const cartItems = useAppSelector(selectCartItems);
   const cartTotal = useAppSelector(selectCartTotal);
-  const deleiveryFee = 30;
-  const serviceFee = 10;
-  const totalAmount = cartTotal + deleiveryFee + serviceFee;
+
+  const DELIVERY_CHARGE = 40;
+  const COMMISSION_RATE = 0.1; // 10%
+  const GST_RATE = 0.18; // 18%
+
+  
+  const priceDetails = useMemo(() => {
+    const itemTotal = cartItems.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
+    const commission = itemTotal * COMMISSION_RATE;
+    const subtotal = itemTotal + commission;
+    const taxableAmount = subtotal + DELIVERY_CHARGE;
+    const gst = taxableAmount * GST_RATE;
+
+    const grandTotal = taxableAmount + gst;
+
+    return {
+      itemTotal,
+      commission,
+      deliveryCharge: DELIVERY_CHARGE,
+      gst,
+      grandTotal,
+    };
+  }, [cartItems]);
+
+    // 
 
   const restaurantName = useAppSelector(selectRestaurantName);
   const cartItemCount = useAppSelector(selectCartItemCount);
@@ -331,21 +357,25 @@ const Cart: React.FC = () => {
               <View style={cartStyle.productinfo}>
                 <SectionHeader title="Payment Summary" />
                 <View style={cartStyle.paymentRow}>
-                  <Text>Cart Total</Text>
-                  <Text>₹{cartTotal}</Text>
+                  <Text>Item Total</Text>
+                  <Text>₹{priceDetails.itemTotal.toFixed(2)}</Text>
                 </View>
                 <View style={cartStyle.paymentRow}>
-                  <Text>Deleivery Fee</Text>
-                  <Text>₹{deleiveryFee}</Text>
+                  <Text>Commission ({(COMMISSION_RATE * 100).toFixed(0)}%)</Text>
+                  <Text>₹{priceDetails.commission.toFixed(2)}</Text>
                 </View>
                 <View style={cartStyle.paymentRow}>
-                  <Text>Service fee</Text>
-                  <Text>₹{serviceFee}</Text>
+                  <Text>Delivery Fee</Text>
+                  <Text>₹{priceDetails.deliveryCharge}</Text>
+                </View>
+                <View style={cartStyle.paymentRow}>
+                  <Text>GST ({(GST_RATE * 100).toFixed(0)}%)</Text>
+                  <Text>₹{priceDetails.gst.toFixed(2)}</Text>
                 </View>
                 <View style={cartStyle.separator} />
                 <View style={cartStyle.paymentRow}>
                   <Text>Total Amount</Text>
-                  <Text>₹{totalAmount}</Text>
+                  <Text>₹{priceDetails.grandTotal.toFixed(2)}</Text>
                 </View>
               </View>
             </View>

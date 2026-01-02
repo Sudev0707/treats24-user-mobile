@@ -208,13 +208,13 @@ const Dashboard: React.FC = () => {
                           onPress={() => handleSelectedCategory(item)}
                           style={[styles.chip, isActive && styles.chipActive]}
                         >
-                          <View style={{ width: 90,
+                          <View style={{ width: 60,
                                 height: 50,}}>
                             <Image
                               source={item.image}
                               resizeMode="contain"
-                              width={4}
-                              height={4}
+                              // width={9}
+                              // height={4}
                               style={{
                                width:'100%',
                                height:'100%',
@@ -261,7 +261,7 @@ const Dashboard: React.FC = () => {
               <SectionHeader
                 title="Top Restaurants"
                 actionText="View all"
-                onActionPress={() => ''}
+                onActionPress={() => navigation.navigate('TopRestaurants')}
               />
               <FlatList
                 data={featuredRestaurants}

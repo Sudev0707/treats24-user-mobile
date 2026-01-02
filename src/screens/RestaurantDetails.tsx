@@ -32,6 +32,7 @@ import { addToCart, removeFromCart } from '../store/slices/cartSlice.ts';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../hooks/useAppSelector';
 import SectionHeader from '../components/common/SectionHeader.tsx';
+import CustomAlert from '../components/common/CustomAlert';
 
 interface RestaurantItem {
   id: string;
@@ -84,6 +85,8 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedFood, setSelectedFood] = useState<any>(null);
   const [selectedCount, setSelectedCount] = useState(0);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
   const navigation = useNavigation();
   // const [activeChips, setActiveChips] = useState({});
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]); // 👈 store active chips
@@ -124,6 +127,13 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   // };
   const handleAddFood = (food: any) => {
     if (restaurant) {
+      // Check if cart has items from a different restaurant
+      if (cart.restaurantId && cart.restaurantId !== restaurant.id) {
+        setAlertMessage('Your cart already has items from another restaurant. Please clear your cart or complete your order first.');
+        setAlertVisible(true);
+        return;
+      }
+
       dispatch(
         addToCart({
           restaurantId: restaurant.id,
@@ -497,6 +507,13 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
           restaurant={restaurant!}
         />
       ) : null}
+
+      <CustomAlert
+        visible={alertVisible}
+        title="Cart Restriction"
+        message={alertMessage}
+        onClose={() => setAlertVisible(false)}
+      />
     </>
   );
 };

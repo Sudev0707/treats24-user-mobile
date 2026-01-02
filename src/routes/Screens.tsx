@@ -11,6 +11,8 @@ export { default as Cart } from '../screens/Cart';
 export { default as RestaurantDetail } from '../screens/RestaurantDetails';
 export { default as SnacksItems } from '../screens/SnacksItems';
 export { default as Checkout } from '../screens/Checkout';
+export { default as Search } from '../screens/Search';
+export { default as TopRestaurants } from '../screens/TopRestaurants';
 
 export {default as HeaderDemo1} from '../screens/HeaderDemo1'
 export {default as HeaderDemo2} from '../screens/HeaderDemo2'

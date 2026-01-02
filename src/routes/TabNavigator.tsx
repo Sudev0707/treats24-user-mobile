@@ -49,7 +49,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Nearby"
-        component={Screens.Favorites}
+        component={Screens.Nearby}
         options={{
           tabBarLabel: 'Nearby',
           tabBarIcon: ({ color, focused }) => (

@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   TextInput,
   StatusBar,
+  Modal,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
@@ -14,11 +15,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import { getDBConnection } from '../../database/db';
 import { getStoredLocation } from '../../database/queries';
 import { locationdata } from '../../database/types';
+import LocationSelector from './LocationSelector';
 
 const DashboardHeader: React.FC = () => {
   const navigation = useNavigation();
   const [location, setLocation] = useState<locationdata | null>(null);
   const [loading, setLoading] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     const locationData = async () => {
@@ -43,7 +46,7 @@ const DashboardHeader: React.FC = () => {
         <View style={DashboardHeaderStyles.mainDashboardHeader}>
           <View style={DashboardHeaderStyles.dashboardHeaderContainer}>
             {/* LEFT — LOCATION */}
-            <TouchableOpacity style={DashboardHeaderStyles.addressWrapper} onPress={()=> ''}>
+            <TouchableOpacity style={DashboardHeaderStyles.addressWrapper} onPress={() => setModalVisible(true)}>
               <View style={DashboardHeaderStyles.addressRow}>
                 <Icon
                   name="map-pin"
@@ -74,9 +77,9 @@ const DashboardHeader: React.FC = () => {
             </TouchableOpacity>
           </View> 
 
-          <TouchableOpacity
+          <TouchableOpacity activeOpacity={0.7}
             style={DashboardHeaderStyles.searchBar}
-            onPress={() => ''}
+            onPress={() => navigation.navigate('Search' as never)}
           >
             <TextInput
               editable={false}
@@ -87,6 +90,21 @@ const DashboardHeader: React.FC = () => {
           </TouchableOpacity>
         </View>
       </LinearGradient>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <LocationSelector
+          onClose={() => setModalVisible(false)}
+          onLocationSelect={(selectedLocation) => {
+            setLocation(selectedLocation);
+            setModalVisible(false);
+          }}
+        />
+      </Modal>
     </>
   );
 };

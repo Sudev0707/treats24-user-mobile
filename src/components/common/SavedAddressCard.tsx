@@ -19,7 +19,7 @@ const SavedAddressCard = ({
   distance,
 }: Props) => {
   return (
-    <View style={styles.addressCard}>
+    <TouchableOpacity style={styles.addressCard}>
       {/* LEFT */}
       <View style={styles.addressLeft}>
         <View style={styles.homeIcon}>
@@ -44,7 +44,7 @@ const SavedAddressCard = ({
           <Feather name="more-vertical" size={18} color="#999" />
         </TouchableOpacity>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     // marginHorizontal: 16,
     padding: 14,
     borderRadius: 14,
-    // elevation: 2,
+    elevation: 2,
     // marginBottom: 7,
   },
 
