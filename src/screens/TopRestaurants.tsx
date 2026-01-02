@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,11 +7,13 @@ import {
   StyleSheet,
   ImageBackground,
   Dimensions,
+  TextInput,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../routes/types';
 import LinearGradient from 'react-native-linear-gradient';
+import Feather from 'react-native-vector-icons/Feather';
 import colors from '../theme/colors';
 import { featuredRestaurants } from '../data/foodData';
 import Header from '../components/common/Header';
@@ -32,10 +34,15 @@ interface RestaurantItem {
 
 const TopRestaurants: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleRestaurantPress = (item: RestaurantItem) => {
     navigation.navigate('RestaurantDetails', { restaurantId: item.id });
   };
+
+  const filteredRestaurants = featuredRestaurants.filter((restaurant) =>
+    restaurant.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const renderItem = ({ item }: { item: RestaurantItem }) => (
     <TouchableOpacity
@@ -80,8 +87,18 @@ const TopRestaurants: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="Top Restaurants" showBackButton={true} />
+      <View style={styles.searchContainer}>
+        <Feather name="search" size={20} color="#999" />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search restaurants..."
+          placeholderTextColor="#999"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+      </View>
       <FlatList
-        data={featuredRestaurants}
+        data={filteredRestaurants}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
         contentContainerStyle={styles.listContainer}
@@ -95,6 +112,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 16,
+    paddingHorizontal: 12,
+    height: 40,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    marginVertical: 12,
+    elevation:4
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 16,
+    paddingLeft: 8,
+    textAlignVertical: 'center',
   },
   listContainer: {
     padding: 16,
