@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     paddingBottom: 150,
+    paddingHorizontal:20
   },
   section: {
     marginVertical: 16,
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   listContainer: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 6,
     paddingVertical: 5,
   },
   foodCard: {

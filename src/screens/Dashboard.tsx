@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import {
   View,
   Text,
@@ -135,6 +135,12 @@ const Dashboard: React.FC = () => {
   };
 
   //
+  // const topRestaurants = useMemo(
+  //   () => featuredRestaurants.slice(0, 5),
+  //   [featuredRestaurants],
+  // );
+
+  //
 
   useEffect(() => {
     let index = 0;
@@ -189,7 +195,7 @@ const Dashboard: React.FC = () => {
               <SectionHeader
                 title="What's on your mind?"
                 actionText="View all"
-                onActionPress={() => ''}
+                onActionPress={() => navigation.navigate('foodCategories')}
               />
               <View style={styles.chipsRow}>
                 <FlatList
@@ -208,21 +214,20 @@ const Dashboard: React.FC = () => {
                           onPress={() => handleSelectedCategory(item)}
                           style={[styles.chip, isActive && styles.chipActive]}
                         >
-                          <View style={{ width: 60,
-                                height: 50,}}>
+                          <View style={{ width: 60, height: 50 }}>
                             <Image
                               source={item.image}
                               resizeMode="contain"
                               // width={9}
                               // height={4}
                               style={{
-                               width:'100%',
-                               height:'100%',
+                                width: '100%',
+                                height: '100%',
                                 alignSelf: 'center',
                                 backgroundColor: colors.background,
                                 borderRadius: 9,
                                 // borderWidth: 1,
-                                padding:0
+                                padding: 0,
                               }}
                             />
                           </View>
@@ -264,7 +269,7 @@ const Dashboard: React.FC = () => {
                 onActionPress={() => navigation.navigate('TopRestaurants')}
               />
               <FlatList
-                data={featuredRestaurants}
+                data={featuredRestaurants.slice(0, 5)}
                 keyExtractor={(item, index) => index.toString()}
                 horizontal
                 showsHorizontalScrollIndicator={false}

@@ -1,6 +1,22 @@
 export type RootStackParamList = {
-  Home: undefined;
-  RestaurantDetails: { restaurantId: string }; // pass restaurant id
+  SplashBrand: undefined;
+  Auth: undefined;
+  OTPVerification: undefined;
+  SetLocation: undefined;
+  Profile: undefined;
+  Nearby: undefined;
+  Favorites: undefined;
+  Deals: undefined;
+  Cart: undefined;
+  Checkout: undefined;
+  MainTabs: undefined;
+  Search: undefined;
+  RestaurantDetails: { restaurantId: string };
   SnacksItems: { itemType: string };
   TopRestaurants: undefined;
+  foodCategories: undefined;
+  HeaderDemo1: undefined;
+  HeaderDemo2: undefined;
+  HeaderDemo3: undefined;
+  HeaderDemo4: undefined;
 };

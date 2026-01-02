@@ -18,15 +18,12 @@ export type RootStackParamList = {
   Cart: undefined;
   Checkout: undefined;
   MainTabs: undefined;
+  foodCategories: undefined;
   Search: undefined;
   RestaurantDetails: { restaurantId: string };
   SnacksItems: { itemType: string };
   TopRestaurants: undefined;
 
-  HeaderDemo1: undefined;
-  HeaderDemo2: undefined;
-  HeaderDemo3: undefined;
-  HeaderDemo4: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -64,6 +61,7 @@ const AppRoutes = () => {
             />
             <Stack.Screen name="SnacksItems" component={Screens.SnacksItems} />
             <Stack.Screen name="TopRestaurants" component={Screens.TopRestaurants} />
+            <Stack.Screen name="foodCategories" component={Screens.Categories} />
 
             <Stack.Screen name="MainTabs" component={TabNavigator} />
           </Stack.Navigator>
