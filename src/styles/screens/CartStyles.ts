@@ -228,6 +228,18 @@ export const cartStyle = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 5,
   },
+  paymentLabel: {
+    fontSize: 14,
+    fontFamily: fonts.family.medium,
+    color: colors.textPrimary,
+    fontWeight: 'bold'
+  },
+  paymentValue: {
+    fontSize: 14,
+    fontFamily: fonts.family.semibold,
+    color: colors.brandPrimary,
+    fontWeight: 'bold'
+  },
 
 
   // Styles for random items FlatList
