@@ -50,43 +50,84 @@ const Cart: React.FC = () => {
   console.log('cartItems', cartItems);
   console.log('cartItems', cartItems);
 
+  // const priceDetails = useMemo(() => {
+  //   // Food price shown on platform (burger ₹199)
+  //   const itemTotal = cartItems.reduce(
+  //     (sum, item) => sum + item.price * item.quantity,
+  //     0,
+  //   );
+
+  //   // Platform commission (hidden from customer)
+  //   const commission = itemTotal * COMMISSION_RATE; // 19.90
+
+  //   // Restaurant payout
+  //   const orderValue = itemTotal - commission; // 179.10
+
+  //   // GST only on commission
+  //   const gst = commission * GST_RATE; // 3.58
+
+  //   const deliveryCharge = DELIVERY_CHARGE; // 40
+
+  //   // Final amount customer pays
+  //   const grandTotal = itemTotal + gst + deliveryCharge; // 242.48
+
+  //   return {
+  //     itemTotal, // 199 (Food price)
+  //     commission, // 19.90 (Platform earns)
+  //     orderValue, // 179.10 (Restaurant gets)
+  //     gst, // 3.58
+  //     deliveryCharge, // 40
+  //     grandTotal, // 242.48
+  //   };
+  // }, [cartItems]);
+
   const DELIVERY_CHARGE = 40;
   const COMMISSION_RATE = 0.1; // 10%
   const GST_RATE = 0.18; // 18%
 
+  const round2 = (num: number) => Math.round(num * 100) / 100;
+
   const priceDetails = useMemo(() => {
-    const itemTotal = cartItems.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0,
+    // 1️⃣ Total of all cart items
+    const itemTotal = round2(
+      cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
     );
 
-   
+    // 2️⃣ Commission
+    const commission = round2(itemTotal * COMMISSION_RATE); // 10% of itemTotal
 
-    const commission = itemTotal * COMMISSION_RATE; // 10% platform fee    
-    const itemPrice = itemTotal + commission;
+    // 3️⃣ Restaurant earnings (after commission)
+    const orderValue = round2(itemTotal - commission);
 
-    
-    const gst = commission * GST_RATE; // 18% GST on commission only
+    // 4️⃣ GST on commission
+    const gst = round2(commission * GST_RATE);
+
+    // 5️⃣ Delivery charge
     const deliveryCharge = DELIVERY_CHARGE;
-    // const grandTotal = itemTotal + commission + gst + deliveryCharge;
-    const grandTotal = itemPrice + gst + deliveryCharge;
+
+    // 6️⃣ Grand total (round AFTER summing properly)
+    const grandTotal = round2(
+      round2(itemTotal) + round2(gst) + round2(deliveryCharge),
+    );
 
     return {
       itemTotal,
       commission,
+      orderValue,
       gst,
       deliveryCharge,
       grandTotal,
-      itemPrice,
     };
   }, [cartItems]);
 
-  console.log('itemTotal ',priceDetails.itemTotal );
-  console.log('commission ',priceDetails.commission );
-  console.log('itemPrice ', priceDetails.itemPrice);
+  console.log('itemTotal ', priceDetails.itemTotal);
+  console.log('commission ', priceDetails.commission);
+  // console.log('itemPrice ', priceDetails.itemPrice);
   console.log('gst ', priceDetails.gst);
   console.log('grandTotal ', priceDetails.grandTotal);
-  
+  // console.log('final price ', priceDetails.final);
+
+  console.log('final orderValue ', priceDetails.orderValue);
 
   //
 
@@ -413,7 +454,7 @@ const Cart: React.FC = () => {
                   <Text
                     style={{ ...cartStyle.paymentValue, fontWeight: 'bold' }}
                   >
-                    ₹{priceDetails.grandTotal.toFixed(2)}
+                    ₹{priceDetails.grandTotal}
                   </Text>
                 </View>
               </View>
