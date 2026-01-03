@@ -17,7 +17,7 @@ const colors = {
   mutedBackground: '#fff2f2ff',
 
   // Text ------------------
-  // textPrimary:'#F97316',
+  // textPrimary:'#F97316'
   textPrimary: '#111827',
   textBrand: '#d21919ff',
   textSecondary: '#6B7280',
