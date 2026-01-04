@@ -285,10 +285,10 @@ const Dashboard: React.FC = () => {
                   >
                     <ImageBackground
                       source={item.image}
-                      style={Styles.image}
-                      imageStyle={Styles.imageRadius}
+                      style={styles.image}
+                      imageStyle={styles.imageRadius}
                     >
-                      {/* <View style={Styles.extraDark} /> */}
+                      {/* <View style={styles.extraDark} /> */}
                       <LinearGradient
                         colors={[
                           'rgba(0,0,0,0.0)',
@@ -298,25 +298,25 @@ const Dashboard: React.FC = () => {
                           'rgba(0,0,0,1)',
                         ]}
                         locations={[0, 0.35, 0.6, 0.85, 1]}
-                        style={Styles.gradient}
+                        style={styles.gradient}
                       >
-                        <View style={Styles.row}>
-                          <Text style={Styles.title}>{item.name}</Text>
-                          <View style={Styles.ratingBox}>
-                            <Text style={Styles.ratingText}>
+                        <View style={styles.row}>
+                          <Text style={styles.title}>{item.name}</Text>
+                          <View style={styles.ratingBox}>
+                            <Text style={styles.ratingTextWhite}>
                               {item.rating} ★
                             </Text>
                           </View>
                         </View>
 
-                        <View style={Styles.row}>
-                          <Text style={Styles.placeName}>
+                        <View style={styles.row}>
+                          <Text style={styles.placeName}>
                             Bistupur, Jamshedpur
                           </Text>
-                          <Text style={Styles.distance}>📍 {item.time}</Text>
+                          <Text style={styles.distance}>📍 {item.time}</Text>
                         </View>
 
-                        <View style={Styles.distanceRow}></View>
+                        <View style={styles.distanceRow}></View>
                       </LinearGradient>
                     </ImageBackground>
                   </TouchableOpacity>
@@ -330,13 +330,13 @@ const Dashboard: React.FC = () => {
               {topPicks.map(item => (
                 <TouchableOpacity
                   key={item.id}
-                  style={Styles.CardContainer}
+                  style={styles.CardContainer}
                   activeOpacity={4}
                 >
                   <ImageBackground
                     source={item.image}
-                    style={Styles.smallImage}
-                    imageStyle={Styles.smallImageRadius}
+                    style={styles.smallImage}
+                    imageStyle={styles.smallImageRadius}
                   >
                     {/* BOTTOM GRADIENT */}
                     {/* <LinearGradient
@@ -347,24 +347,24 @@ const Dashboard: React.FC = () => {
                       'rgba(255, 255, 255, 1)',
                     ]}
                     locations={[0, 0.25, 0.45, 0.75, 1]}
-                    style={Styles.smallGradient}
-                  >                   
-                    
+                    style={styles.smallGradient}
+                  >
+
                   </LinearGradient> */}
                   </ImageBackground>
                   <View style={{ paddingHorizontal: 10, paddingBottom: 10 }}>
-                    <View style={Styles.row}>
-                      <Text style={Styles.titleText}>{item.title}</Text>
-                      <View style={Styles.ratingBox}>
-                        <Text style={Styles.ratingText}>{item.rating} ★</Text>
+                    <View style={styles.row}>
+                      <Text style={styles.titleText}>{item.title}</Text>
+                      <View style={styles.ratingBox}>
+                        <Text style={styles.ratingTextWhite}>{item.rating} ★</Text>
                       </View>
                     </View>
-                    <View style={Styles.metaRow}>
-                      <Text style={Styles.metaText}>{item.time}</Text>
-                      <Text style={Styles.dot}>•</Text>
-                      <Text style={Styles.metaText}>{item.distance}</Text>
+                    <View style={styles.metaRow}>
+                      <Text style={styles.metaText}>{item.time}</Text>
+                      <Text style={styles.dot}>•</Text>
+                      <Text style={styles.metaText}>{item.distance}</Text>
                     </View>
-                    <Text style={Styles.offerTexttt}>{item.offer}</Text>
+                    <Text style={styles.offerTexttt}>{item.offer}</Text>
                   </View>
                 </TouchableOpacity>
               ))}
@@ -376,8 +376,8 @@ const Dashboard: React.FC = () => {
               </View>
 
               {topOffers.map(item => (
-                <View key={item.id} style={Styles.offerCard}>
-                  <Text style={Styles.offerText}>{item.offer}</Text>
+                <View key={item.id} style={styles.offerCard}>
+                  <Text style={styles.offerText}>{item.offer}</Text>
                 </View>
               ))}
             </View>
@@ -389,236 +389,3 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
-
-const Styles = StyleSheet.create({
-  LinearGradientHeader: {
-    backgroundColor: 'transparent',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
-    paddingHorizontal: 16,
-
-    // paddingBottom: 32,
-    // borderWidth: 1,
-    // borderBottomLeftRadius: 32,
-    // borderBottomRightRadius: 32,
-    overflow: 'hidden',
-    shadowColor: '#000', // iOS
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 4 },
-    // backgroundColor: 'transparent',
-    zIndex: 9,
-  },
-  headerShadow: {
-    height: 1,
-    // elevation: 10, // Android shadow
-    shadowColor: '#000', // iOS
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 4 },
-    // backgroundColor: 'transparent',
-    zIndex: 9,
-
-    borderBottomLeftRadius: 32,
-    borderBottomRightRadius: 32,
-  },
-
-  header: {
-    backgroundColor: 'transparent', // gradient only
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
-
-    paddingHorizontal: 16,
-    paddingBottom: 32,
-
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
-
-    overflow: 'hidden', // keeps rounded corners clean
-  },
-  sectionHeaderRow: {
-    // borderWidth: 1,
-  },
-  // -------------------------
-
-  horizontalRow: {
-    flexDirection: 'row',
-  },
-
-  offerCard: {
-    backgroundColor: '#ffe9d6',
-    padding: 14,
-    borderRadius: 14,
-    marginBottom: 10,
-  },
-
-  offerText: {
-    fontWeight: '800',
-    color: colors.brandSecondary,
-  },
-  // ===================================
-  card: {
-    width: 240,
-    height: 240, // ⬅ decreased height
-    marginRight: 16,
-    borderRadius: 18,
-    overflow: 'hidden',
-  },
-
-  image: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-
-  imageRadius: {
-    borderRadius: 18,
-  },
-
-  gradient: {
-    padding: 14,
-    paddingTop: 70, // ⬅ reduced from 90
-  },
-
-  extraDark: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.16)', // slightly reduced
-  },
-
-  title: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: '800',
-  },
-
-  placeName: {
-    color: '#ddd',
-    fontSize: 10,
-    fontWeight: 800,
-  },
-
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 6,
-  },
-
-  // ratingBox: {
-  //   backgroundColor: '#1faa59',
-  //   paddingHorizontal: 10,
-  //   paddingVertical: 4,
-  //   borderRadius: 14,
-  // },
-
-  ratingText: {
-    color: '#fff',
-    fontWeight: '700',
-    fontSize: 10,
-  },
-
-  distanceRow: {
-    marginTop: 6,
-  },
-
-  distance: {
-    color: '#ccc',
-    fontSize: 10,
-    fontWeight: 800,
-  },
-
-  // ==================
-  CardContainer: {
-    width: '100%',
-    height: 240,
-    borderRadius: 14,
-    overflow: 'hidden',
-    // padding: 4,
-    marginBottom: 15,
-    elevation: 8,
-    borderWidth: 1,
-    borderColor: '#FFFFFF',
-    backgroundColor: '#FFFFFF',
-  },
-
-  smallImage: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    //  borderRadius: 14,
-    // borderWidth: 1,
-    borderColor: '#FFFFFF',
-  },
-
-  smallImageRadius: {
-    // borderRadius: 14,
-    borderTopStartRadius: 14,
-    borderTopEndRadius: 14,
-    borderWidth: 0.1,
-    borderColor: '#FFFFFF',
-  },
-
-  smallExtraDark: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.15)',
-  },
-
-  smallGradient: {
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-  },
-
-  smallCardText: {
-    color: colors.darkBlack,
-    fontSize: 14,
-    fontWeight: '700',
-  },
-  // ===========
-  //   row: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   justifyContent: 'space-between',
-  //   marginBottom: 4,
-  // },
-
-  titleText: {
-    color: colors.darkBlack,
-    fontSize: 18,
-    fontWeight: '800',
-    flex: 1,
-    marginRight: 6,
-  },
-
-  ratingBox: {
-    backgroundColor: '#1faa59',
-    paddingHorizontal: 7,
-    paddingVertical: 2,
-    borderRadius: 10,
-  },
-
-  // ratingText: {
-  //   color: '#fff',
-  //   fontSize: 11,
-  //   fontWeight: '700',
-  // },
-
-  metaRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 4,
-  },
-
-  metaText: {
-    color: '#1faa59',
-    fontSize: 12,
-    fontWeight: '800',
-  },
-
-  dot: {
-    color: '#999',
-    marginHorizontal: 6,
-    fontSize: 12,
-  },
-
-  offerTexttt: {
-    color: colors.brandPrimary,
-    fontSize: 12,
-    fontWeight: '800',
-  },
-});

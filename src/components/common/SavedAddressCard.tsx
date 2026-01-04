@@ -19,16 +19,16 @@ const SavedAddressCard = ({
   distance,
 }: Props) => {
   return (
-    <TouchableOpacity style={styles.addressCard}>
+    <TouchableOpacity style={styles.addressCard} activeOpacity={0.9}>
       {/* LEFT */}
       <View style={styles.addressLeft}>
         <View style={styles.homeIcon}>
-          <Feather name={icon} size={18}   color={colors.brandPrimary} />
+          <Feather name={icon} size={18} color={colors.brandPrimary} />
         </View>
 
         <View style={styles.textContainer}>
-          <View style={{ flexDirection: 'row',alignItems:'center' }}> 
-            <Text style={styles.addressTitle}>{title}</Text> 
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={styles.addressTitle}>{title}</Text>
             {distance && <Text style={styles.distance}>{distance}</Text>}
           </View>
 
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     padding: 14,
     borderRadius: 14,
     elevation: 2,
-    // marginBottom: 7,
+    marginBottom: 7,
   },
 
   addressLeft: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
   },
   homeIcon: {
-     backgroundColor: '#ffe8e8ff',
+    backgroundColor: '#ffe8e8ff',
     padding: 8,
     borderRadius: 10,
     marginRight: 10,

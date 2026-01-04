@@ -11,7 +11,7 @@ export type PaymentMethod = 'CARD' | 'UPI' | 'NET_BANKING' | 'COD' | 'WALLET';
 /* ===================== ADDRESS ===================== */
 export interface Address {
   id: string;
-  label: 'HOME' | 'WORK' | 'OTHER';
+  label: 'HOME' | 'WORK' | 'OFFICE' | 'OTHER';
   name: string;
   mobile: string;
   street: string;
@@ -29,7 +29,7 @@ export interface UserPayment {
   id: string;
   type: PaymentMethod;
   last4Digits?: string; // for cards
-  upiId?: string;       // for UPI
+  upiId?: string; // for UPI
   isDefault: boolean;
 }
 
@@ -120,6 +120,34 @@ export const userData: UserData = {
       latitude: 22.5726,
       longitude: 88.3639,
       isDefault: true,
+    },
+    {
+      id: 'addr_2',
+      label: 'OFFICE',
+      name: 'Sudev Majhi',
+      mobile: '7488854660',
+      street: 'Sector V, Plot 12',
+      area: 'Salt Lake',
+      city: 'Kolkata',
+      state: 'West Bengal',
+      pincode: '700091',
+      latitude: 22.5697,
+      longitude: 88.4301,
+      isDefault: false,
+    },
+    {
+      id: 'addr_3',
+      label: 'OTHER',
+      name: 'Sudev Majhi',
+      mobile: '7488854660',
+      street: 'Flat 3B, Green Residency',
+      area: 'New Town',
+      city: 'Kolkata',
+      state: 'West Bengal',
+      pincode: '700156',
+      latitude: 22.58,
+      longitude: 88.46,
+      isDefault: false,
     },
   ],
 

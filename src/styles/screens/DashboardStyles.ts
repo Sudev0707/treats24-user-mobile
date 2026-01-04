@@ -351,6 +351,164 @@ const DashboardStyles = StyleSheet.create({
     fontWeight: '600',
     color: '#333',
   },
+  // Inline styles moved from Dashboard.tsx
+  LinearGradientHeader: {
+    backgroundColor: 'transparent',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
+    paddingHorizontal: 16,
+    overflow: 'hidden',
+    shadowColor: '#000', // iOS
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
+    zIndex: 9,
+  },
+  headerShadow: {
+    height: 1,
+    shadowColor: '#000', // iOS
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
+    zIndex: 9,
+    borderBottomLeftRadius: 32,
+    borderBottomRightRadius: 32,
+  },
+  header: {
+    backgroundColor: 'transparent', // gradient only
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
+    paddingHorizontal: 16,
+    paddingBottom: 32,
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
+    overflow: 'hidden', // keeps rounded corners clean
+  },
+  horizontalRow: {
+    flexDirection: 'row',
+  },
+  card: {
+    width: 240,
+    height: 240, // ⬅ decreased height
+    marginRight: 16,
+    borderRadius: 18,
+    overflow: 'hidden',
+  },
+  image: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  imageRadius: {
+    borderRadius: 18,
+  },
+  gradient: {
+    padding: 14,
+    paddingTop: 70, // ⬅ reduced from 90
+  },
+  extraDark: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.16)', // slightly reduced
+  },
+  title: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '800',
+  },
+  placeName: {
+    color: '#ddd',
+    fontSize: 10,
+    fontWeight: 800,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 6,
+  },
+  ratingTextWhite: {
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: 10,
+  },
+  distanceRow: {
+    marginTop: 6,
+  },
+  distance: {
+    color: '#ccc',
+    fontSize: 10,
+    fontWeight: 800,
+  },
+  CardContainer: {
+    width: '100%',
+    height: 240,
+    borderRadius: 14,
+    overflow: 'hidden',
+    marginBottom: 15,
+    elevation: 8,
+    borderWidth: 1,
+    borderColor: '#FFFFFF',
+    backgroundColor: '#FFFFFF',
+  },
+  smallImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    borderColor: '#FFFFFF',
+  },
+  smallImageRadius: {
+    borderTopStartRadius: 14,
+    borderTopEndRadius: 14,
+    borderWidth: 0.1,
+    borderColor: '#FFFFFF',
+  },
+  smallExtraDark: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.15)',
+  },
+  smallGradient: {
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+  },
+  smallCardText: {
+    color: colors.darkBlack,
+    fontSize: 14,
+    fontWeight: '700',
+  },
+  ratingBox: {
+    backgroundColor: '#1faa59',
+    paddingHorizontal: 7,
+    paddingVertical: 2,
+    borderRadius: 10,
+  },
+  titleText: {
+    color: colors.darkBlack,
+    fontSize: 18,
+    fontWeight: '800',
+    flex: 1,
+    marginRight: 6,
+  },
+  metaRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  dot: {
+    color: '#999',
+    marginHorizontal: 6,
+    fontSize: 12,
+  },
+  offerTexttt: {
+    color: colors.brandPrimary,
+    fontSize: 12,
+    fontWeight: '800',
+  },
+  offerCard: {
+    backgroundColor: '#ffe9d6',
+    padding: 14,
+    borderRadius: 14,
+    marginBottom: 10,
+  },
+  offerText: {
+    fontWeight: '800',
+    color: colors.brandSecondary,
+  },
 });
 
 export default DashboardStyles;
