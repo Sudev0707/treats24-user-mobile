@@ -43,6 +43,7 @@ const AppRoutes = () => {
               name="OTPVerification"
               component={Screens.OTPVerification}
             />
+            {/*  */}
             <Stack.Screen
               name="SetLocation"
               component={Screens.SetLocation}

@@ -169,7 +169,7 @@ export const RestaurantScreenStyle = StyleSheet.create({
     backgroundColor: colors.backgroundLight,
   },
   dummyFoodImage: {
-    width: '60%', 
+    width: '60%',
     height: '60%',
     resizeMode: 'contain',
     borderRadius: 10,
@@ -272,41 +272,48 @@ export const RestaurantScreenStyle = StyleSheet.create({
     borderTopRightRadius: 25,
     paddingBottom: 180,
   },
-  deleiveryTime:{
-    alignSelf:'center',
-    borderWidth:0.5,
-    padding:15,
-    borderColor:colors.borderLight,
-    borderRadius:50, width:'100%',
-    marginBottom:15,
-    backgroundColor:'#ffe9d6',
-    flexDirection:'row',
-    justifyContent:'center'
+  deleiveryTime: {
+    alignSelf: 'center',
+    borderWidth: 0.5,
+    padding: 15,
+    borderColor: colors.borderLight,
+    borderRadius: 50,
+    width: '100%',
+    marginBottom: 15,
+    backgroundColor: '#ffe9d6',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
-  timeText:{
-    fontWeight:800,
-    textAlign:'center',
-    paddingStart:8,
-    color: '#ff6a00'
-  }
+  timeText: {
+    fontWeight: 800,
+    textAlign: 'center',
+    paddingStart: 8,
+    color: '#ff6a00',
+  },
 });
 
 export const RestaurantHeaderStyle = StyleSheet.create({
   headerContainer: {
-    backgroundColor: 'trsnsparent',
+    // backgroundColor: colors.background,
     zIndex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
     paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingTop: 12,
     // paddingTop: StatusBar.currentHeight || 20,
     // borderBottomWidth: 0.5,
   },
   backBtn: {
     // borderWidth: 1,
     padding: 6,
+    borderRadius: 50,
+    borderColor: colors.borderLight,
+    backgroundColor: colors.background,
+  },
+  saveBtn: {
+    padding: 8,
     borderRadius: 50,
     borderColor: colors.borderLight,
     backgroundColor: colors.background,
