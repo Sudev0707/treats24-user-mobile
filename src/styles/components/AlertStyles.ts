@@ -30,15 +30,34 @@ const AlertStyles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
   button: {
     backgroundColor: '#000',
     paddingVertical: 10,
     paddingHorizontal: 25,
     borderRadius: 10,
+    flex: 1,
+    marginHorizontal: 5,
+  },
+  cancelButton: {
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#000',
+  },
+  confirmButton: {
+    backgroundColor: '#000',
   },
   buttonText: {
     color: '#fff',
     fontWeight: '600',
+    textAlign: 'center',
+  },
+  cancelButtonText: {
+    color: '#000',
   },
 });
 

@@ -150,7 +150,7 @@ const EmailLogin = ({
             variant="floating"
           />
 
-          <Button title="Send OTP" variant="filled" onPress={handleSendOtp} />
+          <Button title="Send OTP" variant="filled" onPress={handleSendOtp} isPhoneValid={true} />
 
           {/* <TouchableOpacity
             style={styles.primaryButton}

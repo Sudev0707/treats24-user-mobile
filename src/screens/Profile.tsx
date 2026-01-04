@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   View,
   Text,
@@ -20,7 +20,7 @@ import ProfileInfo from '../components/common/ProfileInfo';
 import UserAddress from '../components/common/UserAddress';
 import Orders from '../components/common/Orders';
 import { userData } from '../data/userData';
-
+import CustomAlert from '../components/common/CustomAlert';
 
 const Profile: React.FC = () => {
   const scrollProps = useScrollToHideTabBar({ threshold: 50 });
@@ -30,6 +30,74 @@ const Profile: React.FC = () => {
   const [showProfileInfo, setShowProfileInfo] = useState(false);
   const [showUserAddress, setShowUserAddress] = useState(false);
   const [showOrderDetails, setShowOrderDetails] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertTitle, setAlertTitle] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertOnConfirm, setAlertOnConfirm] = useState<
+    (() => void) | undefined
+  >(undefined);
+  const [alertOnCancel, setAlertOnCancel] = useState<(() => void) | undefined>(
+    undefined,
+  );
+
+  const handleLogoutPress = () => {
+    setAlertTitle('Logout');
+    setAlertMessage('Are you sure you want to logout?');
+    setAlertOnConfirm(() => console.log('Logout confirmed'));
+    setAlertOnCancel(() => setAlertVisible(false));
+    setAlertVisible(true);
+  };
+
+  const menuSections = [
+    [
+      {
+        icon: 'person',
+        label: 'Edit Profile',
+        onPress: () => setShowProfileInfo(true),
+      },
+      {
+        icon: 'location-on',
+        label: 'Address',
+        onPress: () => setShowUserAddress(true),
+      },
+      {
+        icon: 'shopping-bag',
+        label: 'Orders',
+        onPress: () => setShowOrderDetails(true),
+      },
+    ],
+    [
+      {
+        icon: 'notifications',
+        label: 'Notifications',
+        onPress: () => console.log('Notifications'),
+      },
+      {
+        icon: 'help-outline',
+        label: 'Help',
+        onPress: () => console.log('Help'),
+      },
+    ],
+    [
+      {
+        icon: 'info-outline',
+        label: 'About',
+        onPress: () => console.log('About'),
+      },
+      {
+        icon: 'settings',
+        label: 'Settings',
+        onPress: () => console.log('Settings'),
+      },
+      {
+        icon: 'logout',
+        label: 'Logout',
+        onPress: () => {
+          handleLogoutPress();
+        },
+      },
+    ],
+  ];
 
   const handleSubmit = () => {
     if (!email) {
@@ -110,148 +178,33 @@ const Profile: React.FC = () => {
 
           {/*  */}
           <View style={styles.contentContainer}>
-            <View style={styles.rowViewContainer}>
-              <TouchableOpacity
-                style={styles.rowContainer}
-                onPress={() => setShowProfileInfo(true)}
-              >
-                <View style={styles.row}>
-                  <View style={styles.rowIconBox}>
-                    <Icon name="person" size={18} color={colors.brandPrimary} />
-                  </View>
-
-                  <Text style={styles.rowLabel}>Edit Profile</Text>
-                </View>
-                <Icon name="chevron-right" size={28} color="#666" />
-              </TouchableOpacity>
-
-              <View style={styles.rowSeparator} />
-
-              <TouchableOpacity
-                style={styles.rowContainer}
-                onPress={() => setShowUserAddress(true)}
-              >
-                <View style={styles.row}>
-                  <View style={styles.rowIconBox}>
-                    <Icon
-                      name="location-on"
-                      size={18}
-                      color={colors.brandPrimary}
-                    />
-                  </View>
-                  <Text style={styles.rowLabel}>Address</Text>
-                </View>
-                <Icon name="chevron-right" size={28} color="#666" />
-              </TouchableOpacity>
-
-              <View style={styles.rowSeparator} />
-
-              <TouchableOpacity
-                style={styles.rowContainer}
-                onPress={() => setShowOrderDetails(true)}
-              >
-                <View style={styles.row}>
-                  <View style={styles.rowIconBox}>
-                    <Icon
-                      name="shopping-bag"
-                      size={18}
-                      color={colors.brandPrimary}
-                    />{' '}
-                  </View>
-                  <Text style={styles.rowLabel}>Orders</Text>
-                </View>
-                <Icon name="chevron-right" size={28} color="#666" />
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.rowViewContainer}>
-              <TouchableOpacity
-                style={styles.rowContainer}
-                onPress={() => console.log('Notifications')}
-              >
-                <View style={styles.row}>
-                  <View style={styles.rowIconBox}>
-                    <Icon
-                      name="notifications"
-                      size={18}
-                      color={colors.brandPrimary}
-                    />
-                  </View>
-                  <Text style={styles.rowLabel}>Notifications</Text>
-                </View>
-                <Icon name="chevron-right" size={28} color="#666" />
-              </TouchableOpacity>
-
-              <View style={styles.rowSeparator} />
-
-              <TouchableOpacity
-                style={styles.rowContainer}
-                onPress={() => console.log('Help')}
-              >
-                <View style={styles.row}>
-                  <View style={styles.rowIconBox}>
-                    <Icon
-                      name="help-outline"
-                      size={18}
-                      color={colors.brandPrimary}
-                    />
-                  </View>
-                  <Text style={styles.rowLabel}>Help</Text>
-                </View>
-                <Icon name="chevron-right" size={28} color="#666" />
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.rowViewContainer}>
-              <TouchableOpacity
-                style={styles.rowContainer}
-                onPress={() => console.log('About')}
-              >
-                <View style={styles.row}>
-                  <View style={styles.rowIconBox}>
-                    <Icon
-                      name="info-outline"
-                      size={18}
-                      color={colors.brandPrimary}
-                    />
-                  </View>
-                  <Text style={styles.rowLabel}>About</Text>
-                </View>
-                <Icon name="chevron-right" size={28} color="#666" />
-              </TouchableOpacity>
-              <View style={styles.rowSeparator} />
-
-              <TouchableOpacity
-                style={styles.rowContainer}
-                onPress={() => console.log('Settings')}
-              >
-                <View style={styles.row}>
-                  <View style={styles.rowIconBox}>
-                    <Icon
-                      name="settings"
-                      size={18}
-                      color={colors.brandPrimary}
-                    />
-                  </View>
-                  <Text style={styles.rowLabel}>Settings</Text>
-                </View>
-                <Icon name="chevron-right" size={28} color="#666" />
-              </TouchableOpacity>
-              <View style={styles.rowSeparator} />
-
-              <TouchableOpacity
-                style={styles.rowContainer}
-                onPress={() => console.log('Logout')}
-              >
-                <View style={styles.row}>
-                  <View style={styles.rowIconBox}>
-                    <Icon name="logout" size={18} color={colors.brandPrimary} />
-                  </View>
-                  <Text style={styles.rowLabel}>Logout</Text>
-                </View>
-                <Icon name="chevron-right" size={28} color="#666" />
-              </TouchableOpacity>
-            </View>
+            {menuSections.map((section, sectionIndex) => (
+              <View key={sectionIndex} style={styles.rowViewContainer}>
+                {section.map((item, itemIndex) => (
+                  <React.Fragment key={item.icon}>
+                    <TouchableOpacity
+                      style={styles.rowContainer}
+                      onPress={item.onPress}
+                    >
+                      <View style={styles.row}>
+                        <View style={styles.rowIconBox}>
+                          <Icon
+                            name={item.icon}
+                            size={18}
+                            color={colors.brandPrimary}
+                          />
+                        </View>
+                        <Text style={styles.rowLabel}>{item.label}</Text>
+                      </View>
+                      <Icon name="chevron-right" size={28} color="#666" />
+                    </TouchableOpacity>
+                    {itemIndex < section.length - 1 && (
+                      <View style={styles.rowSeparator} />
+                    )}
+                  </React.Fragment>
+                ))}
+              </View>
+            ))}
 
             <View style={styles.versionContainer}>
               <Text style={styles.versionText}>App Version</Text>
@@ -260,6 +213,14 @@ const Profile: React.FC = () => {
           </View>
         </ScrollView>
       )}
+      <CustomAlert
+        visible={alertVisible}
+        title={alertTitle}
+        message={alertMessage}
+        onConfirm={alertOnConfirm}
+        onCancel={alertOnCancel}
+        onClose={() => setAlertVisible(false)}
+      />
     </SafeAreaView>
   );
 };
