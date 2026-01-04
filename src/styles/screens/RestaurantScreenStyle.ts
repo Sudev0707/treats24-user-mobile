@@ -324,13 +324,13 @@ export const RestaurantHeaderStyle = StyleSheet.create({
     color: '#000',
   },
   headerContainer: {
-    // backgroundColor: colors.background,2
+    // backgroundColor: colors.background,
     zIndex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     // paddingTop: 12,
     // paddingTop: StatusBar.currentHeight || 20,
     // borderBottomWidth: 0.5,

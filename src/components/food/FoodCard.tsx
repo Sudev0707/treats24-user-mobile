@@ -30,7 +30,7 @@ const FoodCard: React.FC<FoodCardProps> = ({ food, quantity, onAdd, onDecrement 
           resizeMode="contain"
           source={
             food.image ||
-            require('../../assets/images/foods/dummy food.png')
+            require('../../assets/images/foodCategory/pizza.png')
           }
           style={
             food.image

@@ -98,13 +98,12 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   const [isSaved, setIsSaved] = useState(false);
   const navigation = useNavigation();
   // const [activeChips, setActiveChips] = useState({});
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]); // 👈 store active chips
-  const scrollY = useRef(new Animated.Value(0)).current;
-  const headerBackgroundColor = scrollY.interpolate({
-    inputRange: [0, 400],
-    outputRange: ['transparent', '#ffffffff'],
-    extrapolate: 'clamp',
-  });
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]); //
+
+  const [barStyle, setBarStyle] = useState<'light-content' | 'dark-content'>('light-content');
+  const [headerBackgroundColor, setHeaderBackgroundColor] = useState('transparent');
+
+  // Removed animated header background color to fix immutable object issues
 
   const { height } = Dimensions.get('window');
   const imageHeight = height * 0.35 + 20;
@@ -121,6 +120,20 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
     setFoodCounts(newFoodCounts);
     setModalVisible(Object.keys(newFoodCounts).length > 0);
   }, [cartItems]);
+
+  // Update StatusBar based on scroll position
+  const handleScroll = (event: any) => {
+    const scrollYValue = event.nativeEvent.contentOffset.y;
+    if (scrollYValue > 200) {
+      setBarStyle('dark-content');
+      setHeaderBackgroundColor('#ffffff');
+      StatusBar.setBackgroundColor('#ffffff');
+    } else {
+      setBarStyle('light-content');
+      setHeaderBackgroundColor('transparent');
+      StatusBar.setBackgroundColor('transparent');
+    }
+  };
 
   // ===============
   // const handleAddFood = (foodId: string) => {
@@ -233,14 +246,16 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
 
   return (
     <>
-      <StatusBar translucent={false} barStyle="light-content" />
+      <StatusBar translucent={true} barStyle={barStyle}  />
       {/* header  */}
-      <SafeAreaView style={RestaurantHeaderStyle.headerContainer}>
-        <RestaurantDetailsHeader
-          restaurantName={restaurant.name}
-          restaurant={restaurant}
-          backgroundColor={'transparent'}
-        />
+      <SafeAreaView style={[RestaurantHeaderStyle.headerContainer, { backgroundColor: headerBackgroundColor }]}>
+        <View>
+          <RestaurantDetailsHeader
+            restaurantName={restaurant.name}
+            restaurant={restaurant}
+            backgroundColor={headerBackgroundColor}
+          />
+        </View>
       </SafeAreaView>
 
       <ImageBackground
@@ -315,10 +330,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
             zIndex: 1,
             // paddingBottom:200
           }}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-            { useNativeDriver: false },
-          )}
+          onScroll={handleScroll}
           scrollEventThrottle={16}
         >
           {/*  */}
