@@ -1,3 +1,5 @@
+import { OrderData } from '../data/ordrr.types';
+
 export type RootStackParamList = {
   SplashBrand: undefined;
   Auth: undefined;
@@ -19,4 +21,5 @@ export type RootStackParamList = {
   HeaderDemo2: undefined;
   HeaderDemo3: undefined;
   HeaderDemo4: undefined;
+  OrderDetails: { order: OrderData };
 };

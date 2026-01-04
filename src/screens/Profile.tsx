@@ -18,7 +18,9 @@ import styles from '../styles/screens/ProfileStyles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ProfileInfo from '../components/common/ProfileInfo';
 import UserAddress from '../components/common/UserAddress';
-import OrderDetails from '../components/common/OrderDetails';
+import Orders from '../components/common/Orders';
+import { userData } from '../data/userData';
+
 
 const Profile: React.FC = () => {
   const scrollProps = useScrollToHideTabBar({ threshold: 50 });
@@ -88,7 +90,7 @@ const Profile: React.FC = () => {
       ) : showUserAddress ? (
         <UserAddress />
       ) : showOrderDetails ? (
-        <OrderDetails />
+        <Orders />
       ) : (
         <ScrollView
           contentContainerStyle={styles.scrollContent}
@@ -97,155 +99,155 @@ const Profile: React.FC = () => {
         >
           <View style={styles.header}>
             <View style={styles.avatar}>
-              <Text style={styles.avatarText}>S</Text>
+              <Text style={styles.avatarText}>{userData.avatar}</Text>
             </View>
             <View style={styles.userDetails}>
-              <Text style={styles.userName}>Sudev</Text>
-              <Text style={styles.userMobile}>7488854660</Text>
-              <Text style={styles.userEmail}>sudev@example.com</Text>
+              <Text style={styles.userName}>{userData.name}</Text>
+              <Text style={styles.userMobile}>{userData.mobile}</Text>
+              <Text style={styles.userEmail}>{userData.email}</Text>
             </View>
           </View>
 
           {/*  */}
           <View style={styles.contentContainer}>
-            <View style={stylesRow.viewContainer}>
+            <View style={styles.rowViewContainer}>
               <TouchableOpacity
-                style={stylesRow.container}
+                style={styles.rowContainer}
                 onPress={() => setShowProfileInfo(true)}
               >
-                <View style={stylesRow.row}>
-                  <View style={stylesRow.iconBox}>
+                <View style={styles.row}>
+                  <View style={styles.rowIconBox}>
                     <Icon name="person" size={18} color={colors.brandPrimary} />
                   </View>
 
-                  <Text style={stylesRow.label}>Edit Profile</Text>
+                  <Text style={styles.rowLabel}>Edit Profile</Text>
                 </View>
                 <Icon name="chevron-right" size={28} color="#666" />
               </TouchableOpacity>
 
-              <View style={stylesRow.separator} />
+              <View style={styles.rowSeparator} />
 
               <TouchableOpacity
-                style={stylesRow.container}
+                style={styles.rowContainer}
                 onPress={() => setShowUserAddress(true)}
               >
-                <View style={stylesRow.row}>
-                  <View style={stylesRow.iconBox}>
+                <View style={styles.row}>
+                  <View style={styles.rowIconBox}>
                     <Icon
                       name="location-on"
                       size={18}
                       color={colors.brandPrimary}
                     />
                   </View>
-                  <Text style={stylesRow.label}>Address</Text>
+                  <Text style={styles.rowLabel}>Address</Text>
                 </View>
                 <Icon name="chevron-right" size={28} color="#666" />
               </TouchableOpacity>
 
-              <View style={stylesRow.separator} />
+              <View style={styles.rowSeparator} />
 
               <TouchableOpacity
-                style={stylesRow.container}
+                style={styles.rowContainer}
                 onPress={() => setShowOrderDetails(true)}
               >
-                <View style={stylesRow.row}>
-                  <View style={stylesRow.iconBox}>
+                <View style={styles.row}>
+                  <View style={styles.rowIconBox}>
                     <Icon
                       name="shopping-bag"
                       size={18}
                       color={colors.brandPrimary}
                     />{' '}
                   </View>
-                  <Text style={stylesRow.label}>Orders</Text>
+                  <Text style={styles.rowLabel}>Orders</Text>
                 </View>
                 <Icon name="chevron-right" size={28} color="#666" />
               </TouchableOpacity>
             </View>
 
-            <View style={stylesRow.viewContainer}>
+            <View style={styles.rowViewContainer}>
               <TouchableOpacity
-                style={stylesRow.container}
+                style={styles.rowContainer}
                 onPress={() => console.log('Notifications')}
               >
-                <View style={stylesRow.row}>
-                  <View style={stylesRow.iconBox}>
+                <View style={styles.row}>
+                  <View style={styles.rowIconBox}>
                     <Icon
                       name="notifications"
                       size={18}
                       color={colors.brandPrimary}
                     />
                   </View>
-                  <Text style={stylesRow.label}>Notifications</Text>
+                  <Text style={styles.rowLabel}>Notifications</Text>
                 </View>
                 <Icon name="chevron-right" size={28} color="#666" />
               </TouchableOpacity>
 
-              <View style={stylesRow.separator} />
+              <View style={styles.rowSeparator} />
 
               <TouchableOpacity
-                style={stylesRow.container}
+                style={styles.rowContainer}
                 onPress={() => console.log('Help')}
               >
-                <View style={stylesRow.row}>
-                  <View style={stylesRow.iconBox}>
+                <View style={styles.row}>
+                  <View style={styles.rowIconBox}>
                     <Icon
                       name="help-outline"
                       size={18}
                       color={colors.brandPrimary}
                     />
                   </View>
-                  <Text style={stylesRow.label}>Help</Text>
+                  <Text style={styles.rowLabel}>Help</Text>
                 </View>
                 <Icon name="chevron-right" size={28} color="#666" />
               </TouchableOpacity>
             </View>
 
-            <View style={stylesRow.viewContainer}>
+            <View style={styles.rowViewContainer}>
               <TouchableOpacity
-                style={stylesRow.container}
+                style={styles.rowContainer}
                 onPress={() => console.log('About')}
               >
-                <View style={stylesRow.row}>
-                  <View style={stylesRow.iconBox}>
+                <View style={styles.row}>
+                  <View style={styles.rowIconBox}>
                     <Icon
                       name="info-outline"
                       size={18}
                       color={colors.brandPrimary}
                     />
                   </View>
-                  <Text style={stylesRow.label}>About</Text>
+                  <Text style={styles.rowLabel}>About</Text>
                 </View>
                 <Icon name="chevron-right" size={28} color="#666" />
               </TouchableOpacity>
-              <View style={stylesRow.separator} />
+              <View style={styles.rowSeparator} />
 
               <TouchableOpacity
-                style={stylesRow.container}
+                style={styles.rowContainer}
                 onPress={() => console.log('Settings')}
               >
-                <View style={stylesRow.row}>
-                  <View style={stylesRow.iconBox}>
+                <View style={styles.row}>
+                  <View style={styles.rowIconBox}>
                     <Icon
                       name="settings"
                       size={18}
                       color={colors.brandPrimary}
                     />
                   </View>
-                  <Text style={stylesRow.label}>Settings</Text>
+                  <Text style={styles.rowLabel}>Settings</Text>
                 </View>
                 <Icon name="chevron-right" size={28} color="#666" />
               </TouchableOpacity>
-              <View style={stylesRow.separator} />
+              <View style={styles.rowSeparator} />
 
               <TouchableOpacity
-                style={stylesRow.container}
+                style={styles.rowContainer}
                 onPress={() => console.log('Logout')}
               >
-                <View style={stylesRow.row}>
-                  <View style={stylesRow.iconBox}>
+                <View style={styles.row}>
+                  <View style={styles.rowIconBox}>
                     <Icon name="logout" size={18} color={colors.brandPrimary} />
                   </View>
-                  <Text style={stylesRow.label}>Logout</Text>
+                  <Text style={styles.rowLabel}>Logout</Text>
                 </View>
                 <Icon name="chevron-right" size={28} color="#666" />
               </TouchableOpacity>
@@ -263,42 +265,3 @@ const Profile: React.FC = () => {
 };
 
 export default Profile;
-
-const stylesRow = StyleSheet.create({
-  container: {
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  viewContainer: {
-    backgroundColor: '#fff',
-    overflow: 'hidden',
-    borderRadius: 10,
-    // paddingVertical:5
-    marginBottom: 18,
-    elevation: 1,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  iconBox: {
-    backgroundColor: colors.brandPrimarySoft,
-    padding: 8,
-    borderRadius: 10,
-  },
-  label: {
-    marginLeft: 14,
-    fontSize: 15,
-    color: '#000',
-    fontWeight: '500',
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#e5e5e5',
-    marginHorizontal: 16, // keeps gap on both sides like screenshot
-  },
-});

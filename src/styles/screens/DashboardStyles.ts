@@ -5,16 +5,16 @@ import fonts from '../../theme/fonts';
 const { width: screenWidth } = Dimensions.get('window');
 
 const DashboardStyles = StyleSheet.create({
-  outerContainer:{
-  flex: 1,
-    backgroundColor: colors.background,
+  outerContainer: {
+    flex: 1,
+    backgroundColor: colors.bgOffWhiteSecondary,
   },
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    // backgroundColor: colors.brandPrimarySoft,
     // borderWidth:1,
     top: -20,
-    borderRadius:20
+    borderRadius: 20,
   },
   headerContainer: {
     position: 'absolute',
@@ -101,7 +101,7 @@ const DashboardStyles = StyleSheet.create({
     paddingTop: 35,
     paddingBottom: 80,
     // backgroundColor: colors.backgroundSoft,
-    backgroundColor: colors.background,
+    // backgroundColor: colors.background,
   },
   headerRow: {
     flexDirection: 'row',
@@ -200,15 +200,15 @@ const DashboardStyles = StyleSheet.create({
     // flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    
+
     elevation: 1,
-     borderWidth:0.9,
-     borderColor: colors.background,
-     overflow:'hidden'
+    borderWidth: 0.9,
+    borderColor: colors.background,
+    overflow: 'hidden',
   },
 
   chipActive: {
-    borderWidth:0.9,
+    borderWidth: 0.9,
     borderColor: colors.brandPrimary,
     shadowColor: '#ffffffff',
     shadowOffset: { width: 4, height: 4 },

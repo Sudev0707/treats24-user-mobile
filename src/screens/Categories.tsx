@@ -7,6 +7,8 @@ import {
   StyleSheet,
   Image,
   Dimensions,
+  ScrollView,
+  StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
@@ -14,6 +16,7 @@ import { RootStackParamList } from '../routes/types';
 import colors from '../theme/colors';
 import { CATEGORIES } from '../data/dummyFoodData';
 import Header from '../components/common/Header';
+import { categoriesStyle as styles } from '../styles/screens/CategoriesStyles';
 
 interface CategoryItem {
   id: string;
@@ -55,63 +58,34 @@ const Categories: React.FC = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Header title="All Categories" showBackButton={true} />
-      <FlatList
-        data={CATEGORIES}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-        numColumns={2}
-        contentContainerStyle={styles.listContainer}
-        showsVerticalScrollIndicator={false}
+    <>
+      <StatusBar
+        translucent={false}
+        backgroundColor={colors.background}
+        barStyle="dark-content"
       />
-    </SafeAreaView>
+
+      {/* FIXED HEADER */}
+      <SafeAreaView edges={['top']} style={styles.headerWrapper}>
+        <Header title="All Categories" showBackButton={true} />
+      </SafeAreaView>
+      <SafeAreaView style={styles.container}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.scrollContainer}
+        >
+          <FlatList
+            data={CATEGORIES}
+            keyExtractor={item => item.id}
+            renderItem={renderItem}
+            numColumns={2}
+            contentContainerStyle={styles.listContainer}
+            showsVerticalScrollIndicator={false}
+          />
+        </ScrollView>
+      </SafeAreaView>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  listContainer: {
-    padding: 16,
-  },
-  categoryCard: {
-    flex: 1,
-    backgroundColor: '#fff',
-    margin: 8,
-    borderRadius: 12,
-    padding: 16,
-    alignItems: 'center',
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    // height: 120,
-  },
-  categoryImageContainer: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: colors.background,
-    justifyContent: 'center',
-    alignItems: 'center',
-    // marginBottom: 5,
-   
-  },
-  categoryImage: {
-    width: '100%',
-    height: '100%',
-    // borderWidth:1
-  },
-  categoryName: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: colors.darkBlack,
-    textAlign: 'center',
-  },
-});
 
 export default Categories;

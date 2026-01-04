@@ -15,6 +15,9 @@ const colors = {
   card: '#FFFFFF',
   muted: '#F3F4F6',
   mutedBackground: '#fff2f2ff',
+  bgOffWhitePrimary:'#F6F7F7',
+  bgOffWhiteSecondary:'#F8F9FA',
+
 
   // Text ------------------
   // textPrimary:'#F97316'
@@ -35,6 +38,8 @@ const colors = {
   successSoft: '#ECFDF5',
   danger: '#DC2626',
   warning: '#FACC15',
+  vegGreen: '#16A34A',
+  nonVegRed: '#DC2626',
 
   // error
   required: '#fa1515ff',

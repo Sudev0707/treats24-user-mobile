@@ -14,13 +14,16 @@ export const cartStyle = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
   },
+  mainContainer:{
+    flex: 1, backgroundColor: colors.bgOffWhiteSecondary 
+  },
   container: {
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 20,
     borderRadius: 10,
     // borderWidth: 1,
-    backgroundColor: colors.backgroundSoft,
+    // backgroundColor: colors.backgroundSoft,
   },
   productContainer: {
     // borderWidth: 1,
@@ -205,7 +208,7 @@ export const cartStyle = StyleSheet.create({
   },
   fullcontainer: {
     padding: 20,
-    backgroundColor: colors.backgroundSoft,
+    // backgroundColor: colors.backgroundSoft,
   },
   paymentSummary: {
     // borderWidth: 1,

@@ -222,7 +222,7 @@ const Cart: React.FC = () => {
         />
       </SafeAreaView>
 
-      <View style={{ flex: 1, backgroundColor: colors.backgroundLight }}>
+      <View style={cartStyle.mainContainer}>
         {cartItems.length === 0 && !loading ? (
           <View style={cartStyle.emptyCart}>
             <Text style={cartStyle.emptyCartText}>Your cart is empty</Text>

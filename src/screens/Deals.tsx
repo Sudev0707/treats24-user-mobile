@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, ScrollView, StatusBar, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-// import styles from '../styles/screens/DashboardStyles';
+import styles from '../styles/screens/DealsStyles';
 import { useScrollToHideTabBar } from '../hooks/useScrollToHideTabBar';
 import colors from '../theme/colors';
 import Header from '../components/common/Header';
@@ -25,7 +25,7 @@ const Deals: React.FC = () => {
       </SafeAreaView>
 
       {/* SCREEN CONTENT */}
-      <View style={{ flex: 1, backgroundColor: colors.backgroundSoft }}>
+      <View style={styles.mainContainer}>
         <ScrollView
           {...scrollProps}
           contentContainerStyle={{
@@ -48,45 +48,3 @@ const Deals: React.FC = () => {
 };
 
 export default Deals;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: colors.backgroundSoft,
-  },
-
-  /* FIXED HEADER */
-  headerWrapper: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 100,
-    backgroundColor: colors.background,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-
-  /* SCROLL CONTENT */
-  scrollContent: {
-    paddingBottom: 30,
-  },
-
-  /* SECTION HEADER */
-  sectionHeaderRow: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-  },
-
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: colors.textPrimary,
-  },
-  emptyText: {
-    // textAlign: 'center',
-    // marginTop: 40,
-    // color: '#777',
-    // fontSize: 16,
-  },
-});

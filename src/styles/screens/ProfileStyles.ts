@@ -11,7 +11,7 @@ const ProfileStyles = StyleSheet.create({
     flexGrow: 1,
     // padding: 20,
     paddingBottom: 50,
-    backgroundColor: colors.backgroundSoft,
+    backgroundColor: colors.bgOffWhiteSecondary,
     // borderTopStartRadius:30,
     // borderTopEndRadius:30,
     // borderWidth: 1,
@@ -130,6 +130,41 @@ const ProfileStyles = StyleSheet.create({
     fontSize: 16,
     color: '#000',
     fontWeight: '600',
+  },
+  rowContainer: {
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  rowViewContainer: {
+    backgroundColor: '#fff',
+    overflow: 'hidden',
+    borderRadius: 10,
+    marginBottom: 18,
+    elevation: 1,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  rowIconBox: {
+    backgroundColor: colors.brandPrimarySoft,
+    padding: 8,
+    borderRadius: 10,
+  },
+  rowLabel: {
+    marginLeft: 14,
+    fontSize: 15,
+    color: '#000',
+    fontWeight: '500',
+  },
+  rowSeparator: {
+    height: 1,
+    backgroundColor: '#e5e5e5',
+    marginHorizontal: 16,
   },
 });
 
