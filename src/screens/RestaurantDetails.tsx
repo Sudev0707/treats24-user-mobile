@@ -231,14 +231,6 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
     navigation.goBack();
   };
 
-  const handleToggleFavorite = () => {
-    if (restaurant) {
-      dispatch(toggleFavoriteRestaurant(restaurant));
-    }
-  };
-
-  const isFavorite = favoriteRestaurants.some(r => r.id === restaurant.id);
-
   return (
     <>
       <StatusBar translucent={false} barStyle="light-content" />
@@ -246,22 +238,8 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
       <SafeAreaView style={RestaurantHeaderStyle.headerContainer}>
         <RestaurantDetailsHeader
           restaurantName={restaurant.name}
+          restaurant={restaurant}
           backgroundColor={'transparent'}
-          rightMenu={
-            <>
-              <TouchableOpacity
-                onPress={handleToggleFavorite}
-                style={RestaurantHeaderStyle.saveBtn}
-                activeOpacity={0.8}
-              >
-                <Icon
-                  name={isFavorite ? 'favorite' : 'favorite-border'}
-                  size={24}
-                  color={isFavorite ? '#FF6B6B' : colors.textSecondary}
-                />
-              </TouchableOpacity>
-            </>
-          }
         />
       </SafeAreaView>
 
@@ -327,6 +305,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
         </LinearGradient>
       </ImageBackground>
 
+      {/* content container */}
       <View style={{ flex: 1 }}>
         <ScrollView
           style={{ flex: 1 }}

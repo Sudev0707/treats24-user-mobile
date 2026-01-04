@@ -8,22 +8,31 @@ import {
   Animated,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import HeaderStyles from '../../styles/components/HeaderStyles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { toggleFavoriteRestaurant } from '../../store/slices/favoritesSlice';
+import colors from '../../theme/colors';
+import { RestaurantHeaderStyle } from '../../styles/screens/RestaurantScreenStyle';
 
 interface RestaurantDetailsHeaderProps {
   restaurantName?: string;
-  rightMenu?: React.ReactNode;
+  restaurant?: any;
   onBackPress?: () => void;
   backgroundColor?: string | Animated.AnimatedInterpolation<string>;
 }
 
 const RestaurantDetailsHeader: React.FC<RestaurantDetailsHeaderProps> = ({
   restaurantName,
-  rightMenu,
+  restaurant,
   onBackPress,
   backgroundColor,
 }) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const favoriteRestaurants = useAppSelector(
+    state => state.favorites.favoriteRestaurants,
+  );
 
   const handleBackPress = () => {
     if (onBackPress) {
@@ -33,18 +42,26 @@ const RestaurantDetailsHeader: React.FC<RestaurantDetailsHeaderProps> = ({
     }
   };
 
+  const handleToggleFavorite = () => {
+    if (restaurant) {
+      dispatch(toggleFavoriteRestaurant(restaurant));
+    }
+  };
+
+  const isFavorite = favoriteRestaurants.some(r => r.id === restaurant?.id);
+
   return (
     <Animated.View
       style={[
-        HeaderStyles.container,
+        RestaurantHeaderStyle.container,
         backgroundColor ? { backgroundColor } : {},
       ]}
     >
-      <View style={HeaderStyles.leftContainer}>
+      <View style={RestaurantHeaderStyle.leftContainer}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <TouchableOpacity
             onPress={handleBackPress}
-            style={HeaderStyles.backButton}
+            style={RestaurantHeaderStyle.backButton}
           >
             <Image
               source={require('../../assets/icons/iconsback.png')}
@@ -52,15 +69,27 @@ const RestaurantDetailsHeader: React.FC<RestaurantDetailsHeaderProps> = ({
             />
           </TouchableOpacity>
           <View style={{ paddingLeft: 9 }}>
-            <Text style={HeaderStyles.leftText}>{restaurantName}</Text>
-            <Text style={HeaderStyles.leftText}>{restaurantName}</Text>
+            <Text style={RestaurantHeaderStyle.leftText}>{restaurantName}</Text>
+            {/* <Text style={RestaurantHeaderStyle.leftText}>{restaurantName}</Text> */}
           </View>
         </View>
       </View>
-      <View style={HeaderStyles.centerContainer}>
+      <View style={RestaurantHeaderStyle.centerContainer}>
         {/* Center content can be added if needed */}
       </View>
-      <View style={HeaderStyles.rightContainer}>{rightMenu}</View>
+      <View style={RestaurantHeaderStyle.rightContainer}>
+        <TouchableOpacity
+          onPress={handleToggleFavorite}
+          style={RestaurantHeaderStyle.saveBtn}
+          activeOpacity={0.8}
+        >
+          <Icon
+            name={isFavorite ? 'favorite' : 'favorite-border'}
+            size={24}
+            color={isFavorite ? '#FF6B6B' : colors.textSecondary}
+          />
+        </TouchableOpacity>
+      </View>
     </Animated.View>
   );
 };
