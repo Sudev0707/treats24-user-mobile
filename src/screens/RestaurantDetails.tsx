@@ -30,9 +30,10 @@ import { featuredRestaurants } from '../data/foodData';
 import FoodAddedBox from '../components/modals/FoodDetailsModal.tsx';
 //
 import { addToCart, removeFromCart } from '../store/slices/cartSlice.ts';
-import { toggleFavoriteRestaurant } from '../store/slices/favoritesSlice';
+import { toggleFavoriteRestaurant, toggleFavoriteFood } from '../store/slices/favoritesSlice';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../hooks/useAppSelector';
+import { selectFavoriteFoods } from '../store/selectors/favoritesSelectors';
 import SectionHeader from '../components/common/SectionHeader.tsx';
 import CustomAlert from '../components/common/CustomAlert';
 import FoodCard from '../components/food/FoodCard';
@@ -89,6 +90,11 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   const favoriteRestaurants = useAppSelector(
     state => state.favorites.favoriteRestaurants,
   );
+  const favoriteFoods = useAppSelector(selectFavoriteFoods);
+
+  const isFoodFavorite = (foodId: string) => {
+    return favoriteFoods.some(favFood => favFood.id === foodId);
+  };
 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedFood, setSelectedFood] = useState<any>(null);
@@ -218,6 +224,23 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
       }
       return { ...prev, [foodId]: newCount };
     });
+  };
+
+  const handleFavoriteFood = (food: any) => {
+    if (restaurant) {
+      dispatch(
+        toggleFavoriteFood({
+          id: food.id,
+          name: food.name,
+          price: food.price,
+          rating: food.rating,
+          isVeg: food.isVeg,
+          image: food.image,
+          restaurantId: restaurant.id,
+          restaurantName: restaurant.name,
+        }),
+      );
+    }
   };
 
   // Filters data - "Filters" is default, others can be added by owner
@@ -417,6 +440,8 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
                       quantity={quantity}
                       onAdd={() => handleAddFood(food)}
                       onDecrement={() => dispatch(removeFromCart(food.id))}
+                      onFavorite={() => handleFavoriteFood(food)}
+                      isFavorite={isFoodFavorite(food.id)}
                     />
                   );
                 })}

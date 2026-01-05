@@ -74,7 +74,7 @@ const FavoritesStyles = StyleSheet.create({
     fontWeight: '600',
   },
   foodCard: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.card,
     borderRadius: 12,
     padding: 12,
     flexDirection: 'row',
@@ -126,7 +126,7 @@ const FavoritesStyles = StyleSheet.create({
   },
   restaurantName: {
     fontSize: 12,
-    color: '#666',
+    color: colors.textSecondary,
     marginBottom: 8,
   },
   bottomRow: {
@@ -142,7 +142,7 @@ const FavoritesStyles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#333',
+    color: colors.textPrimary,
     marginBottom: 16,
     marginLeft: 16,
   },
@@ -155,12 +155,12 @@ const FavoritesStyles = StyleSheet.create({
   emptyStateText: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#666',
+    color: colors.textSecondary,
     marginBottom: 8,
   },
   emptyStateSubText: {
     fontSize: 14,
-    color: '#999',
+    color: colors.textMuted,
     textAlign: 'center',
     paddingHorizontal: 32,
   },
@@ -169,6 +169,41 @@ const FavoritesStyles = StyleSheet.create({
     // marginTop: 40,
     // color: '#777',
     // fontSize: 16,
+  },
+  tabBar: {
+    flexDirection: 'row',
+    backgroundColor: colors.background,
+    marginHorizontal: 16,
+    marginTop: 16,
+    borderRadius: 8,
+    padding: 4,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+  },
+  tab: {
+    flex: 1,
+    paddingVertical: 12,
+    alignItems: 'center',
+    borderRadius: 6,
+  },
+  activeTab: {
+    backgroundColor: colors.brandPrimary,
+  },
+  inactiveTab: {
+    backgroundColor: 'transparent',
+  },
+  tabText: {
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  activeTabText: {
+    color: '#fff',
+  },
+  inactiveTabText: {
+    color: '#666',
   },
 });
 

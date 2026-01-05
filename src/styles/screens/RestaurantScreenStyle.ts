@@ -292,6 +292,18 @@ export const RestaurantScreenStyle = StyleSheet.create({
     paddingStart: 8,
     color: '#ff6a00',
   },
+  favoriteButton: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    borderRadius: 20,
+    padding: 6,
+    zIndex: 1,
+  },
+  favoriteIcon: {
+    fontSize: 16,
+  },
 });
 
 export const RestaurantHeaderStyle = StyleSheet.create({
