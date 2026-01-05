@@ -100,8 +100,23 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   // const [activeChips, setActiveChips] = useState({});
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]); //
 
-  const [barStyle, setBarStyle] = useState<'light-content' | 'dark-content'>('light-content');
-  const [headerBackgroundColor, setHeaderBackgroundColor] = useState('transparent');
+  const [barStyle, setBarStyle] = useState<'light-content' | 'dark-content'>(
+    'light-content',
+  );
+  const [headerBackgroundColor, setHeaderBackgroundColor] =
+    useState('transparent');
+
+  //   const headerBackgroundColor = scrollY.interpolate({
+  //   inputRange: [0, 220],
+  //   outputRange: ['rgba(0,0,0,0)', 'rgba(255,255,255,1)'],
+  //   extrapolate: 'clamp',
+  // });
+
+  const interpolateColor = (value: number) => {
+    const clamped = Math.min(Math.max(value, 0), 250);
+    const opacity = clamped / 250;
+    return `rgba(255,255,255,${opacity})`;
+  };
 
   // Removed animated header background color to fix immutable object issues
 
@@ -122,15 +137,31 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   }, [cartItems]);
 
   // Update StatusBar based on scroll position
+  // const handleScroll = (event: any) => {
+  //   const scrollYValue = event.nativeEvent.contentOffset.y;
+  //   if (scrollYValue > 200) {
+  //     setBarStyle('dark-content');
+  //     setHeaderBackgroundColor('#ffffff');
+  //     StatusBar.setBackgroundColor('#ffffff');
+  //   } else {
+  //     setBarStyle('light-content');
+  //     setHeaderBackgroundColor('transparent');
+  //     StatusBar.setBackgroundColor('transparent');
+  //   }
+  // };
+
   const handleScroll = (event: any) => {
     const scrollYValue = event.nativeEvent.contentOffset.y;
+
+    // interpolate background color
+    const bgColor = interpolateColor(scrollYValue);
+    setHeaderBackgroundColor(bgColor);
+
     if (scrollYValue > 200) {
       setBarStyle('dark-content');
-      setHeaderBackgroundColor('#ffffff');
       StatusBar.setBackgroundColor('#ffffff');
     } else {
       setBarStyle('light-content');
-      setHeaderBackgroundColor('transparent');
       StatusBar.setBackgroundColor('transparent');
     }
   };
@@ -246,9 +277,14 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
 
   return (
     <>
-      <StatusBar translucent={true} barStyle={barStyle}  />
+      <StatusBar translucent={true} barStyle={barStyle} />
       {/* header  */}
-      <SafeAreaView style={[RestaurantHeaderStyle.headerContainer, { backgroundColor: headerBackgroundColor }]}>
+      <SafeAreaView
+        style={[
+          RestaurantHeaderStyle.headerContainer,
+          { backgroundColor: headerBackgroundColor },
+        ]}
+      >
         <View>
           <RestaurantDetailsHeader
             restaurantName={restaurant.name}
@@ -335,51 +371,59 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
         >
           {/*  */}
           <View style={RestaurantScreenStyle.contentContainer}>
-            <View style={RestaurantScreenStyle.deleiveryTime}>
-              <Text style={RestaurantScreenStyle.timeText}>
-                Deleivery Time:
-              </Text>
-              <Text style={RestaurantScreenStyle.timeText}>10 - 20 min</Text>
-            </View>
+            <View
+              style={{
+                paddingHorizontal: 16,
+                backgroundColor: colors.background,
+              }}
+            >
+              <View style={RestaurantScreenStyle.deleiveryTime}>
+                <Text style={RestaurantScreenStyle.timeText}>
+                  Deleivery Time:
+                </Text>
+                <Text style={RestaurantScreenStyle.timeText}>10 - 20 min</Text>
+              </View>
 
-            <FlatList
-              horizontal
-              data={filters}
-              keyExtractor={item => item.id}
-              contentContainerStyle={{ marginBottom: 10 }}
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item }) => (
-                <FilterChip
-                  item={item}
-                  activeChips={activeChips}
-                  activeCount={activeCount}
-                  onPress={handleChipPress}
-                />
-              )}
-            />
-
-            {/* restaurant foods */}
-            <View style={{ marginTop: 15 }}>
-              <SectionHeader title="Recommended" />
-            </View>
-
-            {restaurant.foodCategories
-              .flatMap(category => category.items)
-              .map(food => {
-                const quantity = getQuantity(food.id);
-                return (
-                  <FoodCard
-                    key={food.id}
-                    food={food}
-                    quantity={quantity}
-                    onAdd={() => handleAddFood(food)}
-                    onDecrement={() => dispatch(removeFromCart(food.id))}
+              <FlatList
+                horizontal
+                data={filters}
+                keyExtractor={item => item.id}
+                contentContainerStyle={{ marginBottom: 10 }}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item }) => (
+                  <FilterChip
+                    item={item}
+                    activeChips={activeChips}
+                    activeCount={activeCount}
+                    onPress={handleChipPress}
                   />
-                );
-              })}
+                )}
+              />
+              {/* restaurant foods */}
+              <View style={{ marginTop: 15 }}>
+                <SectionHeader title="Recommended" />
+              </View>
+            </View>
+
+            <View style={{ backgroundColor: colors.bgOffWhiteSecondary , padding:10, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+              {restaurant.foodCategories
+                .flatMap(category => category.items)
+                .map(food => {
+                  const quantity = getQuantity(food.id);
+                  return (
+                    <FoodCard
+                      key={food.id}
+                      food={food}
+                      quantity={quantity}
+                      onAdd={() => handleAddFood(food)}
+                      onDecrement={() => dispatch(removeFromCart(food.id))}
+                    />
+                  );
+                })}
+            </View>
 
             {/*  */}
-            <View style={{ padding: 16, backgroundColor: colors.background }}>
+            <View style={{ padding: 16,  }}>
               <Text
                 style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 8 }}
               >

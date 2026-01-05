@@ -54,7 +54,7 @@ const RestaurantDetailsHeader: React.FC<RestaurantDetailsHeaderProps> = ({
     <Animated.View
       style={[
         RestaurantHeaderStyle.container,
-        backgroundColor ? { backgroundColor } : {},
+        // backgroundColor ? { backgroundColor } : {},
       ]}
     >
       <View style={RestaurantHeaderStyle.leftContainer}>

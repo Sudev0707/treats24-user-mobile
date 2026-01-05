@@ -143,10 +143,12 @@ export const RestaurantScreenStyle = StyleSheet.create({
 
   // ====
   card: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     backgroundColor: '#fff',
     borderRadius: 12,
-    marginVertical: 5,
+    width: '47%',
+    // margin: 2,
+    marginBottom:10,
     padding: 10,
     elevation: 2,
     shadowColor: '#0000009a',
@@ -154,13 +156,14 @@ export const RestaurantScreenStyle = StyleSheet.create({
     shadowRadius: 6,
   },
   foodImageBox: {
-    width: 90,
-    height: 90,
+    width: '100%',
+    height: 120,
     overflow: 'hidden',
     borderRadius: 10,
     backgroundColor: colors.backgroundLight,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 8,
   },
   foodimage: {
     width: '80%',
@@ -177,7 +180,6 @@ export const RestaurantScreenStyle = StyleSheet.create({
 
   content: {
     flex: 1,
-    marginLeft: 12,
     justifyContent: 'space-between',
   },
 
@@ -265,9 +267,9 @@ export const RestaurantScreenStyle = StyleSheet.create({
     color: colors.brandPrimary,
   },
   contentContainer: {
-    backgroundColor: colors.background,
+    backgroundColor: colors.bgOffWhiteSecondary,
     paddingTop: 15,
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     paddingBottom: 180,
