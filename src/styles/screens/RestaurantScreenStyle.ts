@@ -149,7 +149,7 @@ export const RestaurantScreenStyle = StyleSheet.create({
     width: '47%',
     // margin: 2,
     marginBottom:10,
-    padding: 10,
+    padding: 1,
     elevation: 2,
     shadowColor: '#0000009a',
     shadowOpacity: 0.1,
@@ -157,13 +157,13 @@ export const RestaurantScreenStyle = StyleSheet.create({
   },
   foodImageBox: {
     width: '100%',
-    height: 120,
+    height: 140,
     overflow: 'hidden',
     borderRadius: 10,
     backgroundColor: colors.backgroundLight,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 4,
   },
   foodimage: {
     width: '80%',
@@ -181,6 +181,7 @@ export const RestaurantScreenStyle = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'space-between',
+     padding: 10,
   },
 
   topRow: {
@@ -298,6 +299,8 @@ export const RestaurantScreenStyle = StyleSheet.create({
     right: 8,
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     borderRadius: 20,
+    borderWidth:0.5,
+    borderColor:colors.borderLight,
     padding: 6,
     zIndex: 1,
   },
@@ -320,8 +323,9 @@ export const RestaurantHeaderStyle = StyleSheet.create({
     alignItems: 'flex-start',
   },
   centerContainer: {
-    flex: 2,
+    flex: 1,
     alignItems: 'center',
+    //  borderWidth:1,
   },
   rightContainer: {
     flex: 1,
@@ -334,6 +338,11 @@ export const RestaurantHeaderStyle = StyleSheet.create({
   },
   leftText: {
     fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  placeText:{
+ fontSize: 12,
     fontWeight: 'bold',
     color: '#000',
   },

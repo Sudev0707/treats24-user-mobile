@@ -58,7 +58,7 @@ const RestaurantDetailsHeader: React.FC<RestaurantDetailsHeaderProps> = ({
       ]}
     >
       <View style={RestaurantHeaderStyle.leftContainer}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' , maxWidth:'80%', }}>
           <TouchableOpacity
             onPress={handleBackPress}
             style={RestaurantHeaderStyle.backButton}
@@ -68,9 +68,10 @@ const RestaurantDetailsHeader: React.FC<RestaurantDetailsHeaderProps> = ({
               style={{ width: 24, height: 24, borderRadius: 7 }}
             />
           </TouchableOpacity>
-          <View style={{ paddingLeft: 9 }}>
-            <Text style={RestaurantHeaderStyle.leftText}>{restaurantName}</Text>
-            {/* <Text style={RestaurantHeaderStyle.leftText}>{restaurantName}</Text> */}
+          <View style={{ paddingLeft: 9 , }}>
+            <Text numberOfLines={1} style={RestaurantHeaderStyle.leftText}>{restaurantName}</Text>
+            {/* restaurant place */}
+            <Text style={RestaurantHeaderStyle.placeText}>{restaurant?.place}</Text>
           </View>
         </View>
       </View>
