@@ -176,14 +176,15 @@ const DashboardStyles = StyleSheet.create({
     // borderWidth:1
   },
   sectionTitle: {
-    fontSize: fonts.size.xl,
-    fontWeight: fonts.weight.bold,
+    fontSize: fonts.size.lg,
+    // fontWeight: fonts.weight.bold,
+    fontFamily:fonts.family.medium,
     color: colors.textPrimary,
   },
   sectionAction: {
     fontSize: fonts.size.sm,
     color: colors.brandPrimary,
-    fontWeight: fonts.weight.bold,
+     fontFamily:fonts.family.medium,
   },
   chipsRow: {
     flexDirection: 'row',
@@ -480,7 +481,8 @@ const DashboardStyles = StyleSheet.create({
   titleText: {
     color: colors.darkBlack,
     fontSize: 18,
-    fontWeight: '800',
+    // fontWeight: '800',
+     fontFamily:fonts.family.regular,
     flex: 1,
     marginRight: 6,
   },

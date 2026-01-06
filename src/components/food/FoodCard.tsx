@@ -26,6 +26,7 @@ interface FoodCardProps {
   onDecrement: () => void;
   onFavorite: () => void;
   isFavorite: boolean;
+  onPress?: () => void;
 }
 
 const FoodCard: React.FC<FoodCardProps> = ({
@@ -35,9 +36,10 @@ const FoodCard: React.FC<FoodCardProps> = ({
   onDecrement,
   onFavorite,
   isFavorite,
+  onPress,
 }) => {
   return (
-    <TouchableOpacity style={RestaurantScreenStyle.card} activeOpacity={0.9}>
+    <TouchableOpacity style={RestaurantScreenStyle.card} activeOpacity={0.9} onPress={onPress}>
       {/* Favorite Button */}
       <TouchableOpacity
         onPress={onFavorite}
@@ -77,7 +79,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
         </View>
 
         {/* Food Name */}
-        <Text style={RestaurantScreenStyle.Foodtitle}>{food.name}</Text>
+        <Text numberOfLines={1} style={RestaurantScreenStyle.Foodtitle}>{food.name}</Text>
 
         {/* Bottom Row */}
         <View style={RestaurantScreenStyle.bottomRow}>

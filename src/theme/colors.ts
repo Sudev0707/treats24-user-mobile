@@ -1,6 +1,7 @@
 const colors = {
   // Brand --------------
-  brandPrimary: '#d21919ff',
+  brandPrimary: '#B81E55',
+  // brandPrimary: '#d21919ff',
   brandSecondary: '#F97316',
   // brandPrimarySoft: '#FEF3C7',
   brandPrimarySoft: '#ffefefff',

@@ -13,8 +13,8 @@ const DashboardHeaderStyles = StyleSheet.create({
     shadowOpacity: 0.12,
     shadowRadius: 16,
     elevation: 4,
-    zIndex:4,
-    backgroundColor:colors.background
+    zIndex: 4,
+    backgroundColor: colors.background,
   },
 
   mainDashboardHeader: {
@@ -73,17 +73,19 @@ const DashboardHeaderStyles = StyleSheet.create({
 
   addressText: {
     fontSize: 18,
-    fontWeight: '800',
+    // fontWeight: '800',
     color: colors.darkBlack,
     marginRight: 2,
+    fontFamily: fonts.family.semibold,
     // paddingTop:0
   },
 
   deliverySubtitle: {
-    fontSize: 13,
+    fontSize: fonts.size.sm,
     color: '#5d5d5dff',
     marginTop: 2,
-    fontWeight: '800',
+    // fontWeight: '800',
+    fontFamily:fonts.family.regular
   },
 
   avatar: {
@@ -106,8 +108,8 @@ const DashboardHeaderStyles = StyleSheet.create({
     alignItems: 'center',
     // backgroundColor: colors.card,
     borderRadius: 7,
-      backgroundColor: '#ffffffff',
-      overflow:'hidden',
+    backgroundColor: '#ffffffff',
+    overflow: 'hidden',
     paddingHorizontal: 1,
     paddingVertical: 1,
     // marginBottom: 20,

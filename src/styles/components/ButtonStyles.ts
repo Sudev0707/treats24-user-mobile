@@ -10,6 +10,7 @@ const ButtonStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
+    height:50,
     fontFamily:fonts.family.medium
   },
   filled: {

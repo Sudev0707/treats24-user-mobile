@@ -27,7 +27,7 @@ import {
 } from '../styles/screens/RestaurantScreenStyle';
 import LinearGradient from 'react-native-linear-gradient';
 import { featuredRestaurants } from '../data/foodData';
-import FoodAddedBox from '../components/modals/FoodDetailsModal';
+import FoodDetailsModal from '../components/modals/FoodDetailsModal';
 //
 import { addToCart, removeFromCart } from '../store/slices/cartSlice.ts';
 import { toggleFavoriteRestaurant, toggleFavoriteFood } from '../store/slices/favoritesSlice';
@@ -102,6 +102,8 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [isSaved, setIsSaved] = useState(false);
+  const [foodDetailsModalVisible, setFoodDetailsModalVisible] = useState(false);
+  const [selectedFoodForModal, setSelectedFoodForModal] = useState<any>(null);
   const navigation = useNavigation();
   // const [activeChips, setActiveChips] = useState({});
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]); //
@@ -241,6 +243,11 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
         }),
       );
     }
+  };
+
+  const handleFoodCardPress = (food: any) => {
+    setSelectedFoodForModal(food);
+    setFoodDetailsModalVisible(true);
   };
 
   // Filters data - "Filters" is default, others can be added by owner
@@ -442,6 +449,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
                       onDecrement={() => dispatch(removeFromCart(food.id))}
                       onFavorite={() => handleFavoriteFood(food)}
                       isFavorite={isFoodFavorite(food.id)}
+                      onPress={() => handleFoodCardPress(food)}
                     />
                   );
                 })}
@@ -465,20 +473,24 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
         </ScrollView>
       </View>
 
-      {totalCount > 0 && cart.restaurantId === restaurant.id ? (
-        <FoodAddedBox
-          visible={modalVisible}
-          onClose={() => setModalVisible(false)}
-          foodCounts={foodCounts}
-          restaurant={restaurant!}
-        />
-      ) : null}
+
 
       <CustomAlert
         visible={alertVisible}
         title="Cart Restriction"
         message={alertMessage}
         onClose={() => setAlertVisible(false)}
+      />
+
+      <FoodDetailsModal
+        visible={foodDetailsModalVisible}
+        onClose={() => setFoodDetailsModalVisible(false)}
+        food={selectedFoodForModal}
+        quantity={getQuantity(selectedFoodForModal?.id || '')}
+        onAdd={() => handleAddFood(selectedFoodForModal)}
+        onDecrement={() => dispatch(removeFromCart(selectedFoodForModal.id))}
+        onFavorite={() => handleFavoriteFood(selectedFoodForModal)}
+        isFavorite={isFoodFavorite(selectedFoodForModal?.id || '')}
       />
     </>
   );

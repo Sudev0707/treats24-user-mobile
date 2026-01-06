@@ -5,7 +5,7 @@ import fonts from '../../theme/fonts';
 const AuthStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundPrimary,
+    backgroundColor: colors.brandPrimary,
     // backgroundColor: colors.brandPrimary,
     // borderWidth: 5,
     borderColor: colors.borderMuted,
@@ -97,7 +97,7 @@ const AuthStyles = StyleSheet.create({
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
     backgroundColor: colors.background,
-    borderWidth: 1,
+    // borderWidth: 1,
   },
   card: {
     backgroundColor: colors.card,

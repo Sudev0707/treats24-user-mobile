@@ -5,7 +5,6 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
-  Alert,
   StatusBar,
   LogBox,
 } from 'react-native';
@@ -21,6 +20,7 @@ import Header from '../components/common/Header';
 import CustomAlert from '../components/common/CustomAlert';
 import { clearConfirmation, getConfirmation } from '../services/otpSession';
 import { sendEmailOTP, verifyEmailOTP } from '../services/api';
+import Button from '../components/common/Button';
 
 const OTPVerification: React.FC = () => {
   const route = useRoute<any>();
@@ -35,8 +35,18 @@ const OTPVerification: React.FC = () => {
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
   const inputRefs = useRef<TextInput[]>([]);
 
-  const [verificationMethod, setVerificationMethod] = useState<'phone' | 'email'>('phone');
+  const [verificationMethod, setVerificationMethod] = useState<
+    'phone' | 'email'
+  >('phone');
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertTitle, setAlertTitle] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
+
+  const handleCloseAlert = () => {
+    setAlertVisible(false);
+  };
 
   // -----
   const handleOtpChange = (value: string, index: number) => {
@@ -72,9 +82,12 @@ const OTPVerification: React.FC = () => {
       return;
     }
 
+    setLoading(true);
+
     if (verificationMethod === 'email') {
       if (!email) {
         setOtpError('Please enter your email address');
+        setLoading(false);
         return;
       }
       try {
@@ -86,6 +99,8 @@ const OTPVerification: React.FC = () => {
         });
       } catch (error) {
         setOtpError('Invalid OTP');
+      } finally {
+        setLoading(false);
       }
     } else {
       try {
@@ -93,6 +108,7 @@ const OTPVerification: React.FC = () => {
 
         if (!confirmation) {
           setOtpError('OTP session expired. Please retry.');
+          setLoading(false);
           return;
         }
 
@@ -108,6 +124,8 @@ const OTPVerification: React.FC = () => {
         });
       } catch (error) {
         setOtpError('Invalid OTP');
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -153,17 +171,25 @@ const OTPVerification: React.FC = () => {
       }
       try {
         await sendEmailOTP(email);
-        Alert.alert('OTP Sent', 'A new OTP has been sent to your email');
+        setAlertTitle('OTP Sent');
+        setAlertMessage('A new OTP has been sent to your email');
+        setAlertVisible(true);
       } catch (error) {
-        Alert.alert('Error', 'Unable to send OTP to email');
+        setAlertTitle('Error');
+        setAlertMessage('Unable to send OTP to email');
+        setAlertVisible(true);
       }
     } else {
       try {
         const newConfirmation = await sendPhoneOTP(phone);
         route.params.confirmation = newConfirmation;
-        Alert.alert('OTP Resent', 'A new OTP has been sent to your phone number');
+        setAlertTitle('OTP Resent');
+        setAlertMessage('A new OTP has been sent to your phone number');
+        setAlertVisible(true);
       } catch (error) {
-        Alert.alert('Error', 'Unable to resend OTP');
+        setAlertTitle('Error');
+        setAlertMessage('Unable to resend OTP');
+        setAlertVisible(true);
       }
     }
   };
@@ -187,7 +213,7 @@ const OTPVerification: React.FC = () => {
           <View style={styles.card}>
             <Text style={styles.title}>Verify Phone Number</Text>
             <Text style={styles.subtitle}>
-              Enter the 6-digit code sent to your phone
+              Enter the 6-digit code sent to your phone/email
             </Text>
             {/* <Text>{otp}</Text> */}
 
@@ -227,12 +253,13 @@ const OTPVerification: React.FC = () => {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity
-              style={styles.primaryButton}
+            <Button
+              title="Verify OTP"
               onPress={handleVerify}
-            >
-              <Text style={styles.primaryButtonText}>Verify OTP</Text>
-            </TouchableOpacity>
+              variant="filled"
+              isPhoneValid={true}
+              loading={loading}
+            />
 
             <Text style={styles.footerText}>
               By continuing, you agree to our Terms of Service and Privacy
@@ -241,6 +268,16 @@ const OTPVerification: React.FC = () => {
           </View>
         </View>
       </ScrollView>
+      <CustomAlert
+        visible={alertVisible}
+        title={alertTitle}
+        message={alertMessage}
+        onClose={handleCloseAlert}
+        onConfirm={handleCloseAlert}
+        onCancel={handleCloseAlert}
+        confirmText="OK"
+        cancelText=""
+      />
     </SafeAreaView>
   );
 };

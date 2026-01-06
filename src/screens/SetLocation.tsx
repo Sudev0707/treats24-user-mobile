@@ -49,6 +49,7 @@ interface LocationType {
 const SetLocation: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [location, setLocation] = useState<LocationType | null>(null);
+  const [proceedLoading, setProceedLoading] = useState(false);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -76,9 +77,10 @@ const SetLocation: React.FC = () => {
   //
   const handleProceed = async () => {
     if (!location) return;
+    setProceedLoading(true);
     const db = await getDBConnection();
     await saveLocation(db, location);
-
+    setProceedLoading(false);
     navigation.navigate('MainTabs' as never);
   };
 
@@ -227,6 +229,7 @@ const SetLocation: React.FC = () => {
               variant="outlined"
               onPress={handleProceed}
               isPhoneValid={!!location}
+              loading={proceedLoading}
             />
             {/* <TouchableOpacity
               style={locationStyles.confirmBtn}

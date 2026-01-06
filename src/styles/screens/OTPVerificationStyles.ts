@@ -34,7 +34,8 @@ const OTPVerificationStyles = StyleSheet.create({
   contentWrapper: {
     flex: 1,
     paddingHorizontal: 24,
-    paddingTop: 24,
+    // paddingHorizontal: 20,
+    // paddingTop: 20,
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
     backgroundColor: colors.background,
@@ -42,7 +43,7 @@ const OTPVerificationStyles = StyleSheet.create({
   card: {
     backgroundColor: colors.card,
     borderRadius: 24,
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
     paddingTop: 24,
     paddingBottom: 20,
     // marginTop: -48,
@@ -53,17 +54,17 @@ const OTPVerificationStyles = StyleSheet.create({
     // elevation: 6,
   },
   title: {
-    fontSize: fonts.size.lg,
+    fontSize: fonts.size.xl,
     // fontWeight: fonts.weight.bold,
     fontFamily: fonts.family.medium,
     color: colors.textPrimary,
-    textAlign: 'center',
+    // textAlign: 'center',
     marginBottom: 8,
   },
   subtitle: {
     fontSize: fonts.size.sm,
     color: colors.textSecondary,
-    textAlign: 'center',
+    // textAlign: 'center',
     marginBottom: 32,
     fontFamily: fonts.family.regular,
   },
@@ -97,20 +98,24 @@ const OTPVerificationStyles = StyleSheet.create({
     color: colors.error,
     marginTop: 8,
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.regular,
   },
   resendContainer: {
     alignItems: 'center',
     marginBottom: 24,
+    flexDirection: 'row',
+    // borderWidth: 1,
+    marginTop: 15,
   },
   resendText: {
     // fontSize: fonts.size.sm,
     fontFamily: fonts.family.regular,
     color: colors.textSecondary,
-    marginBottom: 8,
+    // marginBottom: 8,
   },
   resendButton: {
-    paddingVertical: 8,
+    // paddingVertical: 8,
     paddingHorizontal: 16,
   },
   resendButtonText: {
@@ -137,7 +142,7 @@ const OTPVerificationStyles = StyleSheet.create({
     color: colors.textSecondary,
     textAlign: 'center',
     marginTop: 12,
-     fontFamily:fonts.family.regular,
+    fontFamily: fonts.family.regular,
   },
 });
 

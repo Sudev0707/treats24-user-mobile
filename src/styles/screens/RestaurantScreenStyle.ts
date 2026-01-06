@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import colors from '../../theme/colors';
+import fonts from '../../theme/fonts';
 const { height } = Dimensions.get('window');
 
 export const RestaurantScreenStyle = StyleSheet.create({
@@ -148,7 +149,7 @@ export const RestaurantScreenStyle = StyleSheet.create({
     borderRadius: 12,
     width: '47%',
     // margin: 2,
-    marginBottom:10,
+    marginBottom: 10,
     padding: 1,
     elevation: 2,
     shadowColor: '#0000009a',
@@ -181,7 +182,7 @@ export const RestaurantScreenStyle = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'space-between',
-     padding: 10,
+    padding: 10,
   },
 
   topRow: {
@@ -190,9 +191,9 @@ export const RestaurantScreenStyle = StyleSheet.create({
   },
 
   veg: {
-    fontSize: 12,
+    fontSize: fonts.size.sm,
     color: '#2ecc71',
-    fontWeight: '600',
+    fontFamily: fonts.family.medium,
   },
 
   rating: {
@@ -201,10 +202,11 @@ export const RestaurantScreenStyle = StyleSheet.create({
   },
 
   Foodtitle: {
-    fontSize: 16,
-    fontWeight: '700',
+    fontSize: fonts.size.sm,
+    // fontWeight: '700',
     color: '#222',
     marginVertical: 4,
+    fontFamily: fonts.family.medium,
   },
 
   bottomRow: {
@@ -214,8 +216,8 @@ export const RestaurantScreenStyle = StyleSheet.create({
   },
 
   price: {
-    fontSize: 15,
-    fontWeight: '700',
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.medium,
     color: '#000',
   },
   actionBox: {
@@ -237,8 +239,9 @@ export const RestaurantScreenStyle = StyleSheet.create({
 
   addText: {
     color: colors.brandPrimary,
-    fontWeight: '800',
+    // fontWeight: '800',
     fontSize: 13,
+    fontFamily: fonts.family.medium,
   },
 
   qtyBox: {
@@ -299,8 +302,8 @@ export const RestaurantScreenStyle = StyleSheet.create({
     right: 8,
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     borderRadius: 20,
-    borderWidth:0.5,
-    borderColor:colors.borderLight,
+    borderWidth: 0.5,
+    borderColor: colors.borderLight,
     padding: 6,
     zIndex: 1,
   },
@@ -341,8 +344,8 @@ export const RestaurantHeaderStyle = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000',
   },
-  placeText:{
- fontSize: 12,
+  placeText: {
+    fontSize: 12,
     fontWeight: 'bold',
     color: '#000',
   },
