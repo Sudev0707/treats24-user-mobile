@@ -43,6 +43,7 @@ const PhoneInputStyles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     paddingLeft: 10,
+    fontFamily:fonts.family.regular
   },
   errorText: {
     color: 'red',

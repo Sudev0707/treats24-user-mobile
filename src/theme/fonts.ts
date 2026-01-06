@@ -1,21 +1,26 @@
 const fonts = {
   // Families – update these when you add custom fonts
   family: {
-    regular: 'ProximaNova-Regular',
-    medium: 'ProximaNova-Medium',
-    semibold: 'ProximaNova-Semibold',
-    bold: 'ProximaNova-Bold',
+    // regular: 'Inter-Regular',
+    // medium: 'Inter-Medium',
+    // semibold: 'Inter-SemiBold',
+    // bold: 'Inter-Bold',
+    //
+    regular: 'Poppins-Regular',
+    medium: 'Poppins-Medium',
+    semibold: 'Poppins-SemiBold',
+    bold: 'Poppins-Bold',
   },
 
   // Sizes
   size: {
-    xs: 11,
-    sm: 13,
-    md: 14,
-    lg: 16,
-    xl: 18,
-    '2xl': 22,
-    '3xl': 28,
+    xs: 10,
+    sm: 12, 
+    md: 14, 
+    lg: 16, 
+    xl: 18, 
+    '2xl': 22, 
+    '3xl': 26, 
   },
 
   // Weights
@@ -28,5 +33,3 @@ const fonts = {
 };
 
 export default fonts;
-
-

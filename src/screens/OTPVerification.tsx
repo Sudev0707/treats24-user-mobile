@@ -189,7 +189,7 @@ const OTPVerification: React.FC = () => {
             <Text style={styles.subtitle}>
               Enter the 6-digit code sent to your phone
             </Text>
-            <Text>{otp}</Text>
+            {/* <Text>{otp}</Text> */}
 
             {/* phone otp  */}
             <View style={styles.otpContainer}>

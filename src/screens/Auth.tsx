@@ -163,8 +163,7 @@ const Auth: React.FC = () => {
 
           <View style={styles.headerContent}>
             <Text style={styles.headerBrandText}>treats24</Text>
-            <Text style={styles.appTagline}>India's #1 Food Delivery</Text>
-            <Text style={styles.appSubTagline}>and Dining App</Text>
+            <Text style={styles.appTagline}>Dil se delivery</Text>
           </View>
         </View>
 

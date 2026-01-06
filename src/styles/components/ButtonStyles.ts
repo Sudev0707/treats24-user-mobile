@@ -10,6 +10,7 @@ const ButtonStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
+    fontFamily:fonts.family.medium
   },
   filled: {
     backgroundColor: colors.brandPrimary,
@@ -26,12 +27,14 @@ const ButtonStyles = StyleSheet.create({
   filledText: {
     color: colors.textOnBrand,
     fontSize: fonts.size.lg,
-    fontWeight: fonts.weight.semibold,
+    // fontWeight: fonts.weight.semibold,
+    fontFamily:fonts.family.medium
   },
   textDisabled: {
     color: colors.textMuted,
      fontSize: fonts.size.lg,
-    fontWeight: fonts.weight.semibold,
+    // fontWeight: fonts.weight.semibold,
+    fontFamily:fonts.family.medium
   },
   outlinedText: {
     color: colors.brandPrimary,

@@ -59,15 +59,17 @@ const AuthStyles = StyleSheet.create({
   },
   headerBrandText: {
     fontSize: fonts.size['3xl'],
-    fontWeight: fonts.weight.bold,
+    // fontWeight: fonts.weight.bold,
     color: colors.textOnBrand,
     letterSpacing: 1.2,
-  },
+    fontFamily: fonts.family.bold
+  },  
   appTagline: {
-    marginTop: 4,
+    marginTop: 4, 
     fontSize: fonts.size.md,
-    fontWeight: fonts.weight.medium,
+    // fontWeight: fonts.weight.medium,
     color: colors.textOnBrand,
+    fontFamily: fonts.family.semibold,
   },
   appSubTagline: {
     fontSize: fonts.size.sm,
@@ -95,7 +97,7 @@ const AuthStyles = StyleSheet.create({
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
     backgroundColor: colors.background,
-    borderWidth:1
+    borderWidth: 1,
   },
   card: {
     backgroundColor: colors.card,
@@ -116,6 +118,7 @@ const AuthStyles = StyleSheet.create({
     color: colors.textSecondary,
     textAlign: 'center',
     marginBottom: 20,
+    fontFamily:fonts.family.medium
   },
   phoneRow: {
     flexDirection: 'row',
@@ -189,6 +192,7 @@ const AuthStyles = StyleSheet.create({
     marginHorizontal: 8,
     fontSize: fonts.size.sm,
     color: colors.textSecondary,
+    fontFamily:fonts.family.medium
   },
   socialRow: {
     flexDirection: 'row',
@@ -245,6 +249,7 @@ const AuthStyles = StyleSheet.create({
     fontWeight: '800',
     color: colors.brandPrimary,
     textDecorationLine: 'underline',
+    fontFamily:fonts.family.medium
   },
   socialLoginContainer: {
     flexDirection: 'row',
@@ -275,7 +280,7 @@ const AuthStyles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '800',
     color: colors.brandPrimary,
-    marginStart:15
+    marginStart: 15,
   },
 });
 

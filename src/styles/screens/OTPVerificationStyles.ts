@@ -54,7 +54,8 @@ const OTPVerificationStyles = StyleSheet.create({
   },
   title: {
     fontSize: fonts.size.lg,
-    fontWeight: fonts.weight.bold,
+    // fontWeight: fonts.weight.bold,
+    fontFamily: fonts.family.medium,
     color: colors.textPrimary,
     textAlign: 'center',
     marginBottom: 8,
@@ -64,12 +65,13 @@ const OTPVerificationStyles = StyleSheet.create({
     color: colors.textSecondary,
     textAlign: 'center',
     marginBottom: 32,
+    fontFamily: fonts.family.regular,
   },
   otpContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 15,
-      //  borderWidth: 1,
+    //  borderWidth: 1,
   },
   otpInput: {
     width: 50,
@@ -80,8 +82,10 @@ const OTPVerificationStyles = StyleSheet.create({
     backgroundColor: colors.background,
     textAlign: 'center',
     fontSize: fonts.size.xl,
-    fontWeight: fonts.weight.medium,
+    // fontWeight: fonts.weight.medium,
+    fontFamily: fonts.family.regular,
     color: colors.textPrimary,
+    alignSelf: 'center',
   },
   otpInputFocused: {
     borderColor: colors.brandPrimary,
@@ -100,7 +104,8 @@ const OTPVerificationStyles = StyleSheet.create({
     marginBottom: 24,
   },
   resendText: {
-    fontSize: fonts.size.sm,
+    // fontSize: fonts.size.sm,
+    fontFamily: fonts.family.regular,
     color: colors.textSecondary,
     marginBottom: 8,
   },
@@ -110,8 +115,9 @@ const OTPVerificationStyles = StyleSheet.create({
   },
   resendButtonText: {
     fontSize: fonts.size.sm,
+    fontFamily: fonts.family.regular,
     color: colors.brandPrimary,
-    fontWeight: fonts.weight.medium,
+    // fontWeight: fonts.weight.medium,
   },
   primaryButton: {
     backgroundColor: colors.brandPrimary,
@@ -123,13 +129,15 @@ const OTPVerificationStyles = StyleSheet.create({
   primaryButtonText: {
     color: colors.textOnBrand,
     fontSize: fonts.size.lg,
-    fontWeight: fonts.weight.semibold,
+    // fontWeight: fonts.weight.semibold,
+    fontFamily: fonts.family.regular,
   },
   footerText: {
     fontSize: fonts.size.xs,
     color: colors.textSecondary,
     textAlign: 'center',
     marginTop: 12,
+     fontFamily:fonts.family.regular,
   },
 });
 
