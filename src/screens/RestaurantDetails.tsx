@@ -24,10 +24,10 @@ import Header from '../components/common/Header';
 import {
   RestaurantHeaderStyle,
   RestaurantScreenStyle,
-} from '../styles/screens/RestaurantScreenStyle.ts';
+} from '../styles/screens/RestaurantScreenStyle';
 import LinearGradient from 'react-native-linear-gradient';
 import { featuredRestaurants } from '../data/foodData';
-import FoodAddedBox from '../components/modals/FoodDetailsModal.tsx';
+import FoodAddedBox from '../components/modals/FoodDetailsModal';
 //
 import { addToCart, removeFromCart } from '../store/slices/cartSlice.ts';
 import { toggleFavoriteRestaurant, toggleFavoriteFood } from '../store/slices/favoritesSlice';

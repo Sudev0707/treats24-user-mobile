@@ -144,13 +144,16 @@ const SetLocation: React.FC = () => {
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 180, paddingTop: 5 }}
             renderItem={({ item }) => (
-              <SavedAddressCard
+              <>
+                {/* <SavedAddressCard
                 title={item.title}
                 address={item.address}
                 distance={item.distance}
                 icon={item.icon}
                 onMorePress={() => ''}
-              />
+              /> */}
+              </>
+            
             )}
             //   onEndReached={()=> ''}
             onEndReachedThreshold={0.2}
