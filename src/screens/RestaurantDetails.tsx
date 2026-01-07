@@ -116,6 +116,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   // const [activeChips, setActiveChips] = useState({});
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]); //
+  const [expandedCategories, setExpandedCategories] = useState<{ [key: string]: boolean }>({});
 
   const [barStyle, setBarStyle] = useState<'light-content' | 'dark-content'>(
     'light-content',
@@ -300,6 +301,13 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
     });
   };
 
+  const toggleCategory = (categoryId: string) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [categoryId]: !prev[categoryId],
+    }));
+  };
+
   //
 
   if (!restaurant) {
@@ -438,38 +446,74 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
                   />
                 )}
               />
-              {/* restaurant foods */}
+              {/* restaurant foods type/menus */}
               <View style={{ marginTop: 15 }}>
                 <SectionHeader title="Recommended" />
               </View>
             </View>
 
-            <View
-              style={{
-                backgroundColor: colors.bgOffWhiteSecondary,
-                padding: 10,
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                justifyContent: 'space-around',
-              }}
-            >
-              {restaurant.foodCategories
-                .flatMap(category => category.items)
-                .map(food => {
-                  const quantity = getQuantity(food.id);
-                  return (
-                    <FoodCard
-                      key={food.id}
-                      food={food}
-                      quantity={quantity}
-                      onAdd={() => handleAddFood(food)}
-                      onDecrement={() => dispatch(removeFromCart(food.id))}
-                      onFavorite={() => handleFavoriteFood(food)}
-                      isFavorite={isFoodFavorite(food.id)}
-                      onPress={() => handleFoodCardPress(food)}
-                    />
-                  );
-                })}
+              
+            <View style={{ backgroundColor: colors.bgOffWhiteSecondary }}>
+              {restaurant.foodCategories.map(category => {
+                const isExpanded = expandedCategories[category.id] || false;
+                return (
+                  <View key={category.id}>
+                    <TouchableOpacity
+                      style={{
+                        padding: 16,
+                        backgroundColor: colors.background,
+                        borderBottomWidth: 1,
+                        borderBottomColor: colors.borderLight,
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                      }}
+                      onPress={() => toggleCategory(category.id)}
+                    >
+                      <Text
+                        style={{
+                          fontSize: 18,
+                          fontWeight: 'bold',
+                          color: colors.textPrimary,
+                        }}
+                      >
+                        {category.title}
+                      </Text>
+                      <Icon
+                        name={isExpanded ? 'keyboard-arrow-up' : 'keyboard-arrow-down'}
+                        size={24}
+                        color={colors.textSecondary}
+                      />
+                    </TouchableOpacity>
+                    {isExpanded && (
+                      <View
+                        style={{
+                          padding: 10,
+                          flexDirection: 'row',
+                          flexWrap: 'wrap',
+                          justifyContent: 'space-around',
+                        }}
+                      >
+                        {category.items.map(food => {
+                          const quantity = getQuantity(food.id);
+                          return (
+                            <FoodCard
+                              key={food.id}
+                              food={food}
+                              quantity={quantity}
+                              onAdd={() => handleAddFood(food)}
+                              onDecrement={() => dispatch(removeFromCart(food.id))}
+                              onFavorite={() => handleFavoriteFood(food)}
+                              isFavorite={isFoodFavorite(food.id)}
+                              onPress={() => handleFoodCardPress(food)}
+                            />
+                          );
+                        })}
+                      </View>
+                    )}
+                  </View>
+                );
+              })}
             </View>
 
             {/*  */}

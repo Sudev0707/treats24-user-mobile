@@ -9,6 +9,7 @@ import {
   Dimensions,
   ActivityIndicator,
   FlatList,
+  RefreshControl,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
@@ -21,6 +22,7 @@ import colors from '../theme/colors';
 import Header from '../components/common/Header';
 import CartSkeleton from '../components/common/CartSkeleton';
 import CartItem from '../components/common/CartItem';
+import PaymentSummary from '../components/common/PaymentSummary';
 import {
   selectCartItems,
   selectCartTotal,
@@ -38,7 +40,7 @@ import { cartStyle } from '../styles/screens/CartStyles';
 import SectionHeader from '../components/common/SectionHeader';
 import RandomItem from '../components/common/RandomItem';
 
-const bag = require("../assets/icons/shopping-bag-flat.png");
+const bag = require('../assets/icons/shopping-bag-flat.png');
 
 const { height } = Dimensions.get('window');
 
@@ -142,6 +144,7 @@ const Cart: React.FC = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation<CartScreenNavigationProp>();
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   console.log('cartItems.length', cartItems.length);
 
@@ -188,6 +191,14 @@ const Cart: React.FC = () => {
     return cartItem ? cartItem.quantity : 0;
   };
 
+  const onRefresh = () => {
+    setRefreshing(true);
+    // Simulate refresh delay or refetch data
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1000); // Adjust delay as needed
+  };
+
   return (
     <>
       <StatusBar
@@ -200,8 +211,18 @@ const Cart: React.FC = () => {
           title={restaurantName || 'Cart'}
           showBackButton={true}
           rightMenu={
-            <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight:9}}>
-             <Image source={bag} resizeMode='contain' style={{width:27, height:27}}/>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingRight: 9,
+              }}
+            >
+              <Image
+                source={bag}
+                resizeMode="contain"
+                style={{ width: 27, height: 27 }}
+              />
               {cartItemCount >= 0 && (
                 <View
                   style={{
@@ -212,9 +233,9 @@ const Cart: React.FC = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginLeft: 5,
-                    position:'absolute',
-                    bottom:9,
-                    left:9
+                    position: 'absolute',
+                    bottom: 9,
+                    left: 9,
                   }}
                 >
                   <Text
@@ -243,6 +264,9 @@ const Cart: React.FC = () => {
               //  paddingHorizontal: 20,
             }}
             showsVerticalScrollIndicator={false}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
           >
             {loading ? (
               <CartSkeleton />
@@ -297,59 +321,7 @@ const Cart: React.FC = () => {
               />
             </View>
 
-            {/*  */}
-            <View style={cartStyle.paymentSummary}>
-              <View style={cartStyle.productinfo}>
-                <SectionHeader title="Payment Summary" />
-
-                <View style={cartStyle.paymentRow}>
-                  <Text style={cartStyle.paymentLabel}>Item Total</Text>
-                  <Text style={cartStyle.paymentValue}>
-                    ₹{priceDetails.itemTotal.toFixed(2)}
-                  </Text>
-                </View>
-
-                {/* <View style={cartStyle.paymentRow}>
-                  <Text style={cartStyle.paymentLabel}>
-                    Commission ({(COMMISSION_RATE * 100).toFixed(0)}%)
-                  </Text>
-                  <Text style={cartStyle.paymentValue}>
-                    ₹{priceDetails.commission.toFixed(2)}
-                  </Text>
-                </View> */}
-
-                <View style={cartStyle.paymentRow}>
-                  <Text style={cartStyle.paymentLabel}>
-                    GST ({(GST_RATE * 100).toFixed(0)}% )
-                  </Text>
-                  <Text style={cartStyle.paymentValue}>
-                    ₹{priceDetails.gst.toFixed(2)}
-                  </Text>
-                </View>
-
-                <View style={cartStyle.paymentRow}>
-                  <Text style={cartStyle.paymentLabel}>Delivery Fee</Text>
-                  <Text style={cartStyle.paymentValue}>
-                    ₹{priceDetails.deliveryCharge}
-                  </Text>
-                </View>
-
-                <View style={cartStyle.separator} />
-
-                <View style={cartStyle.paymentRow}>
-                  <Text
-                    style={{ ...cartStyle.paymentLabel, fontWeight: 'bold' }}
-                  >
-                    Total Amount
-                  </Text>
-                  <Text
-                    style={{ ...cartStyle.paymentValue, fontWeight: 'bold' }}
-                  >
-                    ₹{priceDetails.grandTotal}
-                  </Text>
-                </View>
-              </View>
-            </View>
+            <PaymentSummary priceDetails={priceDetails} gstRate={GST_RATE} />
           </ScrollView>
         )}
         {cartItems.length > 0 && (
@@ -361,9 +333,7 @@ const Cart: React.FC = () => {
                 style={cartStyle.checkoutBtn}
                 onPress={() => navigation.navigate('Checkout')}
               >
-                <Text style={cartStyle.checkoutBtnText}>
-                  Select Addres To Pay
-                </Text>
+                <Text style={cartStyle.checkoutBtnText}>Checkout</Text>
               </TouchableOpacity>
             </View>
           </>

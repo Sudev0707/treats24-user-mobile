@@ -14,8 +14,9 @@ export const cartStyle = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
   },
-  mainContainer:{
-    flex: 1, backgroundColor: colors.bgOffWhiteSecondary 
+  mainContainer: {
+    flex: 1,
+    backgroundColor: colors.bgOffWhiteSecondary,
   },
   container: {
     flex: 1,
@@ -173,7 +174,7 @@ export const cartStyle = StyleSheet.create({
     // justifyContent: 'space-between',
 
     paddingBottom: 15,
-    paddingTop:10,
+    paddingTop: 10,
     paddingHorizontal: 20,
     backgroundColor: colors.brandPrimarySoft,
     // marginTop: 20,
@@ -182,10 +183,15 @@ export const cartStyle = StyleSheet.create({
     borderRadius: 20,
   },
   totalText: {
-    fontSize: 20,
-    fontFamily: fonts.family.bold,
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.semibold,
     color: colors.textPrimary,
     // marginBottom: 15,
+  },
+  amountText: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.semibold,
+    color: colors.brandPrimary,
   },
   checkoutBtn: {
     backgroundColor: colors.brandPrimary,
@@ -232,18 +238,17 @@ export const cartStyle = StyleSheet.create({
     paddingVertical: 5,
   },
   paymentLabel: {
-    fontSize: 14,
-    fontFamily: fonts.family.medium,
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.regular,
     color: colors.textPrimary,
-    fontWeight: 'bold'
+    // fontWeight: 'bold'
   },
   paymentValue: {
-    fontSize: 14,
-    fontFamily: fonts.family.semibold,
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.regular,
     color: colors.brandPrimary,
-    fontWeight: 'bold'
+    // fontWeight: 'bold'
   },
-
 
   // Styles for random items FlatList
   randomItemContainer: {
@@ -264,8 +269,8 @@ export const cartStyle = StyleSheet.create({
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
-     backgroundColor: colors.background,
-     borderColor:colors.borderLight
+    backgroundColor: colors.background,
+    borderColor: colors.borderLight,
   },
   randomItemName: {
     fontSize: 14,

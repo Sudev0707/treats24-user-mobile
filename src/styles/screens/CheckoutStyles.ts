@@ -29,7 +29,7 @@ export const checkoutStyle = StyleSheet.create({
     marginBottom: 10,
   },
   addressContainer: {
-    backgroundColor: colors.background,
+    // backgroundColor: colors.background,
     borderRadius: 10,
     // padding: 15,
     marginBottom: 10,
@@ -38,6 +38,7 @@ export const checkoutStyle = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
+    // borderTopWidth: 1,
   },
   selectedAddress: {
     borderColor: colors.brandPrimary,
@@ -78,7 +79,7 @@ export const checkoutStyle = StyleSheet.create({
     flex: 1,
   },
   paymentName: {
-    fontSize: 16,
+    fontSize: fonts.size.md,
     fontFamily: fonts.family.semibold,
     color: colors.textPrimary,
     marginBottom: 5,
@@ -89,15 +90,18 @@ export const checkoutStyle = StyleSheet.create({
     color: colors.textSecondary,
   },
   footer: {
-    padding: 20,
-    backgroundColor: colors.background,
-    borderTopWidth: 1,
-    borderTopColor: '#eee',
+    paddingBottom: 15,
+    paddingTop: 10,
+    paddingHorizontal: 20,
+    // backgroundColor: colors.background,
+   backgroundColor: colors.brandPrimarySoft,
+    // borderTopWidth: 1,
+    // borderTopColor: '#eee',
   },
   placeOrderBtn: {
     backgroundColor: colors.brandPrimary,
     paddingVertical: 15,
-    borderRadius: 10,
+    borderRadius: 20,
     alignItems: 'center',
   },
   placeOrderBtnText: {

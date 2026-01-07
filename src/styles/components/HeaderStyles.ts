@@ -1,5 +1,6 @@
 import { StyleSheet, StatusBar } from 'react-native';
 import colors from '../../theme/colors';
+import fonts from '../../theme/fonts';
 
 const HeaderStyles = StyleSheet.create({
   container: {
@@ -36,8 +37,9 @@ const HeaderStyles = StyleSheet.create({
     
   },
   title: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: fonts.size.lg,
+    fontFamily:fonts.family.medium,
+    // fontWeight: 'bold',
     color: '#000',
   },
   leftText: {

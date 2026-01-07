@@ -18,6 +18,7 @@ import SavedAddressCard from '../components/common/SavedAddressCard';
 import CustomAlert from '../components/common/CustomAlert';
 import { savedAddress } from '../data/savedAddress';
 import { checkoutStyle } from '../styles/screens/CheckoutStyles';
+import SectionHeader from '../components/common/SectionHeader';
 
 type CheckoutScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -43,7 +44,7 @@ const Checkout: React.FC = () => {
   const handlePlaceOrder = () => {
     if (!selectedAddress) {
       setAlertTitle('Error');
-      setAlertMessage('Please select a delivery address');
+      // setAlertMessage('Please select a delivery address');
       setAlertVisible(true);
       return;
     }
@@ -82,7 +83,7 @@ const Checkout: React.FC = () => {
         }}
       >
         {/* Delivery Address Section */}
-        <View style={checkoutStyle.section}>
+        {/* <View style={checkoutStyle.section}>
           {savedAddress.map((address) => (
             <TouchableOpacity activeOpacity={0.7}
               key={address.id}
@@ -92,6 +93,7 @@ const Checkout: React.FC = () => {
                 selectedAddress === address.id && checkoutStyle.selectedAddress,
               ]}
             >
+             
               <SavedAddressCard
                 title={address.title}
                 address={address.address}
@@ -105,13 +107,13 @@ const Checkout: React.FC = () => {
               )}
             </TouchableOpacity>
           ))}
-        </View>
+        </View> */}
 
         {/* Payment Options Section */}
         <View style={checkoutStyle.section}>
-          <Text style={checkoutStyle.sectionTitle}>Payment Method</Text>
+          <SectionHeader title='Payment Method'/>
           {paymentOptions.map((option) => (
-            <TouchableOpacity activeOpacity={0.7}
+            <TouchableOpacity activeOpacity={0.8}
               key={option.id}
               onPress={() => setSelectedPayment(option.id)}
               style={[
@@ -130,7 +132,7 @@ const Checkout: React.FC = () => {
                   <Text style={checkoutStyle.checkmarkText}>✓</Text>
                 </View>
               )}
-            </TouchableOpacity>
+          </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
