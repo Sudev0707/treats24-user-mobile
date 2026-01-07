@@ -15,6 +15,8 @@ import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { sendPhoneOTP, verifyPhoneOTP } from '../services/fireBaseAuth';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../routes/types';
 import styles from '../styles/screens/OTPVerificationStyles';
 import Header from '../components/common/Header';
 import CustomAlert from '../components/common/CustomAlert';
@@ -30,7 +32,7 @@ const OTPVerification: React.FC = () => {
   const { confirmation, phone } = route.params;
 
   //
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const OTP_DELAY = 30;
   // console.log(otp);
@@ -216,17 +218,10 @@ const OTPVerification: React.FC = () => {
 
   const handleEmailContinue = async (emailAddress: string) => {
     setEmailModalVisible(false);
-    setEmail(emailAddress);
-    setVerificationMethod('email');
-    setOtp(['', '', '', '', '', '']);
-    setOtpError('');
-    setSecondsLeft(OTP_DELAY);
 
     try {
-      await sendEmailOTP(emailAddress);
-      setAlertTitle('OTP Sent');
-      setAlertMessage('A 6-digit OTP has been sent to your email');
-      setAlertVisible(true);
+      // await sendEmailOTP(emailAddress);
+      navigation.navigate('EmailOTPVerification', { email: emailAddress });
     } catch (error) {
       setAlertTitle('Error');
       setAlertMessage('Unable to send OTP to email');

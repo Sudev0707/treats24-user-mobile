@@ -4,6 +4,7 @@ export type RootStackParamList = {
   SplashBrand: undefined;
   Auth: undefined;
   OTPVerification: undefined;
+  EmailOTPVerification: { email: string };
   SetLocation: undefined;
   Profile: undefined;
   Nearby: undefined;
