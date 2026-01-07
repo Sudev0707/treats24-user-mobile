@@ -2,6 +2,7 @@ export { default as Dashboard } from '../screens/Dashboard';
 export { default as SplashBrand } from '../screens/SplashBrand';
 export { default as Auth } from '../screens/Auth';
 export { default as OTPVerification } from '../screens/OTPVerification';
+export { default as EmailOTPVerification } from '../screens/EmailOTPVerification';
 export { default as SetLocation } from '../screens/SetLocation';
 export { default as Orders } from '../screens/Orders';
 export { default as Profile } from '../screens/Profile';

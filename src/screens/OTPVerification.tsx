@@ -252,7 +252,9 @@ const OTPVerification: React.FC = () => {
         <View style={styles.contentWrapper}>
           <View style={styles.card}>
             <Text style={styles.title}>
-              {verificationMethod === 'email' ? 'Verify Email Address' : 'Verify Phone Number'}
+              {verificationMethod === 'email'
+                ? 'Verify Email Address'
+                : 'Verify Phone Number'}
             </Text>
             <View style={{ flexDirection: 'row' }}>
               <Text style={styles.subtitle}>
@@ -303,9 +305,7 @@ const OTPVerification: React.FC = () => {
                   style={styles.resendButton}
                   onPress={handleResend}
                 >
-                  <Text style={styles.resendButtonText}>
-                    Resend OTP
-                  </Text>
+                  <Text style={styles.resendButtonText}>Resend OTP</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -323,9 +323,27 @@ const OTPVerification: React.FC = () => {
               Policy
             </Text>
           </View>
-          <TouchableOpacity onPress={handleEmailLoginPress} style={{borderWidth:0, padding:2, width:'50%', alignSelf:'center'}}>
-            <Text style={{fontFamily:fonts.family.regular, color:colors.brandPrimary, textAlign:'center'}} >Login with email</Text>
-          </TouchableOpacity>
+          {verificationMethod === 'email' ? null : (
+            <TouchableOpacity
+              onPress={handleEmailLoginPress}
+              style={{
+                borderWidth: 0,
+                padding: 2,
+                width: '50%',
+                alignSelf: 'center',
+              }}
+            >
+              <Text
+                style={{
+                  fontFamily: fonts.family.regular,
+                  color: colors.brandPrimary,
+                  textAlign: 'center',
+                }}
+              >
+                Login with email
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
       </ScrollView>
       <CustomAlert
