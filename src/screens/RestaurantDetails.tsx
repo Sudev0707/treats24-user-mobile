@@ -1,4 +1,5 @@
 import { RouteProp, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../routes/types';
 import React, { useState, useRef, useEffect } from 'react';
 import {
@@ -30,15 +31,21 @@ import { featuredRestaurants } from '../data/foodData';
 import FoodDetailsModal from '../components/modals/FoodDetailsModal';
 //
 import { addToCart, removeFromCart } from '../store/slices/cartSlice.ts';
-import { toggleFavoriteRestaurant, toggleFavoriteFood } from '../store/slices/favoritesSlice';
+import {
+  toggleFavoriteRestaurant,
+  toggleFavoriteFood,
+} from '../store/slices/favoritesSlice';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../hooks/useAppSelector';
 import { selectFavoriteFoods } from '../store/selectors/favoritesSelectors';
+import { selectCartTotal } from '../store/selectors/cartSelectors';
 import SectionHeader from '../components/common/SectionHeader.tsx';
 import CustomAlert from '../components/common/CustomAlert';
 import FoodCard from '../components/food/FoodCard';
 import FilterChip from '../components/common/FilterChip';
 import RestaurantDetailsHeader from '../components/common/RestaurantDetailsHeader.tsx';
+import { cartStyle } from '../styles/screens/CartStyles.ts';
+import fonts from '../theme/fonts.ts';
 
 interface RestaurantItem {
   id: string;
@@ -87,6 +94,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   const totalCount = useAppSelector(state =>
     state.cart.items.reduce((sum, item) => sum + item.quantity, 0),
   );
+  const cartTotal = useAppSelector(selectCartTotal);
   const favoriteRestaurants = useAppSelector(
     state => state.favorites.favoriteRestaurants,
   );
@@ -104,7 +112,8 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   const [isSaved, setIsSaved] = useState(false);
   const [foodDetailsModalVisible, setFoodDetailsModalVisible] = useState(false);
   const [selectedFoodForModal, setSelectedFoodForModal] = useState<any>(null);
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   // const [activeChips, setActiveChips] = useState({});
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]); //
 
@@ -435,7 +444,15 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
               </View>
             </View>
 
-            <View style={{ backgroundColor: colors.bgOffWhiteSecondary , padding:10, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+            <View
+              style={{
+                backgroundColor: colors.bgOffWhiteSecondary,
+                padding: 10,
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                justifyContent: 'space-around',
+              }}
+            >
               {restaurant.foodCategories
                 .flatMap(category => category.items)
                 .map(food => {
@@ -456,7 +473,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
             </View>
 
             {/*  */}
-            <View style={{ padding: 16,  }}>
+            <View style={{ padding: 16 }}>
               <Text
                 style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 8 }}
               >
@@ -472,8 +489,33 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
           </View>
         </ScrollView>
       </View>
-
-
+      {totalCount > 0 && (
+        <View style={[cartStyle.totalContainer]}>
+          <TouchableOpacity
+            activeOpacity={0.6}
+            style={[
+              cartStyle.checkoutBtn,
+              {
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              },
+            ]}
+            onPress={() => navigation.navigate('Cart')}
+          >
+            <Text
+              style={{
+                fontFamily: fonts.family.regular,
+                color: colors.textWhite,
+              }}
+            >
+              {totalCount} items added{' '}
+            </Text>
+            {/* <Text>• ₹{cartTotal}</Text> */}
+            <Text style={cartStyle.checkoutBtnText}>View Cart</Text>
+          </TouchableOpacity>
+        </View>
+      )}
 
       <CustomAlert
         visible={alertVisible}

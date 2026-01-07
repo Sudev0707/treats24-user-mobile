@@ -20,6 +20,7 @@ import { useAppSelector } from '../hooks/useAppSelector';
 import colors from '../theme/colors';
 import Header from '../components/common/Header';
 import CartSkeleton from '../components/common/CartSkeleton';
+import CartItem from '../components/common/CartItem';
 import {
   selectCartItems,
   selectCartTotal,
@@ -35,6 +36,9 @@ import {
 } from '../store/slices/cartSlice';
 import { cartStyle } from '../styles/screens/CartStyles';
 import SectionHeader from '../components/common/SectionHeader';
+import RandomItem from '../components/common/RandomItem';
+
+const bag = require("../assets/icons/shopping-bag-flat.png");
 
 const { height } = Dimensions.get('window');
 
@@ -196,9 +200,9 @@ const Cart: React.FC = () => {
           title={restaurantName || 'Cart'}
           showBackButton={true}
           rightMenu={
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={{ fontSize: 18 }}>🛒</Text>
-              {cartItemCount > 0 && (
+            <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight:9}}>
+             <Image source={bag} resizeMode='contain' style={{width:27, height:27}}/>
+              {cartItemCount >= 0 && (
                 <View
                   style={{
                     backgroundColor: colors.brandPrimary,
@@ -208,6 +212,9 @@ const Cart: React.FC = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginLeft: 5,
+                    position:'absolute',
+                    bottom:9,
+                    left:9
                   }}
                 >
                   <Text
@@ -241,82 +248,17 @@ const Cart: React.FC = () => {
               <CartSkeleton />
             ) : (
               <>
+                {/* cart item */}
                 <View style={cartStyle.container}>
                   <View style={cartStyle.productContainer}>
                     {cartItems.map((item, index) => (
-                      <>
-                        <View key={item.id} style={cartStyle.cartItem}>
-                          <View style={cartStyle.foodImageBox}>
-                            <Image
-                              resizeMode="contain"
-                              source={
-                                item.image ||
-                                require('../assets/images/foods/dummy food.png')
-                              }
-                              style={
-                                item.image
-                                  ? cartStyle.itemImage
-                                  : cartStyle.dummyItemImage
-                              }
-                            />
-                          </View>
-                          <View style={cartStyle.itemDetails}>
-                            <View style={cartStyle.titleRow}>
-                              <Text style={cartStyle.itemName}>
-                                {item.name}
-                              </Text>
-                              <View style={cartStyle.quantityControls}>
-                                <TouchableOpacity
-                                  onPress={() =>
-                                    handleUpdateQuantity(
-                                      item.id,
-                                      item.quantity - 1,
-                                    )
-                                  }
-                                  style={cartStyle.quantityBtn}
-                                >
-                                  <Text style={cartStyle.quantityBtnText}>
-                                    -
-                                  </Text>
-                                </TouchableOpacity>
-                                <Text style={cartStyle.quantityText}>
-                                  {item.quantity}
-                                </Text>
-                                <TouchableOpacity
-                                  onPress={() =>
-                                    handleUpdateQuantity(
-                                      item.id,
-                                      item.quantity + 1,
-                                    )
-                                  }
-                                  style={cartStyle.quantityBtn}
-                                >
-                                  <Text style={cartStyle.quantityBtnText}>
-                                    +
-                                  </Text>
-                                </TouchableOpacity>
-                              </View>
-                              {/* <TouchableOpacity
-                                onPress={() => handleRemoveItem(item.id)}
-                                style={cartStyle.removeBtn}
-                              >
-                                <Text style={cartStyle.removeBtnText}>X</Text>
-                              </TouchableOpacity> */}
-                            </View>
-
-                            <View style={cartStyle.priceRow}>
-                              <Text style={cartStyle.itemPrice}>
-                                ₹{item.price}
-                              </Text>
-                            </View>
-                          </View>
-                        </View>
-
-                        {/* Dashed Separator */}
-                        {index !== cartItems.length - 1 && (
-                          <View style={cartStyle.separator} />
-                        )}
-                      </>
+                      <CartItem
+                        key={item.id}
+                        item={item}
+                        onUpdateQuantity={handleUpdateQuantity}
+                        onRemoveItem={handleRemoveItem}
+                        isLast={index === cartItems.length - 1}
+                      />
                     ))}
                   </View>
                 </View>
@@ -344,64 +286,12 @@ const Cart: React.FC = () => {
                 renderItem={({ item }) => {
                   const quantity = getItemQuantity(item.id);
                   return (
-                    <View style={cartStyle.randomItemContainer}>
-                      <View style={cartStyle.randomItemImage}>
-                        <Image
-                          source={
-                            (item as any).image
-                              ? (typeof (item as any).image === 'string' ? { uri: (item as any).image } : (item as any).image)
-                              : require('../assets/images/foods/dummy food.png')
-                          }
-                          style={{ width: '60%', height: '60%' }}
-                          resizeMode="contain"
-                        />
-                      </View>
-                      <Text style={cartStyle.randomItemName} numberOfLines={1}>
-                        {item.name}
-                      </Text>
-                      <Text style={cartStyle.randomItemType}>
-                        {item.isVeg ? 'Veg' : ' Non-Veg'}
-                      </Text>
-                      <Text style={cartStyle.randomItemPrice}>
-                        ₹{item.price}
-                      </Text>
-                      <View style={cartStyle.randomItemControls}>
-                        {quantity > 0 ? (
-                          <>
-                            <TouchableOpacity
-                              onPress={() =>
-                                handleUpdateQuantity(item.id, quantity - 1)
-                              }
-                              style={cartStyle.quantityButton}
-                            >
-                              <Text style={cartStyle.quantityButtonText}>
-                                -
-                              </Text>
-                            </TouchableOpacity>
-                            <Text style={cartStyle.quantityDisplay}>
-                              {quantity}
-                            </Text>
-                            <TouchableOpacity
-                              onPress={() =>
-                                handleUpdateQuantity(item.id, quantity + 1)
-                              }
-                              style={cartStyle.quantityButton}
-                            >
-                              <Text style={cartStyle.quantityButtonText}>
-                                +
-                              </Text>
-                            </TouchableOpacity>
-                          </>
-                        ) : (
-                          <TouchableOpacity
-                            onPress={() => handleAddToCart(item)}
-                            style={cartStyle.addButton}
-                          >
-                            <Text style={cartStyle.addButtonText}>Add</Text>
-                          </TouchableOpacity>
-                        )}
-                      </View>
-                    </View>
+                    <RandomItem
+                      item={item}
+                      quantity={quantity}
+                      onUpdateQuantity={handleUpdateQuantity}
+                      onAddToCart={handleAddToCart}
+                    />
                   );
                 }}
               />

@@ -21,6 +21,9 @@ import CustomAlert from '../components/common/CustomAlert';
 import { clearConfirmation, getConfirmation } from '../services/otpSession';
 import { sendEmailOTP, verifyEmailOTP } from '../services/api';
 import Button from '../components/common/Button';
+import EmailLoginModal from '../components/modals/EmailLoginModal';
+import fonts from '../theme/fonts';
+import colors from '../theme/colors';
 
 const OTPVerification: React.FC = () => {
   const route = useRoute<any>();
@@ -45,6 +48,7 @@ const OTPVerification: React.FC = () => {
   const [alertTitle, setAlertTitle] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
   const [secondsLeft, setSecondsLeft] = useState(OTP_DELAY);
+  const [emailModalVisible, setEmailModalVisible] = useState(false);
 
   useEffect(() => {
     if (secondsLeft === 0) return;
@@ -206,6 +210,30 @@ const OTPVerification: React.FC = () => {
     }
   };
 
+  const handleEmailLoginPress = () => {
+    setEmailModalVisible(true);
+  };
+
+  const handleEmailContinue = async (emailAddress: string) => {
+    setEmailModalVisible(false);
+    setEmail(emailAddress);
+    setVerificationMethod('email');
+    setOtp(['', '', '', '', '', '']);
+    setOtpError('');
+    setSecondsLeft(OTP_DELAY);
+
+    try {
+      await sendEmailOTP(emailAddress);
+      setAlertTitle('OTP Sent');
+      setAlertMessage('A 6-digit OTP has been sent to your email');
+      setAlertVisible(true);
+    } catch (error) {
+      setAlertTitle('Error');
+      setAlertMessage('Unable to send OTP to email');
+      setAlertVisible(true);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* <View style={styles.header}>
@@ -223,12 +251,16 @@ const OTPVerification: React.FC = () => {
       >
         <View style={styles.contentWrapper}>
           <View style={styles.card}>
-            <Text style={styles.title}>Verify Phone Number</Text>
+            <Text style={styles.title}>
+              {verificationMethod === 'email' ? 'Verify Email Address' : 'Verify Phone Number'}
+            </Text>
             <View style={{ flexDirection: 'row' }}>
               <Text style={styles.subtitle}>
                 Enter the 6-digit code sent to
               </Text>
-              <Text style={styles.phoneNumber}>{phone}</Text>
+              <Text style={styles.phoneNumber}>
+                {verificationMethod === 'email' ? email : phone}
+              </Text>
             </View>
 
             {/* <Text>{otp}</Text> */}
@@ -291,6 +323,9 @@ const OTPVerification: React.FC = () => {
               Policy
             </Text>
           </View>
+          <TouchableOpacity onPress={handleEmailLoginPress} style={{borderWidth:0, padding:2, width:'50%', alignSelf:'center'}}>
+            <Text style={{fontFamily:fonts.family.regular, color:colors.brandPrimary, textAlign:'center'}} >Login with email</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
       <CustomAlert
@@ -302,6 +337,11 @@ const OTPVerification: React.FC = () => {
         onCancel={handleCloseAlert}
         confirmText="OK"
         cancelText=""
+      />
+      <EmailLoginModal
+        visible={emailModalVisible}
+        onClose={() => setEmailModalVisible(false)}
+        onContinue={handleEmailContinue}
       />
     </SafeAreaView>
   );

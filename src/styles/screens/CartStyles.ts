@@ -93,8 +93,8 @@ export const cartStyle = StyleSheet.create({
     // justifyContent: 'space-between',
   },
   itemName: {
-    fontSize: 16,
-    fontFamily: fonts.family.semibold,
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.regular,
     color: colors.textPrimary,
     // marginBottom: 5,
   },
@@ -130,8 +130,8 @@ export const cartStyle = StyleSheet.create({
     // elevation:2
   },
   quantityBtn: {
-    width: 20,
-    height: 20,
+    width: 24,
+    height: 24,
     borderRadius: 5,
     backgroundColor: colors.brandPrimarySoft,
     justifyContent: 'center',
@@ -139,12 +139,12 @@ export const cartStyle = StyleSheet.create({
   },
   quantityBtnText: {
     color: colors.textBrand,
-    fontSize: 18,
+    fontSize: fonts.size.lg,
     fontFamily: fonts.family.bold,
   },
   quantityText: {
     fontSize: 14,
-    fontFamily: fonts.family.bold,
+    fontFamily: fonts.family.medium,
     color: colors.textPrimary,
     marginHorizontal: 15,
     fontWeight: 800,
