@@ -142,15 +142,15 @@ const EmailLogin = ({
           </Text>
 
           <InputField
-            label="Email"
+            label="Enter your email"
             type="email"
-            placeholder="Enter your email"
+            placeholder="Enter email"
             value={email}
             onChangeText={setEmail}
             variant="floating"
           />
 
-          <Button title="Send OTP" variant="filled" onPress={handleSendOtp} isPhoneValid={true} />
+          <Button title="Continue" variant="filled" onPress={handleSendOtp} isPhoneValid={true} />
 
           {/* <TouchableOpacity
             style={styles.primaryButton}

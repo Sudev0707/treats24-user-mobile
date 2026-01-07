@@ -16,9 +16,10 @@ export default StyleSheet.create({
   },
 
   input: {
-    fontSize: 15,
+    fontSize: fonts.size.md,
     color: '#000',
     height: '100%',
+    fontFamily:fonts.family.regular
   },
 
   label: {

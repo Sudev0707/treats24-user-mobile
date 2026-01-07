@@ -14,6 +14,7 @@ import {
   ListRenderItem,
   Dimensions,
   ImageSourcePropType,
+  RefreshControl,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -94,6 +95,15 @@ const Dashboard: React.FC = () => {
   const [location, setLocation] = useState<LocationType | null>(null);
   const sliderRef = useRef<FlatList<BannerItem>>(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    // Simulate a refresh action, e.g., refetch data
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
 
   //
   const handleSelectedCategory = (item: CategoryItem) => {
@@ -170,6 +180,9 @@ const Dashboard: React.FC = () => {
           <ScrollView
             contentContainerStyle={styles.scrollContent}
             showsVerticalScrollIndicator={false}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
             {...scrollProps}
           >
             <View>

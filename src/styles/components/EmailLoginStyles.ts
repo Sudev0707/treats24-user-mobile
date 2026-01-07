@@ -4,15 +4,17 @@ import fonts from '../../theme/fonts';
 
 const EmailLoginStyles = StyleSheet.create({
   emailLoginTitle: {
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: fonts.size.md,
+    // fontWeight: '600',
     marginLeft: 12,
+    fontFamily: fonts.family.regular,
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: fonts.size.sm,
     color: '#666',
     marginTop: 30,
     marginBottom: 15,
+    fontFamily: fonts.family.regular,
   },
   primaryButton: {
     backgroundColor: colors.brandPrimary,

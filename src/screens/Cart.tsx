@@ -348,8 +348,9 @@ const Cart: React.FC = () => {
                       <View style={cartStyle.randomItemImage}>
                         <Image
                           source={
-                            item.image ||
-                            require('../assets/images/foods/dummy food.png')
+                            (item as any).image
+                              ? (typeof (item as any).image === 'string' ? { uri: (item as any).image } : (item as any).image)
+                              : require('../assets/images/foods/dummy food.png')
                           }
                           style={{ width: '60%', height: '60%' }}
                           resizeMode="contain"

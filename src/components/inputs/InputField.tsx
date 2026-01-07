@@ -114,7 +114,7 @@ const InputField: React.FC<Props> = ({
           style={styles.input}
           // placeholder={!focused ? placeholder : ''}
           placeholder={
-            variant === 'standard' ? placeholder : !focused ? placeholder : ''
+            variant === 'standard' ? placeholder : (focused || value) ? '' : placeholder
           }
           placeholderTextColor="#A8A8A8"
           secureTextEntry={isPassword && hidePassword}

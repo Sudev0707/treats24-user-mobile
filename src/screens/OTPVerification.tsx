@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -29,6 +29,7 @@ const OTPVerification: React.FC = () => {
   //
   const navigation = useNavigation();
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
+  const OTP_DELAY = 30;
   // console.log(otp);
   const [otpError, setOtpError] = useState('');
 
@@ -43,6 +44,17 @@ const OTPVerification: React.FC = () => {
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertTitle, setAlertTitle] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
+  const [secondsLeft, setSecondsLeft] = useState(OTP_DELAY);
+
+  useEffect(() => {
+    if (secondsLeft === 0) return;
+
+    const interval = setInterval(() => {
+      setSecondsLeft(prev => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [secondsLeft]);
 
   const handleCloseAlert = () => {
     setAlertVisible(false);
@@ -212,9 +224,13 @@ const OTPVerification: React.FC = () => {
         <View style={styles.contentWrapper}>
           <View style={styles.card}>
             <Text style={styles.title}>Verify Phone Number</Text>
-            <Text style={styles.subtitle}>
-              Enter the 6-digit code sent to your phone/email
-            </Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={styles.subtitle}>
+                Enter the 6-digit code sent to
+              </Text>
+              <Text style={styles.phoneNumber}>{phone}</Text>
+            </View>
+
             {/* <Text>{otp}</Text> */}
 
             {/* phone otp  */}
@@ -244,13 +260,22 @@ const OTPVerification: React.FC = () => {
             {otpError ? <Text style={styles.errorText}>{otpError}</Text> : null}
 
             <View style={styles.resendContainer}>
-              <Text style={styles.resendText}>Didn't receive the code?</Text>
-              <TouchableOpacity
-                style={styles.resendButton}
-                onPress={handleResend}
-              >
-                <Text style={styles.resendButtonText}>Resend OTP</Text>
-              </TouchableOpacity>
+              <Text style={styles.resendText}>
+                {secondsLeft > 0
+                  ? `Resend OTP in 00:${String(secondsLeft).padStart(2, '0')}`
+                  : 'Didn’t receive OTP?'}
+              </Text>
+
+              {secondsLeft === 0 && (
+                <TouchableOpacity
+                  style={styles.resendButton}
+                  onPress={handleResend}
+                >
+                  <Text style={styles.resendButtonText}>
+                    Resend OTP
+                  </Text>
+                </TouchableOpacity>
+              )}
             </View>
 
             <Button

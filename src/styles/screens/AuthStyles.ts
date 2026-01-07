@@ -256,7 +256,7 @@ const AuthStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 18,
-    marginTop: 15,
+    marginTop: 5,
   },
   socialBtn: {
     width: 50,

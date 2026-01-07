@@ -68,6 +68,12 @@ const OTPVerificationStyles = StyleSheet.create({
     marginBottom: 32,
     fontFamily: fonts.family.regular,
   },
+  phoneNumber: {
+     fontSize: fonts.size.sm,
+    color: colors.darkBlack,
+    fontFamily: fonts.family.semibold,
+    paddingStart:8
+  },
   otpContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
