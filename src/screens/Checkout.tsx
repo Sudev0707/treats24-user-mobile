@@ -7,6 +7,7 @@ import {
   StatusBar,
   Alert,
   Dimensions,
+  RefreshControl,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -32,34 +33,39 @@ const Checkout: React.FC = () => {
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertTitle, setAlertTitle] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
   const { height } = Dimensions.get('window');
 
   const paymentOptions = [
     { id: 'cod', name: 'Cash on Delivery', description: 'Pay when you receive' },
-    // { id: 'card', name: 'Credit/Debit Card', description: 'Pay with card' },
-    // { id: 'upi', name: 'UPI', description: 'Pay with UPI' },
-    // { id: 'wallet', name: 'Wallet', description: 'Pay with wallet' },
+    { id: 'card', name: 'Credit/Debit Card', description: 'Pay with card' },
+    { id: 'upi', name: 'UPI', description: 'Pay with UPI' },
+    { id: 'wallet', name: 'Wallet', description: 'Pay with wallet' },
   ];
 
-  const handlePlaceOrder = () => {
-    if (!selectedAddress) {
-      setAlertTitle('Error');
-      // setAlertMessage('Please select a delivery address');
-      setAlertVisible(true);
-      return;
-    }
+  const handlePlaceOrder = async () => {
     if (!selectedPayment) {
       setAlertTitle('Error');
       setAlertMessage('Please select a payment method');
       setAlertVisible(true);
       return;
     }
-    // Here you would typically process the order
-    setAlertTitle('Success');
-    setAlertMessage('Order placed successfully!');
-    setAlertVisible(true);
-    // Navigate back or to order confirmation
-    navigation.goBack();
+    // Simulate payment processing for demo
+    if (selectedPayment !== 'cod') {
+      // For demo, assume payment succeeds
+      // In real app, call payment API here
+      console.log('Processing payment for:', selectedPayment);
+    }
+    // Navigate to payment success screen
+    navigation.navigate('PaymentSuccess');
+  };
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    // Simulate refresh delay or refetch data
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1000); // Adjust delay as needed
   };
 
   return (
@@ -81,9 +87,12 @@ const Checkout: React.FC = () => {
           paddingBottom: 250,
           // paddingHorizontal: 20,
         }}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       >
         {/* Delivery Address Section */}
-        {/* <View style={checkoutStyle.section}>
+        <View style={checkoutStyle.section}>
           {savedAddress.map((address) => (
             <TouchableOpacity activeOpacity={0.7}
               key={address.id}
@@ -107,7 +116,7 @@ const Checkout: React.FC = () => {
               )}
             </TouchableOpacity>
           ))}
-        </View> */}
+        </View>
 
         {/* Payment Options Section */}
         <View style={checkoutStyle.section}>

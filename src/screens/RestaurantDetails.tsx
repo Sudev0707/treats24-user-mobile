@@ -144,7 +144,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   // ==================
   const restaurant = featuredRestaurants.find(r => r.id === restaurantId);
 
-  // Sync foodCounts with cart items
+  // Sync foodCounts with cart items and set default expanded categories
   useEffect(() => {
     const newFoodCounts: { [key: string]: number } = {};
     cartItems.forEach(item => {
@@ -152,7 +152,16 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
     });
     setFoodCounts(newFoodCounts);
     setModalVisible(Object.keys(newFoodCounts).length > 0);
-  }, [cartItems]);
+
+    // Set all categories as expanded by default
+    if (restaurant) {
+      const defaultExpanded: { [key: string]: boolean } = {};
+      restaurant.foodCategories.forEach(category => {
+        defaultExpanded[category.id] = true;
+      });
+      setExpandedCategories(defaultExpanded);
+    }
+  }, [cartItems, restaurant]);
 
   // Update StatusBar based on scroll position
   // const handleScroll = (event: any) => {
@@ -448,7 +457,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
               />
               {/* restaurant foods type/menus */}
               <View style={{ marginTop: 15 }}>
-                <SectionHeader title="Recommended" />
+                {/* <SectionHeader title="Recommended" /> */}
               </View>
             </View>
 
@@ -457,10 +466,11 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
               {restaurant.foodCategories.map(category => {
                 const isExpanded = expandedCategories[category.id] || false;
                 return (
-                  <View key={category.id}>
+                  <View key={category.id} style={{paddingHorizontal: 16,}}>
                     <TouchableOpacity
                       style={{
-                        padding: 16,
+                        paddingVertical: 16,
+
                         backgroundColor: colors.background,
                         borderBottomWidth: 1,
                         borderBottomColor: colors.borderLight,
@@ -488,7 +498,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
                     {isExpanded && (
                       <View
                         style={{
-                          padding: 10,
+                          paddingVertical: 10,
                           flexDirection: 'row',
                           flexWrap: 'wrap',
                           justifyContent: 'space-around',
