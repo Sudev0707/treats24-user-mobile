@@ -23,4 +23,5 @@ export type RootStackParamList = {
   HeaderDemo3: undefined;
   HeaderDemo4: undefined;
   OrderDetails: { order: OrderData };
+  PaymentSuccess: { selectedPaymentMethod: string };
 };

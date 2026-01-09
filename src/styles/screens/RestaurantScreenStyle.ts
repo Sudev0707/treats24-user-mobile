@@ -132,7 +132,7 @@ export const RestaurantScreenStyle = StyleSheet.create({
   },
   ChipText: {
     color: colors.textSecondary,
-    fontWeight: 800,
+    fontFamily:fonts.family.regular
   },
   crossIcon: {
     color: colors.brandPrimary,

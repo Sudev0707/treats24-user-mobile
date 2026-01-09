@@ -30,40 +30,41 @@ const RandomItem: React.FC<RandomItemProps> = ({
           resizeMode="contain"
         />
       </View>
-      <Text style={cartStyle.randomItemName} numberOfLines={1}>
-        {item.name}
-      </Text>
-      <Text style={cartStyle.randomItemType}>
-        {item.isVeg ? 'Veg' : ' Non-Veg'}
-      </Text>
-      <Text style={cartStyle.randomItemPrice}>
-        ₹{item.price}
-      </Text>
-      <View style={cartStyle.randomItemControls}>
-        {quantity > 0 ? (
-          <>
+      <View style={{paddingHorizontal:5, paddingBottom:5}} >
+        <Text style={cartStyle.randomItemName}>
+          {item.name}
+        </Text>
+        {/* <Text style={cartStyle.randomItemType}>
+          {item.isVeg ? 'Veg' : ' Non-Veg'}
+        </Text> */}
+
+        <View style={cartStyle.randomItemControls}>
+          <Text style={cartStyle.randomItemPrice}>₹{item.price}</Text>
+          {quantity > 0 ? (
+            <>
+              <TouchableOpacity
+                onPress={() => onUpdateQuantity(item.id, quantity - 1)}
+                style={cartStyle.quantityButton}
+              >
+                <Text style={cartStyle.quantityButtonText}>-</Text>
+              </TouchableOpacity>
+              <Text style={cartStyle.quantityDisplay}>{quantity}</Text>
+              <TouchableOpacity
+                onPress={() => onUpdateQuantity(item.id, quantity + 1)}
+                style={cartStyle.quantityButton}
+              >
+                <Text style={cartStyle.quantityButtonText}>+</Text>
+              </TouchableOpacity>
+            </>
+          ) : (
             <TouchableOpacity
-              onPress={() => onUpdateQuantity(item.id, quantity - 1)}
-              style={cartStyle.quantityButton}
+              onPress={() => onAddToCart(item)}
+              style={cartStyle.addButton}
             >
-              <Text style={cartStyle.quantityButtonText}>-</Text>
+              <Text style={cartStyle.addButtonText}>Add</Text>
             </TouchableOpacity>
-            <Text style={cartStyle.quantityDisplay}>{quantity}</Text>
-            <TouchableOpacity
-              onPress={() => onUpdateQuantity(item.id, quantity + 1)}
-              style={cartStyle.quantityButton}
-            >
-              <Text style={cartStyle.quantityButtonText}>+</Text>
-            </TouchableOpacity>
-          </>
-        ) : (
-          <TouchableOpacity
-            onPress={() => onAddToCart(item)}
-            style={cartStyle.addButton}
-          >
-            <Text style={cartStyle.addButtonText}>Add</Text>
-          </TouchableOpacity>
-        )}
+          )}
+        </View>
       </View>
     </View>
   );

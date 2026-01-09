@@ -116,7 +116,9 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   // const [activeChips, setActiveChips] = useState({});
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]); //
-  const [expandedCategories, setExpandedCategories] = useState<{ [key: string]: boolean }>({});
+  const [expandedCategories, setExpandedCategories] = useState<{
+    [key: string]: boolean;
+  }>({});
 
   const [barStyle, setBarStyle] = useState<'light-content' | 'dark-content'>(
     'light-content',
@@ -461,36 +463,45 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
               </View>
             </View>
 
-              
-            <View style={{ backgroundColor: colors.bgOffWhiteSecondary }}>
+            <View
+              style={{
+                backgroundColor: colors.bgOffWhiteSecondary,
+                marginTop: 6,
+              }}
+            >
               {restaurant.foodCategories.map(category => {
                 const isExpanded = expandedCategories[category.id] || false;
                 return (
-                  <View key={category.id} style={{paddingHorizontal: 16,}}>
+                  <View key={category.id} style={{ paddingHorizontal: 16 }}>
                     <TouchableOpacity
                       style={{
                         paddingVertical: 16,
-
+                        paddingHorizontal: 5,
                         backgroundColor: colors.background,
                         borderBottomWidth: 1,
                         borderBottomColor: colors.borderLight,
                         flexDirection: 'row',
                         justifyContent: 'space-between',
                         alignItems: 'center',
+                        borderRadius: 10,
                       }}
                       onPress={() => toggleCategory(category.id)}
                     >
                       <Text
                         style={{
-                          fontSize: 18,
-                          fontWeight: 'bold',
+                          fontSize: fonts.size.md,
+                          fontFamily:fonts.family.medium,
                           color: colors.textPrimary,
                         }}
                       >
                         {category.title}
                       </Text>
                       <Icon
-                        name={isExpanded ? 'keyboard-arrow-up' : 'keyboard-arrow-down'}
+                        name={
+                          isExpanded
+                            ? 'keyboard-arrow-up'
+                            : 'keyboard-arrow-down'
+                        }
                         size={24}
                         color={colors.textSecondary}
                       />
@@ -512,7 +523,9 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
                               food={food}
                               quantity={quantity}
                               onAdd={() => handleAddFood(food)}
-                              onDecrement={() => dispatch(removeFromCart(food.id))}
+                              onDecrement={() =>
+                                dispatch(removeFromCart(food.id))
+                              }
                               onFavorite={() => handleFavoriteFood(food)}
                               isFavorite={isFoodFavorite(food.id)}
                               onPress={() => handleFoodCardPress(food)}
@@ -561,9 +574,10 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
               style={{
                 fontFamily: fonts.family.regular,
                 color: colors.textWhite,
+                fontSize:fonts.size.md
               }}
             >
-              {totalCount} items added{' '}
+              {totalCount} items added | ₹{cartTotal}
             </Text>
             {/* <Text>• ₹{cartTotal}</Text> */}
             <Text style={cartStyle.checkoutBtnText}>View Cart</Text>

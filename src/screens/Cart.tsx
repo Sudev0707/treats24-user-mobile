@@ -39,6 +39,7 @@ import {
 import { cartStyle } from '../styles/screens/CartStyles';
 import SectionHeader from '../components/common/SectionHeader';
 import RandomItem from '../components/common/RandomItem';
+import fonts from '../theme/fonts';
 
 const bag = require('../assets/icons/shopping-bag-flat.png');
 
@@ -211,38 +212,15 @@ const Cart: React.FC = () => {
           title={restaurantName || 'Cart'}
           showBackButton={true}
           rightMenu={
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingRight: 9,
-              }}
-            >
+            <View style={cartStyle.rightMenuContainer}>
               <Image
                 source={bag}
                 resizeMode="contain"
-                style={{ width: 27, height: 27 }}
+                style={cartStyle.bagIcon}
               />
               {cartItemCount >= 0 && (
-                <View
-                  style={{
-                    backgroundColor: colors.brandPrimary,
-                    borderRadius: 10,
-                    minWidth: 20,
-                    height: 20,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginLeft: 5,
-                    position: 'absolute',
-                    bottom: 9,
-                    left: 9,
-                  }}
-                >
-                  <Text
-                    style={{ color: 'white', fontSize: 12, fontWeight: 'bold' }}
-                  >
-                    {cartItemCount}
-                  </Text>
+                <View style={cartStyle.cartBadge}>
+                  <Text style={cartStyle.cartBadgeText}>{cartItemCount}</Text>
                 </View>
               )}
             </View>
@@ -291,34 +269,41 @@ const Cart: React.FC = () => {
 
             {/*  */}
             <View style={cartStyle.fullcontainer}>
-              <SectionHeader
-                title={
-                  cartItems.length > 0
-                    ? 'You Might Also Love These'
-                    : 'Add products To cart'
-                }
-              />
-              <Text>
-                add a little extra joy to your cart before you check out
-              </Text>
-              <FlatList
-                data={randomItems}
-                horizontal
-                contentContainerStyle={{ paddingTop: 9 }}
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={item => item.id}
-                renderItem={({ item }) => {
-                  const quantity = getItemQuantity(item.id);
-                  return (
-                    <RandomItem
-                      item={item}
-                      quantity={quantity}
-                      onUpdateQuantity={handleUpdateQuantity}
-                      onAddToCart={handleAddToCart}
-                    />
-                  );
-                }}
-              />
+              <View style={cartStyle.childfullcontainer}>
+                <View style={{paddingHorizontal:15, paddingBottom:5}}>
+                  <Text style={{fontFamily:fonts.family.medium}} >
+                    {cartItems.length > 0
+                      ? 'You Might Also Love These'
+                      : 'Add products To cart'}
+                  </Text>
+                  <Text style={{fontFamily:fonts.family.regular, fontSize:fonts.size.sm}}>
+                    add a little extra joy to your cart before you check out
+                  </Text>
+                </View>
+
+                <FlatList
+                  data={randomItems}
+                  horizontal
+                  contentContainerStyle={{
+                    paddingVertical: 8,
+                 
+                    paddingHorizontal: 15,
+                  }}
+                  showsHorizontalScrollIndicator={false}
+                  keyExtractor={item => item.id}
+                  renderItem={({ item }) => {
+                    const quantity = getItemQuantity(item.id);
+                    return (
+                      <RandomItem
+                        item={item}
+                        quantity={quantity}
+                        onUpdateQuantity={handleUpdateQuantity}
+                        onAddToCart={handleAddToCart}
+                      />
+                    );
+                  }}
+                />
+              </View>
             </View>
 
             <PaymentSummary priceDetails={priceDetails} gstRate={GST_RATE} />

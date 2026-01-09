@@ -20,7 +20,7 @@ export const cartStyle = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     paddingTop: 20,
     borderRadius: 10,
     // borderWidth: 1,
@@ -195,10 +195,11 @@ export const cartStyle = StyleSheet.create({
   },
   checkoutBtn: {
     backgroundColor: colors.brandPrimary,
-    paddingHorizontal: 40,
+    paddingHorizontal: 24,
     paddingVertical: 15,
     borderRadius: 20,
     width: '100%',
+    alignItems: 'center',
   },
   checkoutBtnText: {
     color: colors.background,
@@ -213,13 +214,24 @@ export const cartStyle = StyleSheet.create({
     fontSize: 16,
   },
   fullcontainer: {
-    padding: 20,
-    // backgroundColor: colors.backgroundSoft,
+    // padding: 20,
+    // paddingHorizontal: 15,
+    backgroundColor: colors.bgOffWhiteSecondary,
+    //  paddingHorizontal: 20,
+    //  borderWidth: 1,
+  },
+  childfullcontainer: {
+    borderRadius: 10,
+    backgroundColor: colors.background,
+    // elevation: 1,
+    //  padding: 15,
+    // borderWidth: 1,
+    paddingVertical: 15,
   },
   paymentSummary: {
     // borderWidth: 1,
 
-    padding: 20,
+    padding: 15,
     // backgroundColor: colors.background,
   },
   productinfo: {
@@ -235,7 +247,7 @@ export const cartStyle = StyleSheet.create({
   paymentRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 5,
+    paddingVertical: 2,
   },
   paymentLabel: {
     fontSize: fonts.size.md,
@@ -253,17 +265,19 @@ export const cartStyle = StyleSheet.create({
   // Styles for random items FlatList
   randomItemContainer: {
     marginRight: 15,
-    alignItems: 'center',
+    // alignItems: 'center',
+    overflow:'hidden',
 
     // borderWidth: 1,
     // padding:10,
     borderRadius: 10,
-    width: 120,
-    // backgroundColor: colors.background,
+    width: 140,
+    // elevation:1,
+    backgroundColor: colors.background,
   },
   randomItemImage: {
     width: '100%',
-    height: 80,
+    height: 100,
     borderRadius: 10,
     overflow: 'hidden',
     borderWidth: 1,
@@ -273,10 +287,11 @@ export const cartStyle = StyleSheet.create({
     borderColor: colors.borderLight,
   },
   randomItemName: {
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: fonts.size.sm,
+    fontFamily:fonts.family.medium,
+    // fontWeight: 'bold',
     marginTop: 5,
-    textAlign: 'center',
+    // textAlign: 'center',
   },
   randomItemType: {
     fontSize: 12,
@@ -284,14 +299,17 @@ export const cartStyle = StyleSheet.create({
     textAlign: 'center',
   },
   randomItemPrice: {
-    fontSize: 14,
+
     color: colors.brandPrimary,
-    fontWeight: 'bold',
+     fontSize: fonts.size.sm,
+    fontFamily:fonts.family.medium,
   },
   randomItemControls: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent:'space-between',
     marginTop: 5,
+    // borderWidth: 1,
   },
   addButton: {
     paddingHorizontal: 15,
@@ -320,6 +338,32 @@ export const cartStyle = StyleSheet.create({
   quantityDisplay: {
     marginHorizontal: 10,
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  rightMenuContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingRight: 9,
+  },
+  bagIcon: {
+    width: 27,
+    height: 27,
+  },
+  cartBadge: {
+    backgroundColor: colors.brandPrimary,
+    borderRadius: 10,
+    minWidth: 20,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 5,
+    position: 'absolute',
+    bottom: 9,
+    left: 9,
+  },
+  cartBadgeText: {
+    color: 'white',
+    fontSize: 12,
     fontWeight: 'bold',
   },
 });

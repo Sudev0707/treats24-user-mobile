@@ -12,7 +12,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../routes/AppRoutes';
+import { RootStackParamList } from '../routes/types';
 import colors from '../theme/colors';
 import Header from '../components/common/Header';
 import SavedAddressCard from '../components/common/SavedAddressCard';
@@ -57,7 +57,10 @@ const Checkout: React.FC = () => {
       console.log('Processing payment for:', selectedPayment);
     }
     // Navigate to payment success screen
-    navigation.navigate('PaymentSuccess');
+    const selectedPaymentOption = paymentOptions.find(option => option.id === selectedPayment);
+    navigation.navigate('PaymentSuccess', {
+      selectedPaymentMethod: selectedPaymentOption?.name || 'UPI'
+    });
   };
 
   const onRefresh = () => {

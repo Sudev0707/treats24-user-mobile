@@ -1,31 +1,79 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteProp } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { RootStackParamList } from '../routes/AppRoutes';
+import { RootStackParamList } from '../routes/types';
 import colors from '../theme/colors';
-import { orderData, OrderData, PaymentStatus } from '../data/ordrr.types';
+import { PaymentStatus } from '../data/ordrr.types';
 import { savedAddress } from '../data/savedAddress';
 import styles from '../styles/screens/PaymentSuccessStyles';
+import { useAppSelector } from '../hooks/useAppSelector';
+import {
+  selectCartItems,
+  selectRestaurantName,
+  selectRestaurantId,
+} from '../store/selectors/cartSelectors';
 
 type PaymentSuccessScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'PaymentSuccess'
 >;
 
+type PaymentSuccessScreenRouteProp = RouteProp<RootStackParamList, 'PaymentSuccess'>;
+
 const PaymentSuccess: React.FC = () => {
   const navigation = useNavigation<PaymentSuccessScreenNavigationProp>();
+  const route = useRoute<PaymentSuccessScreenRouteProp>();
   const [paymentStatus, setPaymentStatus] = useState<PaymentStatus>('SUCCESS');
+
+  const { selectedPaymentMethod } = route.params;
+
+  const cartItems = useAppSelector(selectCartItems);
+  const restaurantName = useAppSelector(selectRestaurantName);
+  const restaurantId = useAppSelector(selectRestaurantId);
+
+  const DELIVERY_CHARGE = 40;
+  const COMMISSION_RATE = 0.1; // 10%
+  const GST_RATE = 0.18; // 18%
+
+  const round2 = (num: number) => Math.round(num * 100) / 100;
+
+  const priceDetails = useMemo(() => {
+    const itemTotal = round2(
+      cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    );
+
+    const commission = round2(itemTotal * COMMISSION_RATE);
+    const orderValue = round2(itemTotal - commission);
+    const gst = round2(commission * GST_RATE);
+    const deliveryCharge = DELIVERY_CHARGE;
+    const grandTotal = round2(
+      round2(itemTotal) + round2(gst) + round2(deliveryCharge),
+    );
+
+    return {
+      itemTotal,
+      commission,
+      orderValue,
+      gst,
+      deliveryCharge,
+      grandTotal,
+    };
+  }, [cartItems]);
+
+  const orderId = `ord_${Date.now()}`;
+  const createdAt = new Date().toISOString();
 
   const handleContinue = () => {
     // Navigate back to home or main tabs
     navigation.navigate('MainTabs');
   };
 
-  // Get delivery address
-  const deliveryAddress = savedAddress.find(addr => addr.id === orderData.delivery.addressId);
+  // Get delivery address (use first address as default)
+  const deliveryAddress = savedAddress[0];
 
   const isSuccess = paymentStatus === 'SUCCESS';
 
@@ -36,7 +84,7 @@ const PaymentSuccess: React.FC = () => {
         <View style={styles.header}>
           <View style={[styles.statusIcon, { backgroundColor: isSuccess ? colors.successSoft : colors.danger + '20' }]}>
             <Icon
-              name={isSuccess ? 'checkmark-circle' : 'close-circle'}
+              name={isSuccess ? 'checkmark' : 'close-circle'}
               size={60}
               color={isSuccess ? colors.success : colors.danger}
             />
@@ -56,9 +104,9 @@ const PaymentSuccess: React.FC = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Order Details</Text>
           <View style={styles.orderCard}>
-            <Text style={styles.orderId}>Order ID: {orderData.id}</Text>
+            <Text style={styles.orderId}>Order ID: {orderId}</Text>
             <Text style={styles.orderDate}>
-              Placed on: {new Date(orderData.createdAt).toLocaleDateString('en-IN', {
+              Placed on: {new Date(createdAt).toLocaleDateString('en-IN', {
                 day: 'numeric',
                 month: 'short',
                 year: 'numeric',
@@ -72,7 +120,7 @@ const PaymentSuccess: React.FC = () => {
         {/* Order Items */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Order Summary</Text>
-          {orderData.items.map((item) => (
+          {cartItems.map((item) => (
             <View key={item.id} style={styles.itemRow}>
               <View style={styles.itemInfo}>
                 <View style={[styles.vegIndicator, { backgroundColor: item.isVeg ? colors.vegGreen : colors.nonVegRed }]} />
@@ -99,7 +147,7 @@ const PaymentSuccess: React.FC = () => {
           <View style={styles.deliveryTime}>
             <Icon name="time-outline" size={16} color={colors.textSecondary} />
             <Text style={styles.deliveryTimeText}>
-              Estimated delivery: {orderData.delivery.estimatedTime} mins
+              Estimated delivery: 35 mins
             </Text>
           </View>
         </View>
@@ -110,29 +158,23 @@ const PaymentSuccess: React.FC = () => {
           <View style={styles.priceBreakdown}>
             <View style={styles.priceRow}>
               <Text style={styles.priceLabel}>Item Total</Text>
-              <Text style={styles.priceValue}>₹{orderData.price.itemTotal}</Text>
+              <Text style={styles.priceValue}>₹{priceDetails.itemTotal}</Text>
             </View>
             <View style={styles.priceRow}>
               <Text style={styles.priceLabel}>Tax</Text>
-              <Text style={styles.priceValue}>₹{orderData.price.tax}</Text>
+              <Text style={styles.priceValue}>₹{priceDetails.gst}</Text>
             </View>
             <View style={styles.priceRow}>
               <Text style={styles.priceLabel}>Delivery Fee</Text>
-              <Text style={styles.priceValue}>₹{orderData.price.deliveryFee}</Text>
+              <Text style={styles.priceValue}>₹{priceDetails.deliveryCharge}</Text>
             </View>
             <View style={styles.priceRow}>
               <Text style={styles.priceLabel}>Platform Fee</Text>
-              <Text style={styles.priceValue}>₹{orderData.price.platformFee}</Text>
+              <Text style={styles.priceValue}>₹{priceDetails.commission}</Text>
             </View>
-            {orderData.price.discount > 0 && (
-              <View style={styles.priceRow}>
-                <Text style={[styles.priceLabel, { color: colors.success }]}>Discount</Text>
-                <Text style={[styles.priceValue, { color: colors.success }]}>-₹{orderData.price.discount}</Text>
-              </View>
-            )}
             <View style={[styles.priceRow, styles.totalRow]}>
               <Text style={styles.totalLabel}>Grand Total</Text>
-              <Text style={styles.totalValue}>₹{orderData.price.grandTotal}</Text>
+              <Text style={styles.totalValue}>₹{priceDetails.grandTotal}</Text>
             </View>
           </View>
         </View>
@@ -142,7 +184,7 @@ const PaymentSuccess: React.FC = () => {
           <Text style={styles.sectionTitle}>Payment Method</Text>
           <View style={styles.paymentCard}>
             <Icon name="card-outline" size={20} color={colors.brandPrimary} />
-            <Text style={styles.paymentText}>{orderData.paymentMethod}</Text>
+            <Text style={styles.paymentText}>{selectedPaymentMethod}</Text>
             <View style={[styles.paymentStatus, { backgroundColor: isSuccess ? colors.success : colors.danger }]}>
               <Text style={styles.paymentStatusText}>{paymentStatus}</Text>
             </View>

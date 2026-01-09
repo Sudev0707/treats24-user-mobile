@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import SectionHeader from './SectionHeader';
 import { cartStyle } from '../../styles/screens/CartStyles';
 import fonts from '../../theme/fonts';
+import colors from '../../theme/colors';
 
 interface PriceDetails {
   itemTotal: number;
@@ -22,8 +23,9 @@ const PaymentSummary: React.FC<PaymentSummaryProps> = ({
 }) => {
   return (
     <View style={cartStyle.paymentSummary}>
-      <View style={cartStyle.productinfo}>
+      <View style={cartStyle.productinfo}>        
         <SectionHeader title="Payment Summary" />
+        <View style={{borderWidth:0.2, borderColor:colors.borderLight, marginBottom:8}} />
 
         <View style={cartStyle.paymentRow}>
           <Text style={cartStyle.paymentLabel}>Item Total</Text>
