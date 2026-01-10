@@ -3,6 +3,8 @@ export { default as SplashBrand } from '../screens/SplashBrand';
 export { default as UserPartnerSelection } from '../screens/UserPartnerSelection';
 export { default as PartnerSignIn } from '../screens/PartnerSignIn';
 export { default as PartnerSignUp } from '../screens/PartnerSignUp';
+export { default as PartnerDashBoard } from '../screens/PartnerDashBoard';
+export { default as PartnerProfile } from '../screens/PartnerProfile';
 export { default as BankSelection } from '../screens/BankSelection';
 export { default as Auth } from '../screens/Auth';
 export { default as OTPVerification } from '../screens/OTPVerification';

@@ -12,6 +12,23 @@ export type RootStackParamList = {
   PartnerSignIn: undefined;
   PartnerSignUp: { selectedBank?: string };
   BankSelection: undefined;
+  PartnerDashBoard: {
+    name: string;
+    addressOne: string;
+    addressTwo: string;
+    city: string;
+    district: string;
+    pinCode: string;
+    email: string;
+    contact: string;
+    businessLicense: string;
+    hasFssaiLicense: boolean | null;
+    fssaiLicenseNumber: string;
+    bankName: string;
+    ifscCode: string;
+    accountNo: string;
+    accountHolder: string;
+  };
   Auth: undefined;
   OTPVerification: undefined;
   EmailOTPVerification: { email: string };
@@ -50,6 +67,7 @@ const AppRoutes = () => {
               {(props) => <Screens.PartnerSignUp {...props} />}
             </Stack.Screen>
             <Stack.Screen name="BankSelection" component={Screens.BankSelection} />
+            <Stack.Screen name="PartnerDashBoard" component={Screens.PartnerDashBoard} />
             <Stack.Screen name="Auth" component={Screens.Auth} />
             <Stack.Screen
               name="OTPVerification"

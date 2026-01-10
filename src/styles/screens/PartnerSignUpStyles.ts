@@ -9,9 +9,47 @@ export const styles = StyleSheet.create({
     backgroundColor: '#0F172A',
   },
   header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 20,
     paddingTop: 40,
     paddingBottom: 10,
+  },
+  headerLeft: {
+    flex: 1,
+  },
+  restaurantName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+  },
+  locationText: {
+    fontSize: 14,
+    color: '#CBD5E1',
+  },
+  notificationButton: {
+    position: 'relative',
+  },
+  notificationIcon: {
+    width: 24,
+    height: 24,
+  },
+  badge: {
+    position: 'absolute',
+    top: -5,
+    right: -5,
+    backgroundColor: '#F97316',
+    borderRadius: 10,
+    width: 20,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  badgeText: {
+    color: '#FFFFFF',
+    fontSize: 12,
+    fontWeight: 'bold',
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -144,5 +182,49 @@ export const styles = StyleSheet.create({
   },
   bankSelectionTextPlaceholder: {
     color: '#999',
+  },
+  errorText: {
+    color: '#FF6B6B',
+    fontSize: 12,
+    marginTop: 5,
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 18,
+    color: '#FFFFFF',
+    marginBottom: 30,
+    textAlign: 'center',
+  },
+  detailSection: {
+    backgroundColor: '#1E293B',
+    borderRadius: 12,
+    padding: 20,
+    marginBottom: 20,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#F97316',
+    marginBottom: 15,
+  },
+  detailRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+    flexWrap: 'wrap',
+  },
+  detailLabel: {
+    fontSize: 16,
+    color: '#CBD5E1',
+    fontWeight: '500',
+    flex: 1,
+  },
+  detailValue: {
+    fontSize: 16,
+    color: '#FFFFFF',
+    fontWeight: '600',
+    flex: 2,
+    textAlign: 'right',
   },
 });

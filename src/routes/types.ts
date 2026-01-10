@@ -26,4 +26,38 @@ export type RootStackParamList = {
   PaymentSuccess: { selectedPaymentMethod: string };
   PartnerSignUp: { selectedBank?: string };
   BankSelection: undefined;
+  PartnerDashBoard: {
+    name: string;
+    addressOne: string;
+    addressTwo: string;
+    city: string;
+    district: string;
+    pinCode: string;
+    email: string;
+    contact: string;
+    businessLicense: string;
+    hasFssaiLicense: boolean | null;
+    fssaiLicenseNumber: string;
+    bankName: string;
+    ifscCode: string;
+    accountNo: string;
+    accountHolder: string;
+  };
+  PartnerProfile: {
+    name: string;
+    addressOne: string;
+    addressTwo: string;
+    city: string;
+    district: string;
+    pinCode: string;
+    email: string;
+    contact: string;
+    businessLicense: string;
+    hasFssaiLicense: boolean | null;
+    fssaiLicenseNumber: string;
+    bankName: string;
+    ifscCode: string;
+    accountNo: string;
+    accountHolder: string;
+  };
 };
