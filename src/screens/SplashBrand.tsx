@@ -4,7 +4,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 type RootStackParamList = {
   SplashBrand: undefined;
-  Auth: undefined;
+  UserPartnerSelection: undefined;
 };
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SplashBrand'>;
@@ -12,7 +12,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'SplashBrand'>;
 const SplashBrand: React.FC<Props> = ({ navigation }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigation.replace('Auth');
+      navigation.replace('UserPartnerSelection');
     }, 5000);
 
     return () => clearTimeout(timeout);

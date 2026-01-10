@@ -8,6 +8,10 @@ import { TabBarProvider } from '../context/TabBarContext';
 
 export type RootStackParamList = {
   SplashBrand: undefined;
+  UserPartnerSelection: undefined;
+  PartnerSignIn: undefined;
+  PartnerSignUp: { selectedBank?: string };
+  BankSelection: undefined;
   Auth: undefined;
   OTPVerification: undefined;
   EmailOTPVerification: { email: string };
@@ -40,6 +44,12 @@ const AppRoutes = () => {
             screenOptions={{ headerShown: false }}
           >
             <Stack.Screen name="SplashBrand" component={Screens.SplashBrand} />
+            <Stack.Screen name="UserPartnerSelection" component={Screens.UserPartnerSelection} />
+            <Stack.Screen name="PartnerSignIn" component={Screens.PartnerSignIn} />
+            <Stack.Screen name="PartnerSignUp">
+              {(props) => <Screens.PartnerSignUp {...props} />}
+            </Stack.Screen>
+            <Stack.Screen name="BankSelection" component={Screens.BankSelection} />
             <Stack.Screen name="Auth" component={Screens.Auth} />
             <Stack.Screen
               name="OTPVerification"
