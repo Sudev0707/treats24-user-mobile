@@ -5,18 +5,22 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  StatusBar,
 } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../routes/types';
 import { styles } from '../styles/screens/PartnerSignUpStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import colors from '../theme/colors';
 import PartnerMenuModal from '../components/modals/PartnerMenuModal';
+import fonts from '../theme/fonts';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'PartnerDashBoard'>;
 
 const PartnerDashBoard: React.FC<Props> = ({ navigation, route }) => {
   const [isMenuModalVisible, setIsMenuModalVisible] = useState(false);
   const [notificationCount, setNotificationCount] = useState(5);
+  const [isActive, setIsActive] = useState(false);
 
   const {
     name,
@@ -57,11 +61,23 @@ const PartnerDashBoard: React.FC<Props> = ({ navigation, route }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <>
+      <View
+        style={{
+          height: StatusBar.currentHeight,
+          backgroundColor: colors.brandPrimary,
+        }}
+      />
+      <StatusBar
+        backgroundColor={colors.brandPrimary}
+        barStyle="light-content"
+      />
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <Text style={styles.restaurantName}>{name}</Text>
-          <Text style={styles.locationText}>{city}, {district}</Text>
+          <Text style={styles.locationText}>
+            {city}, {district}
+          </Text>
         </View>
         <TouchableOpacity style={styles.notificationButton}>
           <Image
@@ -75,46 +91,80 @@ const PartnerDashBoard: React.FC<Props> = ({ navigation, route }) => {
           )}
         </TouchableOpacity>
       </View>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.innerContainer}>
-          <Text style={styles.title}>Partner Dashboard</Text>
-          <Text style={styles.subtitle}>Welcome back, {name}!</Text>
+      <SafeAreaView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <View style={styles.innerContainer}>
+            {/* <Text style={styles.title}>Partner Dashboard</Text> */}
+            <Text style={styles.subtitle}>Welcome back, {name}!</Text>
 
-          <View style={styles.detailSection}>
-            <Text style={styles.sectionTitle}>Profile Overview</Text>
-            <View style={styles.detailRow}>
-              <Text style={styles.detailLabel}>Restaurant:</Text>
-              <Text style={styles.detailValue}>{name}</Text>
-            </View>
-            <View style={styles.detailRow}>
-              <Text style={styles.detailLabel}>Location:</Text>
-              <Text style={styles.detailValue}>{city}, {district}</Text>
-            </View>
-            <View style={styles.detailRow}>
-              <Text style={styles.detailLabel}>Contact:</Text>
-              <Text style={styles.detailValue}>{contact}</Text>
-            </View>
-            <View style={styles.detailRow}>
-              <Text style={styles.detailLabel}>Status:</Text>
-              <Text style={[styles.detailValue, { color: '#10B981' }]}>Active Partner</Text>
-            </View>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={[styles.button, { flex: 1, marginHorizontal: 5 }]}
-                onPress={handleEditProfile}
-              >
-                <Text style={styles.buttonText}>Edit Profile</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.button, { flex: 1, marginHorizontal: 5, backgroundColor: '#1E293B' }]}
-                onPress={handleViewMenu}
-              >
-                <Text style={styles.buttonText}>View Menu</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+            <View style={styles.detailSection}>
+              <View style={styles.innerDetailSection} >
+              {/* <Text style={styles.sectionTitle}>Profile Overview</Text> */}
+              <View style={styles.detailRow}>
+                <Text style={styles.detailLabel}>Restaurant:</Text>
+                <Text style={styles.detailValue}>{name}</Text>
+              </View>
+              <View style={styles.detailRow}>
+                <Text style={styles.detailLabel}>Location:</Text>
+                <Text style={styles.detailValue}>
+                  {city}, {district}
+                </Text>
+              </View>
+              <View style={styles.detailRow}>
+                <Text style={styles.detailLabel}>Contact:</Text>
+                <Text style={styles.detailValue}>{contact}</Text>
+              </View>
+              <View style={styles.detailRow}>
+                <Text style={styles.detailLabel}>Status:</Text>
+                <TouchableOpacity onPress={() => setIsActive(!isActive)}>
+                  <Text
+                    style={[
+                      styles.detailValue,
+                      {
+                        color: isActive ? colors.success : colors.danger,
+                        fontFamily: fonts.family.regular,
+                      },
+                    ]}
+                  >
+                    {isActive ? 'Active Partner' : 'Inactive Partner'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              </View>
+             
+                {!isActive && (
+                <Text style={styles.reviewText}>
+                  Your restaurant is under review. Our team is verifying the
+                  details and will activate it soon.
+                </Text>
+              )}
+            
 
-          <View style={styles.detailSection}>
+              {/* <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                  style={[styles.button, { flex: 1, marginHorizontal: 5 }]}
+                  onPress={handleEditProfile}
+                >
+                  <Text style={styles.buttonText}>Edit Profile</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[
+                    styles.button,
+                    {
+                      flex: 1,
+                      marginHorizontal: 5,
+                      backgroundColor: '#1E293B',
+                    },
+                  ]}
+                  onPress={handleViewMenu}
+                >
+                  <Text style={styles.buttonText}>View Menu</Text>
+                </TouchableOpacity>
+              </View> */}
+            </View>
+            
+
+            {/* <View style={styles.detailSection}>
             <Text style={styles.sectionTitle}>Restaurant Information</Text>
             <View style={styles.detailRow}>
               <Text style={styles.detailLabel}>Restaurant Name:</Text>
@@ -134,9 +184,9 @@ const PartnerDashBoard: React.FC<Props> = ({ navigation, route }) => {
               <Text style={styles.detailLabel}>Contact:</Text>
               <Text style={styles.detailValue}>{contact}</Text>
             </View>
-          </View>
+          </View> */}
 
-          <View style={styles.detailSection}>
+            {/* <View style={styles.detailSection}>
             <Text style={styles.sectionTitle}>Business Details</Text>
             <View style={styles.detailRow}>
               <Text style={styles.detailLabel}>GST Number:</Text>
@@ -148,9 +198,9 @@ const PartnerDashBoard: React.FC<Props> = ({ navigation, route }) => {
                 {hasFssaiLicense ? `Yes - ${fssaiLicenseNumber}` : 'No'}
               </Text>
             </View>
-          </View>
+          </View> */}
 
-          <View style={styles.detailSection}>
+            {/* <View style={styles.detailSection}>
             <Text style={styles.sectionTitle}>Banking Information</Text>
             <View style={styles.detailRow}>
               <Text style={styles.detailLabel}>Bank Name:</Text>
@@ -168,21 +218,22 @@ const PartnerDashBoard: React.FC<Props> = ({ navigation, route }) => {
               <Text style={styles.detailLabel}>Account Holder:</Text>
               <Text style={styles.detailValue}>{accountHolder}</Text>
             </View>
+          </View> */}
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
 
-      <PartnerMenuModal
-        visible={isMenuModalVisible}
-        onClose={() => setIsMenuModalVisible(false)}
-        onEditProfile={handleEditProfile}
-        onViewMenu={handleViewMenu}
-        onLogout={handleLogout}
-        onSettings={handleSettings}
-        partnerName={name}
-        partnerEmail={email}
-      />
-    </SafeAreaView>
+        <PartnerMenuModal
+          visible={isMenuModalVisible}
+          onClose={() => setIsMenuModalVisible(false)}
+          onEditProfile={handleEditProfile}
+          onViewMenu={handleViewMenu}
+          onLogout={handleLogout}
+          onSettings={handleSettings}
+          partnerName={name}
+          partnerEmail={email}
+        />
+      </SafeAreaView>
+    </>
   );
 };
 

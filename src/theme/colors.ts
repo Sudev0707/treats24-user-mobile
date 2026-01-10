@@ -19,6 +19,8 @@ const colors = {
   bgOffWhitePrimary:'#F6F7F7',
   bgOffWhiteSecondary:'#F8F9FA',
 
+  // input
+  bgInput: '#e9e9e9',
 
   // Text ------------------
   // textPrimary:'#F97316'
@@ -29,6 +31,7 @@ const colors = {
   textMuted: '#9CA3AF',
   textOnBrand: '#FFFFFF',
   textWhite: '#FFFFFF',
+  
 
   // Borders & separators
   borderMuted: '#E5E7EB',
