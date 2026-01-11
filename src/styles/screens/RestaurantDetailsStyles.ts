@@ -26,6 +26,8 @@ export const restaurantDetailsStyle = StyleSheet.create({
     paddingVertical: 10,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    // justifyContent: 'space-around',
+     justifyContent: 'flex-start',
+     gap: 15
   },
 });

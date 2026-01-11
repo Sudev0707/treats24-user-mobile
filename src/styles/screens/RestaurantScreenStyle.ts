@@ -149,7 +149,7 @@ export const RestaurantScreenStyle = StyleSheet.create({
     borderRadius: 12,
     width: '47%',
     // margin: 2,
-    marginBottom: 10,
+    // marginBottom: 10,
     padding: 1,
     elevation: 2,
     shadowColor: '#0000009a',

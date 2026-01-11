@@ -325,6 +325,31 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
     }));
   };
 
+  const filterFoods = (foods: any[], activeChips: { [key: string]: boolean }) => {
+    const activeFilters = Object.keys(activeChips).filter(key => activeChips[key] && key !== 'Filters');
+    if (activeFilters.length === 0) return foods;
+    return foods.filter(food => {
+      return activeFilters.every(filter => {
+        switch (filter) {
+          case 'under 99':
+            return food.price < 99;
+          case 'Veg':
+            return food.isVeg;
+          case 'Non veg':
+            return !food.isVeg;
+          case 'Spicy':
+            return food.name.toLowerCase().includes('spicy') ||
+                   food.name.toLowerCase().includes('chilli') ||
+                   food.name.toLowerCase().includes('hot');
+          case 'Best Seller':
+            return food.rating >= 4.5;
+          default:
+            return true;
+        }
+      });
+    });
+  };
+
   //
 
   if (!restaurant) {
@@ -501,7 +526,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
                     </TouchableOpacity>
                     {isExpanded && (
                       <View style={restaurantDetailsStyle.expandedCategoryContent}>
-                        {category.items.map(food => {
+                        {filterFoods(category.items, activeChips).map(food => {
                           const quantity = getQuantity(food.id);
                           return (
                             <FoodCard
