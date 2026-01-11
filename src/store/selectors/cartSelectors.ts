@@ -1,5 +1,5 @@
 import { RootState } from '../store';
-import { featuredRestaurants } from '../../data/foodData';
+import { restaurantsData } from '../../data/foodData';
 
 export const selectCartItems = (state: RootState) => state.cart.items;
 
@@ -17,7 +17,7 @@ export const selectRandomRestaurantItems = (state: RootState) => {
   const restaurantId = state.cart.restaurantId;
   if (!restaurantId) return [];
 
-  const restaurant = featuredRestaurants.find(r => r.id === restaurantId);
+  const restaurant = restaurantsData.find(r => r.id === restaurantId);
   if (!restaurant) return [];
 
   // Get all items from all categories

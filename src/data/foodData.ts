@@ -1,5 +1,5 @@
 // ===============
-export const featuredRestaurants = [
+export const restaurantsData = [
   // =====================================================
   // 1. BURGER HUB (20 ITEMS)
   // =====================================================

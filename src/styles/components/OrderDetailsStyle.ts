@@ -38,8 +38,8 @@ const OrderDetailsStyle = StyleSheet.create({
   tabsContainer: {
     flexDirection: 'row',
     marginBottom: 20,
-    marginTop:9,
-    backgroundColor: colors.brandPrimarySoft,
+    // marginTop:9,
+    // backgroundColor: colors.brandPrimarySoft,
     borderRadius: 8,
     padding: 4,
   },
@@ -48,17 +48,22 @@ const OrderDetailsStyle = StyleSheet.create({
     paddingVertical: 10,
     alignItems: 'center',
     borderRadius: 6,
+     borderBottomWidth:4,
+      borderBottomColor: colors.borderLight,
   },
   activeTab: {
-    backgroundColor: colors.brandPrimary,
+    borderBottomWidth:4,
+    borderBottomColor: colors.brandPrimary,
   },
   tabText: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: fonts.size.md,
+     fontFamily:fonts.family.medium,
     color: colors.textSecondary,
   },
   activeTabText: {
-    color: colors.background,
+    color: colors.brandPrimary,
+    fontFamily:fonts.family.medium
+
   },
   orderItem: {
     backgroundColor: colors.card,

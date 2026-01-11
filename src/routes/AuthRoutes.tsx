@@ -16,14 +16,35 @@ export type RootStackParamList = {
   PartnerSignIn: undefined;
   PartnerSignUp: { selectedBank?: string };
   BankSelection: undefined;
+   PartnerDashBoard: {
+    name: string;
+    addressOne: string;
+    addressTwo: string;
+    city: string;
+    district: string;
+    pinCode: string;
+    email: string;
+    contact: string;
+    businessLicense: string;
+    hasFssaiLicense: boolean | null;
+    fssaiLicenseNumber: string;
+    bankName: string;
+    ifscCode: string;
+    accountNo: string;
+    accountHolder: string;
+  };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const AuthRoutes: React.FC = () => {
+interface AuthRoutesProps {
+  isLoggedOut?: boolean;
+}
+
+const AuthRoutes: React.FC<AuthRoutesProps> = ({ isLoggedOut = false }) => {
   return (
     <Stack.Navigator
-      initialRouteName="SplashBrand"
+      initialRouteName={isLoggedOut ? "UserPartnerSelection" : "SplashBrand"}
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="SplashBrand" component={Screens.SplashBrand} />
@@ -51,6 +72,7 @@ const AuthRoutes: React.FC = () => {
         {props => <Screens.PartnerSignUp {...props} />}
       </Stack.Screen>
       <Stack.Screen name="BankSelection" component={Screens.BankSelection} />
+         <Stack.Screen name="PartnerDashBoard" component={Screens.PartnerDashBoard} />
       {/*  */}
     </Stack.Navigator>
   );

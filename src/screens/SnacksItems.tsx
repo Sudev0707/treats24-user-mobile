@@ -9,7 +9,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../routes/types';
-import { featuredRestaurants } from '../data/foodData';
+import { restaurantsData } from '../data/foodData';
 import Header from '../components/common/Header';
 import SectionHeader from '../components/common/SectionHeader';
 import styles from '../styles/screens/SnacksItemsStyles';
@@ -31,7 +31,7 @@ const SnacksItems: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
 
   // Collect all snack items from all restaurants
-  const allSnacks: SnackItem[] = featuredRestaurants
+  const allSnacks: SnackItem[] = restaurantsData
     .flatMap(restaurant =>
       restaurant.foodCategories
         .filter(category => category.type === 'snacks')

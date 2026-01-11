@@ -12,11 +12,11 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../routes/types';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../theme/colors';
-import { featuredRestaurants, popularDishes, offers } from '../data/foodData';
+import { restaurantsData, popularDishes, offers } from '../data/foodData';
 import styles from '../styles/screens/NearbyStyles';
 
 // Create budget foods array (foods under 99 rupees)
-const budgetFoods = featuredRestaurants
+const budgetFoods = restaurantsData
   .flatMap(restaurant =>
     restaurant.foodCategories.flatMap(category =>
       category.items.filter(item => item.price <= 99),
@@ -108,7 +108,7 @@ const Nearby: React.FC = () => {
         <View style={styles.section}>
           <SectionHeader title="Popular Restaurants Nearby" />
           <FlatList
-            data={featuredRestaurants}
+            data={restaurantsData}
             renderItem={renderRestaurantItem}
             keyExtractor={item => item.id}
             horizontal

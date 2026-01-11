@@ -87,7 +87,7 @@ const RestaurantDetailsHeader: React.FC<RestaurantDetailsHeaderProps> = ({
           </TouchableOpacity>
           {showDetails && (
             <View style={{ paddingLeft: 9 ,}}>
-              <Text style={RestaurantHeaderStyle.leftText}>{restaurantName}</Text>
+              <Text style={RestaurantHeaderStyle.leftText} numberOfLines={1} ellipsizeMode='tail'>{restaurantName}</Text>
               {/* restaurant place */}
               <Text style={RestaurantHeaderStyle.placeText}>{restaurant?.category}</Text>
             </View>

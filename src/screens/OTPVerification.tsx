@@ -36,7 +36,7 @@ const OTPVerification: React.FC = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
-  const OTP_DELAY = 30;
+  const OTP_DELAY = 300;
   // console.log(otp);
   const [otpError, setOtpError] = useState('');
 
@@ -53,6 +53,7 @@ const OTPVerification: React.FC = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [secondsLeft, setSecondsLeft] = useState(OTP_DELAY);
   const [emailModalVisible, setEmailModalVisible] = useState(false);
+  const [failedAttempts, setFailedAttempts] = useState(0);
 
   useEffect(() => {
     if (secondsLeft === 0) return;
@@ -120,6 +121,7 @@ const OTPVerification: React.FC = () => {
         // Navigation will be handled by auth state change in App.tsx
       } catch (error) {
         setOtpError('Invalid OTP');
+        setFailedAttempts(prev => prev + 1);
       } finally {
         setLoading(false);
       }
@@ -145,6 +147,7 @@ const OTPVerification: React.FC = () => {
         navigation.navigate('SetLocation' as never);
       } catch (error) {
         setOtpError('Invalid OTP');
+        setFailedAttempts(prev => prev + 1);
       } finally {
         setLoading(false);
       }
@@ -294,7 +297,7 @@ const OTPVerification: React.FC = () => {
             <View style={styles.resendContainer}>
               <Text style={styles.resendText}>
                 {secondsLeft > 0
-                  ? `Resend OTP in 00:${String(secondsLeft).padStart(2, '0')}`
+                  ? `Resend OTP in ${String(Math.floor(secondsLeft / 60)).padStart(2, '0')}:${String(secondsLeft % 60).padStart(2, '0')}`
                   : 'Didn’t receive OTP?'}
               </Text>
 
@@ -321,7 +324,7 @@ const OTPVerification: React.FC = () => {
               Policy
             </Text>
           </View>
-          {verificationMethod === 'email' ? null : (
+          {verificationMethod === 'email' || failedAttempts < 3 ? null : (
             <TouchableOpacity
               onPress={handleEmailLoginPress}
               style={{

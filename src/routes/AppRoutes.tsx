@@ -67,7 +67,7 @@ const AppRoutes = () => {
               {(props) => <Screens.PartnerSignUp {...props} />}
             </Stack.Screen>
             <Stack.Screen name="BankSelection" component={Screens.BankSelection} /> */}
-            <Stack.Screen name="PartnerDashBoard" component={Screens.PartnerDashBoard} />
+            {/* <Stack.Screen name="PartnerDashBoard" component={Screens.PartnerDashBoard} /> */}
             {/* <Stack.Screen name="Auth" component={Screens.Auth} />
             <Stack.Screen name="OTPVerification" component={Screens.OTPVerification} />
             <Stack.Screen name="EmailOTPVerification"  component={Screens.EmailOTPVerification} /> */}

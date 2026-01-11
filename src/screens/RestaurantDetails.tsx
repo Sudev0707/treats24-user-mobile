@@ -28,7 +28,7 @@ import {
   RestaurantScreenStyle,
 } from '../styles/screens/RestaurantScreenStyle';
 import LinearGradient from 'react-native-linear-gradient';
-import { featuredRestaurants } from '../data/foodData';
+import { restaurantsData } from '../data/foodData';
 import FoodDetailsModal from '../components/modals/FoodDetailsModal';
 //
 import { addToCart, removeFromCart } from '../store/slices/cartSlice.ts';
@@ -147,7 +147,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   const imageHeight = height * 0.35 + 20;
 
   // ==================
-  const restaurant = featuredRestaurants.find(r => r.id === restaurantId);
+  const restaurant = restaurantsData.find(r => r.id === restaurantId);
 
   // Sync foodCounts with cart items and set default expanded categories
   useEffect(() => {

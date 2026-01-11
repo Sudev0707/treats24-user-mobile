@@ -34,10 +34,17 @@ export default StyleSheet.create({
     fontWeight: '700',
     color: colors.textPrimary,
   },
-  emptyText: {
-    // textAlign: 'center',
-    // marginTop: 40,
-    // color: '#777',
-    // fontSize: 16,
+  emptyTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: colors.textPrimary,
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  emptySubtitle: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    lineHeight: 20,
   },
 });

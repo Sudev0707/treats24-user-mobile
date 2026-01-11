@@ -14,7 +14,7 @@ import { RootStackParamList } from '../routes/types';
 import LinearGradient from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
 import colors from '../theme/colors';
-import { featuredRestaurants } from '../data/foodData';
+import { restaurantsData } from '../data/foodData';
 import Header from '../components/common/Header';
 import styles from '../styles/screens/TopRestaurantsStyles';
 
@@ -40,7 +40,7 @@ const TopRestaurants: React.FC = () => {
     navigation.navigate('RestaurantDetails', { restaurantId: item.id });
   };
 
-  const filteredRestaurants = featuredRestaurants.filter((restaurant) =>
+  const filteredRestaurants = restaurantsData.filter((restaurant) =>
     restaurant.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 

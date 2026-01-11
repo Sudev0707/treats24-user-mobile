@@ -40,14 +40,11 @@ const Profile: React.FC = () => {
   const [alertOnCancel, setAlertOnCancel] = useState<(() => void) | undefined>(
     undefined,
   );
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleLogoutPress = () => {
     setAlertTitle('Logout');
     setAlertMessage('Are you sure you want to logout?');
-    setAlertOnConfirm(() => {
-      auth().signOut();
-      setAlertVisible(false);
-    });
     setAlertOnCancel(() => setAlertVisible(false));
     setAlertVisible(true);
   };
@@ -221,7 +218,10 @@ const Profile: React.FC = () => {
         visible={alertVisible}
         title={alertTitle}
         message={alertMessage}
-        onConfirm={alertOnConfirm}
+        onConfirm={() => {
+          auth().signOut();
+          setAlertVisible(false);
+        }}
         onCancel={alertOnCancel}
         onClose={() => setAlertVisible(false)}
       />

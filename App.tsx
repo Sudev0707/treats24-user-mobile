@@ -24,6 +24,7 @@ import { NavigationContainer } from '@react-navigation/native';
 const App: React.FC = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<any>(null);
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
 
   // firebase auth listner
   console.log('user: ', user);
@@ -43,8 +44,10 @@ const App: React.FC = () => {
 
       if (firebaseUser) {
         await saveFirebaseToken();
+        setIsLoggedOut(false);
       } else {
         await removeFirebaseToken();
+        setIsLoggedOut(true);
       }
 
       setInitializing(false);
@@ -94,7 +97,7 @@ const App: React.FC = () => {
         <NavigationContainer>
           <View style={styles.container}>
             <InternetConnectionNotifier />
-            {user ? <AppRoutes /> : <AuthRoutes />}
+            {user ? <AppRoutes /> : <AuthRoutes isLoggedOut={isLoggedOut} />}
             {/* <AppRoutes /> */}
           </View>
         </NavigationContainer>

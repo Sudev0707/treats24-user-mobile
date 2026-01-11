@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native';
 import AlertStyles from '../../styles/components/AlertStyles';
 
@@ -17,6 +18,7 @@ const CustomAlert = ({
   onCancel,
   confirmText = 'Confirm',
   cancelText = 'Cancel',
+  loading = false,
 }: {
   visible: boolean;
   title: string;
@@ -26,6 +28,7 @@ const CustomAlert = ({
   onCancel?: () => void;
   confirmText?: string;
   cancelText?: string;
+  loading?: boolean;
 }) => {
   const handleConfirm = () => {
     if (onConfirm) {
@@ -51,11 +54,23 @@ const CustomAlert = ({
           <Text style={AlertStyles.message}>{message}</Text>
 
           <View style={AlertStyles.buttonContainer}>
-            <TouchableOpacity style={[AlertStyles.button, AlertStyles.cancelButton]} onPress={handleCancel}>
+            <TouchableOpacity
+              style={[AlertStyles.button, AlertStyles.cancelButton]}
+              onPress={handleCancel}
+              disabled={loading}
+            >
               <Text style={[AlertStyles.buttonText, AlertStyles.cancelButtonText]}>{cancelText}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[AlertStyles.button, AlertStyles.confirmButton]} onPress={handleConfirm}>
-              <Text style={AlertStyles.buttonText}>{confirmText}</Text>
+            <TouchableOpacity
+              style={[AlertStyles.button, AlertStyles.confirmButton]}
+              onPress={handleConfirm}
+              disabled={loading}
+            >
+              {loading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <Text style={AlertStyles.buttonText}>{confirmText}</Text>
+              )}
             </TouchableOpacity>
           </View>
         </View>

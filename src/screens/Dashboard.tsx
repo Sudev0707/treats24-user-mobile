@@ -25,16 +25,16 @@ import { RootStackParamList } from '../routes/types';
 import DashboardHeader from '../components/common/DashboardHeader';
 import BannerSlider from '../components/common/BannerSlider';
 import SectionHeader from '../components/common/SectionHeader';
+import PopularItemCard from '../components/common/PopularItemCard';
 import colors from '../theme/colors';
 import { getCurrentLocationWithAddress } from '../utils/locationService';
 import { useEffect, useRef, useState } from 'react';
-import { featuredRestaurants } from '../data/foodData';
+import { restaurantsData } from '../data/foodData';
 
 import {
   CATEGORIES,
   RESTAURANTS,
   topOffers,
-  topPicks,
 } from '../data/dummyFoodData';
 import { bannerData } from '../data/foodData';
 
@@ -146,9 +146,28 @@ const Dashboard: React.FC = () => {
 
   //
   // const topRestaurants = useMemo(
-  //   () => featuredRestaurants.slice(0, 5),
-  //   [featuredRestaurants],
+  //   () => restaurantsData.slice(0, 5),
+  //   [restaurantsData],
   // );
+
+  const topPicks = useMemo(
+    () =>
+      restaurantsData
+        .slice(5) // Exclude the first 5 restaurants used in Top Restaurants
+        .sort((a, b) => b.rating - a.rating)
+        .slice(0, 5)
+        .map((item) => ({
+          id: item.id,
+          title: item.name,
+          image: item.image,
+          rating: item.rating,
+          time: item.time,
+          distance: item.place,
+          offer: item.delivery,
+          restaurantId: item.id,
+        })),
+    [restaurantsData],
+  );
 
   //
 
@@ -282,7 +301,7 @@ const Dashboard: React.FC = () => {
                 onActionPress={() => navigation.navigate('TopRestaurants')}
               />
               <FlatList
-                data={featuredRestaurants.slice(0, 5)}
+                data={restaurantsData.slice(0, 5)}
                 keyExtractor={(item, index) => index.toString()}
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -341,45 +360,7 @@ const Dashboard: React.FC = () => {
               <SectionHeader title="Popular near you" />
 
               {topPicks.map(item => (
-                <TouchableOpacity
-                  key={item.id}
-                  style={styles.CardContainer}
-                  activeOpacity={4}
-                >
-                  <ImageBackground
-                    source={item.image}
-                    style={styles.smallImage}
-                    imageStyle={styles.smallImageRadius}
-                  >
-                    {/* BOTTOM GRADIENT */}
-                    {/* <LinearGradient
-                    colors={[
-                      'rgba(255, 255, 255, 0)',
-                      'rgba(255, 255, 255, 0.65)',
-                      'rgba(255, 255, 255, 0.9)',
-                      'rgba(255, 255, 255, 1)',
-                    ]}
-                    locations={[0, 0.25, 0.45, 0.75, 1]}
-                    style={styles.smallGradient}
-                  >
-
-                  </LinearGradient> */}
-                  </ImageBackground>
-                  <View style={{ paddingHorizontal: 10, paddingBottom: 10 }}>
-                    <View style={styles.row}>
-                      <Text style={styles.titleText}>{item.title}</Text>
-                      <View style={styles.ratingBox}>
-                        <Text style={styles.ratingTextWhite}>{item.rating} ★</Text>
-                      </View>
-                    </View>
-                    <View style={styles.metaRow}>
-                      <Text style={styles.metaText}>{item.time}</Text>
-                      <Text style={styles.dot}>•</Text>
-                      <Text style={styles.metaText}>{item.distance}</Text>
-                    </View>
-                    <Text style={styles.offerTexttt}>{item.offer}</Text>
-                  </View>
-                </TouchableOpacity>
+                <PopularItemCard key={item.id} item={item} />
               ))}
             </View>
 

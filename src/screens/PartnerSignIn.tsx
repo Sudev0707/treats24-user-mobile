@@ -8,6 +8,7 @@ import {
   Alert,
 } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { validateInput } from '../utils/validation';
 
 type RootStackParamList = {
   PartnerSignIn: undefined;
@@ -20,14 +21,28 @@ type Props = NativeStackScreenProps<RootStackParamList, 'PartnerSignIn'>;
 const PartnerSignIn: React.FC<Props> = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const handleSignIn = () => {
-    if (!email || !password) {
-      Alert.alert('Error', 'Please fill in all fields');
+    const emailValidation = validateInput(email, 'email');
+    const passwordValidation = validateInput(password, 'password');
+
+    if (!emailValidation.value) {
+      setEmailError(emailValidation.error || 'Invalid email');
       return;
     }
+
+    if (!passwordValidation.value) {
+      setPasswordError(passwordValidation.error || 'Invalid password');
+      return;
+    }
+
+    setEmailError(''); // Clear any previous errors
+    setPasswordError('');
+
     // TODO: Implement sign in logic
-    Alert.alert('Success', 'Sign in successful');
+
     navigation.navigate('Auth'); // Navigate to main auth or dashboard
   };
 
@@ -35,23 +50,31 @@ const PartnerSignIn: React.FC<Props> = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Partner Sign In</Text>
 
-      
+      <Text style={styles.label}>Email</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
         value={email}
-        onChangeText={setEmail}
+        onChangeText={(text) => {
+          setEmail(text);
+          if (emailError) setEmailError('');
+        }}
         keyboardType="email-address"
         autoCapitalize="none"
       />
+      {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
       <Text style={styles.label}>Password</Text>
       <TextInput
         style={styles.input}
         placeholder="Password"
         value={password}
-        onChangeText={setPassword}
+        onChangeText={(text) => {
+          setPassword(text);
+          if (passwordError) setPasswordError('');
+        }}
         secureTextEntry
       />
+      {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
       <TouchableOpacity style={styles.button} onPress={handleSignIn}>
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
@@ -110,6 +133,12 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     marginBottom: 5,
     fontWeight: '500',
+  },
+  errorText: {
+    color: '#EF4444',
+    fontSize: 14,
+    marginBottom: 10,
+    textAlign: 'center',
   },
 });
 
