@@ -360,13 +360,13 @@ export const RestaurantHeaderStyle = StyleSheet.create({
     backgroundColor: colors.background,
   },
   leftText: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize:fonts.size.md,
+    fontFamily:fonts.family.medium,
     color: '#000',
   },
   placeText: {
-    fontSize: 12,
-    fontWeight: 'bold',
+    fontSize:fonts.size.sm,
+     fontFamily:fonts.family.regular,
     color: '#000',
   },
   headerContainer: {

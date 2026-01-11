@@ -19,14 +19,18 @@ interface RestaurantDetailsHeaderProps {
   restaurantName?: string;
   restaurant?: any;
   onBackPress?: () => void;
+  onPress?: () => void;
   backgroundColor?: string | Animated.AnimatedInterpolation<string>;
+  showDetails?: boolean;
 }
 
 const RestaurantDetailsHeader: React.FC<RestaurantDetailsHeaderProps> = ({
   restaurantName,
   restaurant,
   onBackPress,
+  onPress,
   backgroundColor,
+  showDetails = false,
 }) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -50,6 +54,15 @@ const RestaurantDetailsHeader: React.FC<RestaurantDetailsHeaderProps> = ({
 
   const isFavorite = favoriteRestaurants.some(r => r.id === restaurant?.id);
 
+  const handleHeaderPress = () => {
+    if (onPress) {
+      onPress();
+    } else {
+      // Default behavior: show restaurant name and place
+      console.log(`Restaurant: ${restaurantName}, Place: ${restaurant?.place}`);
+    }
+  };
+
   return (
     <Animated.View
       style={[
@@ -57,8 +70,12 @@ const RestaurantDetailsHeader: React.FC<RestaurantDetailsHeaderProps> = ({
         // backgroundColor ? { backgroundColor } : {},
       ]}
     >
-      <View style={RestaurantHeaderStyle.leftContainer}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' , maxWidth:'80%', }}>
+      <TouchableOpacity
+        style={RestaurantHeaderStyle.leftContainer}
+        onPress={handleHeaderPress}
+        activeOpacity={0.7}
+      >
+        <View style={{ flexDirection: 'row', alignItems: 'center' , maxWidth:'150%',}}>
           <TouchableOpacity
             onPress={handleBackPress}
             style={RestaurantHeaderStyle.backButton}
@@ -68,13 +85,15 @@ const RestaurantDetailsHeader: React.FC<RestaurantDetailsHeaderProps> = ({
               style={{ width: 24, height: 24, borderRadius: 7 }}
             />
           </TouchableOpacity>
-          <View style={{ paddingLeft: 9 , }}>
-            <Text style={RestaurantHeaderStyle.leftText}>{restaurantName}</Text>
-            {/* restaurant place */}
-            <Text style={RestaurantHeaderStyle.placeText}>{restaurant?.place}</Text>
-          </View>
+          {showDetails && (
+            <View style={{ paddingLeft: 9 ,}}>
+              <Text style={RestaurantHeaderStyle.leftText}>{restaurantName}</Text>
+              {/* restaurant place */}
+              <Text style={RestaurantHeaderStyle.placeText}>{restaurant?.category}</Text>
+            </View>
+          )}
         </View>
-      </View>
+      </TouchableOpacity>
       <View style={RestaurantHeaderStyle.centerContainer}>
         {/* Center content can be added if needed */}
       </View>

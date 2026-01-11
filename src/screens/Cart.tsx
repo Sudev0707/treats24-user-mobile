@@ -24,6 +24,7 @@ import Header from '../components/common/Header';
 import CartSkeleton from '../components/common/CartSkeleton';
 import CartItem from '../components/common/CartItem';
 import PaymentSummary from '../components/common/PaymentSummary';
+import CouponItem from '../components/common/CouponItem';
 import {
   selectCartItems,
   selectCartTotal,
@@ -121,7 +122,8 @@ const Cart: React.FC = () => {
 
     // 6️⃣ Grand total (round AFTER summing properly)
     const grandTotal = round2(
-      round2(itemTotal) + round2(gst) + round2(deliveryCharge) - round2(couponDiscount),
+      // round2(itemTotal) + round2(gst) + round2(deliveryCharge) - round2(couponDiscount),
+      round2(itemTotal) + round2(gst) + round2(deliveryCharge),
     );
 
     return {
@@ -402,38 +404,21 @@ const Cart: React.FC = () => {
               <View style={cartStyle.availableCoupons}>
                 <Text style={cartStyle.availableCouponsTitle}>Available Coupons</Text>
                 <View style={cartStyle.couponList}>
-                  <TouchableOpacity
-                    style={cartStyle.couponItem}
+                  <CouponItem
+                    code="SAVE10"
+                    description="Save ₹10 on orders above ₹200"
                     onPress={() => setCouponCode('SAVE10')}
-                  >
-                    <View style={cartStyle.couponItemLeft}>
-                      <Text style={cartStyle.couponItemCode}>SAVE10</Text>
-                      <Text style={cartStyle.couponItemDesc}>Save ₹10 on orders above ₹200</Text>
-                    </View>
-                    <Text style={cartStyle.couponItemApply}>Tap to apply</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={cartStyle.couponItem}
+                  />
+                  <CouponItem
+                    code="WELCOME20"
+                    description="Save ₹20 on first order"
                     onPress={() => setCouponCode('WELCOME20')}
-                  >
-                    <View style={cartStyle.couponItemLeft}>
-                      <Text style={cartStyle.couponItemCode}>WELCOME20</Text>
-                      <Text style={cartStyle.couponItemDesc}>Save ₹20 on first order</Text>
-                    </View>
-                    <Text style={cartStyle.couponItemApply}>Tap to apply</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={cartStyle.couponItem}
+                  />
+                  <CouponItem
+                    code="FIRST50"
+                    description="Save ₹50 on orders above ₹500"
                     onPress={() => setCouponCode('FIRST50')}
-                  >
-                    <View style={cartStyle.couponItemLeft}>
-                      <Text style={cartStyle.couponItemCode}>FIRST50</Text>
-                      <Text style={cartStyle.couponItemDesc}>Save ₹50 on orders above ₹500</Text>
-                    </View>
-                    <Text style={cartStyle.couponItemApply}>Tap to apply</Text>
-                  </TouchableOpacity>
+                  />
                 </View>
               </View>
             </View>

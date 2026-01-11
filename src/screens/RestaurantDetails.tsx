@@ -17,6 +17,7 @@ import {
   Dimensions,
   Platform,
   TextInput,
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../theme/colors';
@@ -126,6 +127,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   );
   const [headerBackgroundColor, setHeaderBackgroundColor] =
     useState('transparent');
+  const [showDetails, setShowDetails] = useState(false);
 
   //   const headerBackgroundColor = scrollY.interpolate({
   //   inputRange: [0, 220],
@@ -186,6 +188,9 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
     // interpolate background color
     const bgColor = interpolateColor(scrollYValue);
     setHeaderBackgroundColor(bgColor);
+
+    // Show details when scrolled past 50
+    setShowDetails(scrollYValue > 50);
 
     if (scrollYValue > 200) {
       setBarStyle('dark-content');
@@ -334,6 +339,8 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
     navigation.goBack();
   };
 
+
+
   return (
     <>
       <StatusBar translucent={true} barStyle={barStyle} />
@@ -349,6 +356,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
             restaurantName={restaurant.name}
             restaurant={restaurant}
             backgroundColor={headerBackgroundColor}
+            showDetails={showDetails}
           />
         </View>
       </SafeAreaView>
