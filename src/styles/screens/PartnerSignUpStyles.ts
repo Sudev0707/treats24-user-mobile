@@ -30,8 +30,9 @@ export const styles = StyleSheet.create({
     color: colors.darkBlack,
   },
   locationText: {
-    fontSize: 14,
-    color: '#CBD5E1',
+    fontSize: fonts.size.md,
+    color: colors.darkBlack,
+    fontFamily:fonts.family.regular
   },
   notificationButton: {
     position: 'relative',
@@ -44,7 +45,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     top: -5,
     right: -5,
-    backgroundColor: '#F97316',
+    backgroundColor: '#ffffff',
     borderRadius: 10,
     width: 20,
     height: 20,
@@ -52,9 +53,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   badgeText: {
-    color: '#FFFFFF',
+    color: '#ff0000',
     fontSize: 12,
-    fontWeight: 'bold',
+    fontFamily:fonts.family.regular
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -214,7 +215,9 @@ export const styles = StyleSheet.create({
     // padding: 20,
     marginBottom: 20,
     elevation:2,
-    overflow:'hidden'
+    overflow:'hidden',
+    borderWidth:1,
+    borderColor:colors.borderLight
 
   },
   innerDetailSection:{

@@ -221,10 +221,11 @@ export const RestaurantScreenStyle = StyleSheet.create({
     color: '#000',
   },
   actionBox: {
-    width: 90,
-    height: 32,
+    // width: 50,
+    height: 30,
     borderRadius: 6,
     overflow: 'hidden',
+    
   },
 
   addBtn: {
@@ -234,7 +235,9 @@ export const RestaurantScreenStyle = StyleSheet.create({
     borderColor: colors.brandPrimary,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: colors.brandPrimary,
+    padding:5,
+    width:35
   },
 
   addText: {
@@ -252,20 +255,32 @@ export const RestaurantScreenStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.brandPrimary,
     backgroundColor: colors.brandPrimary,
+    borderRadius: 6,
+    width:74
   },
 
+  qtyBtnTouchable: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding:5
+  },
   qtyBtn: {
-    width: 28,
-    textAlign: 'center',
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: '700',
+    width: 10,
+    height: 10,
+    tintColor: '#fff',
   },
 
-  qty: {
+  qtyText: {
+    flex: 1,
+    textAlign: 'center',
+    alignItems:'center',
     color: '#fff',
-    fontSize: 14,
-    fontWeight: '700',
+    fontSize: fonts.size.md,
+    fontFamily:fonts.family.regular,
+    // borderWidth:1,
+    paddingTop:4,
+    paddingHorizontal:6
   },
   countText: {
     color: colors.brandPrimary,
@@ -309,6 +324,11 @@ export const RestaurantScreenStyle = StyleSheet.create({
   },
   favoriteIcon: {
     fontSize: 16,
+  },
+  addIcon: {
+    width: 15,
+    height: 15,
+    // tintColor: colors.brandPrimary,
   },
 });
 

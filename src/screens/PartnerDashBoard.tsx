@@ -95,7 +95,7 @@ const PartnerDashBoard: React.FC<Props> = ({ navigation, route }) => {
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.innerContainer}>
             {/* <Text style={styles.title}>Partner Dashboard</Text> */}
-            <Text style={styles.subtitle}>Welcome back, {name}!</Text>
+            {/* <Text style={styles.subtitle}>Welcome back, {name}!</Text> */}
 
             <View style={styles.detailSection}>
               <View style={styles.innerDetailSection} >

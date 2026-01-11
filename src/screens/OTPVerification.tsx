@@ -26,13 +26,15 @@ import Button from '../components/common/Button';
 import EmailLoginModal from '../components/modals/EmailLoginModal';
 import fonts from '../theme/fonts';
 import colors from '../theme/colors';
+import { saveFirebaseToken } from '../utils/authToken';
 
 const OTPVerification: React.FC = () => {
   const route = useRoute<any>();
   const { confirmation, phone } = route.params;
 
   //
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const OTP_DELAY = 30;
   // console.log(otp);
@@ -110,11 +112,12 @@ const OTPVerification: React.FC = () => {
       }
       try {
         await verifyEmailOTP(email, otpString);
+
+        // SAVE TOKEN
+        await saveFirebaseToken();
+
         // ✅ Login success → go to app
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'MainTabs' as never }],
-        });
+        // Navigation will be handled by auth state change in App.tsx
       } catch (error) {
         setOtpError('Invalid OTP');
       } finally {
@@ -135,11 +138,11 @@ const OTPVerification: React.FC = () => {
 
         clearConfirmation();
 
+        // SAVE TOKEN
+        await saveFirebaseToken();
+
         // ✅ Login success → go to app
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'SetLocation' as never }],
-        });
+        navigation.navigate('SetLocation' as never);
       } catch (error) {
         setOtpError('Invalid OTP');
       } finally {

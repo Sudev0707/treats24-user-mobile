@@ -21,6 +21,7 @@ import UserAddress from '../components/common/UserAddress';
 import Orders from '../components/common/Orders';
 import { userData } from '../data/userData';
 import CustomAlert from '../components/common/CustomAlert';
+import auth from '@react-native-firebase/auth';
 
 const Profile: React.FC = () => {
   const scrollProps = useScrollToHideTabBar({ threshold: 50 });
@@ -43,7 +44,10 @@ const Profile: React.FC = () => {
   const handleLogoutPress = () => {
     setAlertTitle('Logout');
     setAlertMessage('Are you sure you want to logout?');
-    setAlertOnConfirm(() => console.log('Logout confirmed'));
+    setAlertOnConfirm(() => {
+      auth().signOut();
+      setAlertVisible(false);
+    });
     setAlertOnCancel(() => setAlertVisible(false));
     setAlertVisible(true);
   };

@@ -14,14 +14,16 @@ const Deals: React.FC = () => {
   return (
     <>
       <StatusBar
-        translucent={false}
+        translucent={true}
         backgroundColor={colors.background}
         barStyle="dark-content"
       />
 
       {/* FIXED HEADER */}
-      <SafeAreaView edges={['top']} style={styles.headerWrapper}>
-        <Header showBackButton={true} title="Deals" />
+      <SafeAreaView edges={['top']}>
+        <View style={styles.headerWrapper}>
+          <Header showBackButton={true} title="Deals" />
+        </View>
       </SafeAreaView>
 
       {/* SCREEN CONTENT */}

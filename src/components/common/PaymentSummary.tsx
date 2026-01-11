@@ -15,11 +15,13 @@ interface PriceDetails {
 interface PaymentSummaryProps {
   priceDetails: PriceDetails;
   gstRate: number;
+  couponDiscount?: number;
 }
 
 const PaymentSummary: React.FC<PaymentSummaryProps> = ({
   priceDetails,
   gstRate,
+  couponDiscount = 0,
 }) => {
   return (
     <View style={cartStyle.paymentSummary}>
@@ -50,6 +52,17 @@ const PaymentSummary: React.FC<PaymentSummaryProps> = ({
             ₹{priceDetails.deliveryCharge}
           </Text>
         </View>
+
+        {couponDiscount > 0 && (
+          <View style={cartStyle.paymentRow}>
+            <Text style={[cartStyle.paymentLabel, { color: colors.brandPrimary }]}>
+              Coupon Discount
+            </Text>
+            <Text style={[cartStyle.paymentValue, { color: colors.brandPrimary }]}>
+              -₹{couponDiscount.toFixed(2)}
+            </Text>
+          </View>
+        )}
 
         <View style={cartStyle.separator} />
 

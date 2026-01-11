@@ -366,4 +366,132 @@ export const cartStyle = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
   },
+
+  // Coupon styles
+  couponContainer: {
+    padding: 15,
+    backgroundColor: colors.background,
+    marginHorizontal: 15,
+    marginBottom: 15,
+    borderRadius: 10,
+    elevation: 1,
+  },
+  couponTitle: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.medium,
+    color: colors.textPrimary,
+    marginBottom: 10,
+  },
+  couponInputContainer: {
+    flexDirection: 'row',
+    marginBottom: 15,
+  },
+  couponInput: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: colors.borderLight,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.regular,
+    color: colors.textPrimary,
+    marginRight: 10,
+  },
+  applyCouponBtn: {
+    backgroundColor: colors.brandPrimary,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  applyCouponBtnDisabled: {
+    backgroundColor: colors.borderLight,
+  },
+  applyCouponBtnText: {
+    color: colors.background,
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.medium,
+  },
+  applyCouponBtnTextDisabled: {
+    color: colors.textSecondary,
+  },
+  appliedCouponContainer: {
+    marginBottom: 15,
+  },
+  appliedCoupon: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: colors.brandPrimarySoft,
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 8,
+  },
+  appliedCouponText: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.medium,
+    color: colors.brandPrimary,
+  },
+  removeCouponBtn: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: colors.brandPrimary,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  removeCouponText: {
+    color: colors.background,
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.bold,
+  },
+  discountText: {
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.regular,
+    color: colors.textSecondary,
+    textAlign: 'center',
+  },
+  availableCoupons: {
+    marginTop: 10,
+  },
+  availableCouponsTitle: {
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.medium,
+    color: colors.textPrimary,
+    marginBottom: 8,
+  },
+  couponList: {
+    gap: 8,
+  },
+  couponItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 12,
+    borderWidth: 1,
+    borderColor: colors.borderLight,
+    borderRadius: 8,
+    backgroundColor: colors.background,
+  },
+  couponItemLeft: {
+    flex: 1,
+  },
+  couponItemCode: {
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.bold,
+    color: colors.brandPrimary,
+    marginBottom: 2,
+  },
+  couponItemDesc: {
+    fontSize: fonts.size.xs,
+    fontFamily: fonts.family.regular,
+    color: colors.textSecondary,
+  },
+  couponItemApply: {
+    fontSize: fonts.size.xs,
+    fontFamily: fonts.family.medium,
+    color: colors.brandPrimary,
+  },
 });

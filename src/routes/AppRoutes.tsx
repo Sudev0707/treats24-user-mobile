@@ -53,36 +53,26 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppRoutes = () => {
   return (
-    <SafeAreaProvider>
+ 
       <TabBarProvider>
-        <NavigationContainer>
+      
           <Stack.Navigator
-            initialRouteName="SplashBrand"
+            initialRouteName="MainTabs"
             screenOptions={{ headerShown: false }}
           >
-            <Stack.Screen name="SplashBrand" component={Screens.SplashBrand} />
-            <Stack.Screen name="UserPartnerSelection" component={Screens.UserPartnerSelection} />
+            {/* <Stack.Screen name="SplashBrand" component={Screens.SplashBrand} /> */}
+            {/* <Stack.Screen name="UserPartnerSelection" component={Screens.UserPartnerSelection} />
             <Stack.Screen name="PartnerSignIn" component={Screens.PartnerSignIn} />
             <Stack.Screen name="PartnerSignUp">
               {(props) => <Screens.PartnerSignUp {...props} />}
             </Stack.Screen>
-            <Stack.Screen name="BankSelection" component={Screens.BankSelection} />
+            <Stack.Screen name="BankSelection" component={Screens.BankSelection} /> */}
             <Stack.Screen name="PartnerDashBoard" component={Screens.PartnerDashBoard} />
-            <Stack.Screen name="Auth" component={Screens.Auth} />
-            <Stack.Screen
-              name="OTPVerification"
-              component={Screens.OTPVerification}
-            />
-            <Stack.Screen
-              name="EmailOTPVerification"
-              component={Screens.EmailOTPVerification}
-            />
+            {/* <Stack.Screen name="Auth" component={Screens.Auth} />
+            <Stack.Screen name="OTPVerification" component={Screens.OTPVerification} />
+            <Stack.Screen name="EmailOTPVerification"  component={Screens.EmailOTPVerification} /> */}
             {/*  */}
-            <Stack.Screen
-              name="SetLocation"
-              component={Screens.SetLocation}
-              options={{ presentation: 'modal' }}
-            />
+            {/* <Stack.Screen name="SetLocation" component={Screens.SetLocation} options={{ presentation: 'modal' }} /> */}
             <Stack.Screen name="Nearby" component={Screens.Nearby} />
             <Stack.Screen name="Favorites" component={Screens.Favorites} />
             <Stack.Screen name="Deals" component={Screens.Deals} />
@@ -101,9 +91,9 @@ const AppRoutes = () => {
 
             <Stack.Screen name="MainTabs" component={TabNavigator} />
           </Stack.Navigator>
-        </NavigationContainer>
+    
       </TabBarProvider>
-    </SafeAreaProvider>
+  
   );
 };
 

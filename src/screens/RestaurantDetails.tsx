@@ -45,6 +45,7 @@ import FoodCard from '../components/food/FoodCard';
 import FilterChip from '../components/common/FilterChip';
 import RestaurantDetailsHeader from '../components/common/RestaurantDetailsHeader.tsx';
 import { cartStyle } from '../styles/screens/CartStyles.ts';
+import { restaurantDetailsStyle } from '../styles/screens/RestaurantDetailsStyles.ts';
 import fonts from '../theme/fonts.ts';
 
 interface RestaurantItem {
@@ -472,28 +473,12 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
               {restaurant.foodCategories.map(category => {
                 const isExpanded = expandedCategories[category.id] || false;
                 return (
-                  <View key={category.id} style={{ paddingHorizontal: 16 }}>
+                  <View key={category.id} style={restaurantDetailsStyle.categoryContainer}>
                     <TouchableOpacity
-                      style={{
-                        paddingVertical: 16,
-                        paddingHorizontal: 5,
-                        backgroundColor: colors.background,
-                        borderBottomWidth: 1,
-                        borderBottomColor: colors.borderLight,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        borderRadius: 10,
-                      }}
+                      style={restaurantDetailsStyle.categoryHeader}
                       onPress={() => toggleCategory(category.id)}
                     >
-                      <Text
-                        style={{
-                          fontSize: fonts.size.md,
-                          fontFamily:fonts.family.medium,
-                          color: colors.textPrimary,
-                        }}
-                      >
+                      <Text style={restaurantDetailsStyle.categoryTitle}>
                         {category.title}
                       </Text>
                       <Icon
@@ -507,14 +492,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
                       />
                     </TouchableOpacity>
                     {isExpanded && (
-                      <View
-                        style={{
-                          paddingVertical: 10,
-                          flexDirection: 'row',
-                          flexWrap: 'wrap',
-                          justifyContent: 'space-around',
-                        }}
-                      >
+                      <View style={restaurantDetailsStyle.expandedCategoryContent}>
                         {category.items.map(food => {
                           const quantity = getQuantity(food.id);
                           return (
