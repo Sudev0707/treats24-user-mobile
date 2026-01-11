@@ -213,11 +213,11 @@ const Orders: React.FC = ({}) => {
             ))}
           </View>
           <View style={styles.userDetailContainer}>
-            {/* {orders.length > 0 ? (
+            {orders.length > 0 ? (
               orders.map(renderOrderItem)
             ) : (
               <Text style={styles.noOrders}>No orders in this category</Text>
-            )} */}
+            )}
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

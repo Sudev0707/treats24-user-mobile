@@ -39,9 +39,9 @@ const OrderDetailsStyle = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 20,
     // marginTop:9,
-    // backgroundColor: colors.brandPrimarySoft,
+    backgroundColor: colors.background,
     borderRadius: 8,
-    padding: 4,
+    // padding: 4,
   },
   tab: {
     flex: 1,

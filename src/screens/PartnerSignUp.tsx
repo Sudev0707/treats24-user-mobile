@@ -483,7 +483,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
                 {hasFssaiLicense === false && (
                   <TouchableOpacity style={styles.link}>
                     <Text style={styles.linkText}>
-                      Click here to apply for FSSAI License
+                      Click here Terms & Conditions
                     </Text>
                   </TouchableOpacity>
                 )}

@@ -1759,6 +1759,476 @@ export const restaurantsData = [
       },
     ],
   },
+  {
+    id: '9',
+    name: 'Punjabi Tadka',
+    rating: 4.5,
+    reviews: 2300,
+    category: 'North Indian • Punjabi',
+    place: 'City Center',
+    time: '25-30 min',
+    price: '$$',
+    delivery: 'Free delivery',
+    isOpen: true,
+    // image: require('../assets/images/restaurants/punjabi.jpg'),
+
+    foodCategories: [
+      {
+        id: 'pt1',
+        title: 'Recommended',
+        type: 'recommended',
+        isAvailable: true,
+        items: [
+          {
+            id: 'pt1f1',
+            name: 'Butter Chicken',
+            price: 249,
+            rating: 4.7,
+            isVeg: false,
+          },
+          {
+            id: 'pt1f2',
+            name: 'Paneer Butter Masala',
+            price: 229,
+            rating: 4.6,
+            isVeg: true,
+          },
+        ],
+      },
+      {
+        id: 'pt2',
+        title: 'Breads',
+        type: 'breads',
+        isAvailable: true,
+        items: [
+          {
+            id: 'pt2f1',
+            name: 'Butter Naan',
+            price: 39,
+            rating: 4.5,
+            isVeg: true,
+          },
+          {
+            id: 'pt2f2',
+            name: 'Tandoori Roti',
+            price: 29,
+            rating: 4.4,
+            isVeg: true,
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: '10',
+    name: 'South Spice',
+    rating: 4.6,
+    reviews: 3100,
+    category: 'South Indian',
+    place: 'Main Road',
+    time: '20-25 min',
+    price: '$',
+    delivery: 'Free delivery',
+    isOpen: true,
+    // image: require('../assets/images/restaurants/south.jpg'),
+
+    foodCategories: [
+      {
+        id: 'ss10_1',
+        title: 'Recommended',
+        type: 'recommended',
+        isAvailable: true,
+        items: [
+          {
+            id: 'ss10f1',
+            name: 'Masala Dosa',
+            price: 99,
+            rating: 4.7,
+            isVeg: true,
+          },
+          {
+            id: 'ss10f2',
+            name: 'Idli Sambar',
+            price: 69,
+            rating: 4.6,
+            isVeg: true,
+          },
+        ],
+      },
+      {
+        id: 'ss10_2',
+        title: 'Rice',
+        type: 'rice',
+        isAvailable: true,
+        items: [
+          {
+            id: 'ss10f3',
+            name: 'Curd Rice',
+            price: 79,
+            rating: 4.4,
+            isVeg: true,
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: '11',
+    name: 'Burger Hub',
+    rating: 4.3,
+    reviews: 1800,
+    category: 'Burgers • Fast Food',
+    place: 'Mall',
+    time: '15-20 min',
+    price: '$$',
+    delivery: '₹29 delivery',
+    isOpen: true,
+    // image: require('../assets/images/restaurants/burger.jpg'),
+
+    foodCategories: [
+      {
+        id: 'bh1',
+        title: 'Burgers',
+        type: 'fastfood',
+        isAvailable: true,
+        items: [
+          {
+            id: 'bhf1',
+            name: 'Veg Burger',
+            price: 99,
+            rating: 4.3,
+            isVeg: true,
+          },
+          {
+            id: 'bhf2',
+            name: 'Cheese Burger',
+            price: 129,
+            rating: 4.4,
+            isVeg: true,
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: '12',
+    name: 'Pizza Corner',
+    rating: 4.4,
+    reviews: 2600,
+    category: 'Pizza • Italian',
+    place: 'Downtown',
+    time: '25-30 min',
+    price: '$$',
+    delivery: 'Free delivery',
+    isOpen: true,
+    // image: require('../assets/images/restaurants/pizza.jpg'),
+
+    foodCategories: [
+      {
+        id: 'pc1',
+        title: 'Pizzas',
+        type: 'pizza',
+        isAvailable: true,
+        items: [
+          {
+            id: 'pcf1',
+            name: 'Margherita',
+            price: 199,
+            rating: 4.6,
+            isVeg: true,
+          },
+          {
+            id: 'pcf2',
+            name: 'Farmhouse',
+            price: 249,
+            rating: 4.5,
+            isVeg: true,
+          },
+        ],
+      },
+    ],
+  },
+
+  // {
+  //   id: '13',
+  //   name: 'Biryani House',
+  //   rating: 4.7,
+  //   reviews: 4200,
+  //   category: 'Biryani • Mughlai',
+  //   place: 'Old City',
+  //   time: '30-35 min',
+  //   price: '$$',
+  //   delivery: 'Free delivery',
+  //   isOpen: true,
+  //   image: require('../assets/images/restaurants/biryani.jpg'),
+
+  //   foodCategories: [
+  //     {
+  //       id: 'bh13',
+  //       title: 'Biryani',
+  //       type: 'biryani',
+  //       isAvailable: true,
+  //       items: [
+  //         {
+  //           id: 'bh13f1',
+  //           name: 'Chicken Biryani',
+  //           price: 279,
+  //           rating: 4.8,
+  //           isVeg: false,
+  //         },
+  //         {
+  //           id: 'bh13f2',
+  //           name: 'Veg Biryani',
+  //           price: 199,
+  //           rating: 4.5,
+  //           isVeg: true,
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
+
+  {
+    id: '14',
+    name: 'Chinese Wok',
+    rating: 4.2,
+    reviews: 1600,
+    category: 'Chinese • Asian',
+    place: 'Market',
+    time: '20-25 min',
+    price: '$',
+    delivery: '₹19 delivery',
+    isOpen: true,
+    // image: require('../assets/images/restaurants/chinese.jpg'),
+
+    foodCategories: [
+      {
+        id: 'cw1',
+        title: 'Noodles',
+        type: 'chinese',
+        isAvailable: true,
+        items: [
+          {
+            id: 'cw1f1',
+            name: 'Hakka Noodles',
+            price: 119,
+            rating: 4.3,
+            isVeg: true,
+          },
+          {
+            id: 'cw1f2',
+            name: 'Chilli Garlic Noodles',
+            price: 139,
+            rating: 4.4,
+            isVeg: true,
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: '15',
+    name: 'Sweet Tooth',
+    rating: 4.6,
+    reviews: 2900,
+    category: 'Desserts • Bakery',
+    place: 'City Center',
+    time: '15-20 min',
+    price: '$',
+    delivery: 'Free delivery',
+    isOpen: true,
+    // image: require('../assets/images/restaurants/dessert.jpg'),
+
+    foodCategories: [
+      {
+        id: 'st1',
+        title: 'Desserts',
+        type: 'dessert',
+        isAvailable: true,
+        items: [
+          {
+            id: 'stf1',
+            name: 'Chocolate Cake',
+            price: 149,
+            rating: 4.7,
+            isVeg: true,
+          },
+          { id: 'stf2', name: 'Brownie', price: 99, rating: 4.6, isVeg: true },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: '16',
+    name: 'Cafe Brew',
+    rating: 4.4,
+    reviews: 2100,
+    category: 'Cafe • Beverages',
+    place: 'High Street',
+    time: '15-20 min',
+    price: '$$',
+    delivery: 'Free delivery',
+    isOpen: true,
+    // image: require('../assets/images/restaurants/cafe.jpg'),
+
+    foodCategories: [
+      {
+        id: 'cb1',
+        title: 'Coffee',
+        type: 'drinks',
+        isAvailable: true,
+        items: [
+          {
+            id: 'cbf1',
+            name: 'Cappuccino',
+            price: 129,
+            rating: 4.5,
+            isVeg: true,
+          },
+          {
+            id: 'cbf2',
+            name: 'Cold Coffee',
+            price: 149,
+            rating: 4.6,
+            isVeg: true,
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: '17',
+    name: 'Healthy Bowl',
+    rating: 4.3,
+    reviews: 1400,
+    category: 'Healthy • Salads',
+    place: 'Tech Park',
+    time: '20-25 min',
+    price: '$$',
+    delivery: 'Free delivery',
+    isOpen: true,
+    // image: require('../assets/images/restaurants/healthy.jpg'),
+
+    foodCategories: [
+      {
+        id: 'hb1',
+        title: 'Bowls',
+        type: 'healthy',
+        isAvailable: true,
+        items: [
+          {
+            id: 'hbf1',
+            name: 'Veg Salad Bowl',
+            price: 179,
+            rating: 4.4,
+            isVeg: true,
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: '18',
+    name: 'Tandoor Express',
+    rating: 4.5,
+    reviews: 2700,
+    category: 'North Indian • Tandoor',
+    place: 'Ring Road',
+    time: '25-30 min',
+    price: '$$',
+    delivery: 'Free delivery',
+    isOpen: true,
+    // image: require('../assets/images/restaurants/tandoor.jpg'),
+
+    foodCategories: [
+      {
+        id: 'te1',
+        title: 'Tandoor',
+        type: 'tandoor',
+        isAvailable: true,
+        items: [
+          {
+            id: 'tef1',
+            name: 'Paneer Tikka',
+            price: 229,
+            rating: 4.6,
+            isVeg: true,
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: '19',
+    name: 'Roll Factory',
+    rating: 4.2,
+    reviews: 1200,
+    category: 'Rolls • Fast Food',
+    place: 'Market',
+    time: '15-20 min',
+    price: '$',
+    delivery: '₹29 delivery',
+    isOpen: true,
+    // image: require('../assets/images/restaurants/rolls.jpg'),
+
+    foodCategories: [
+      {
+        id: 'rf1',
+        title: 'Rolls',
+        type: 'rolls',
+        isAvailable: true,
+        items: [
+          {
+            id: 'rff1',
+            name: 'Paneer Roll',
+            price: 129,
+            rating: 4.3,
+            isVeg: true,
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: '20',
+    name: 'Midnight Bites',
+    rating: 4.4,
+    reviews: 1900,
+    category: 'Fast Food • Late Night',
+    place: 'City Center',
+    time: '20-25 min',
+    price: '$$',
+    delivery: 'Free delivery',
+    isOpen: true,
+    // image: require('../assets/images/restaurants/night.jpg'),
+
+    foodCategories: [
+      {
+        id: 'mb1',
+        title: 'Snacks',
+        type: 'snacks',
+        isAvailable: true,
+        items: [
+          {
+            id: 'mbf1',
+            name: 'Cheese Fries',
+            price: 149,
+            rating: 4.5,
+            isVeg: true,
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 // ===============
