@@ -60,7 +60,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
       {/* Food Image */}
       <View style={RestaurantScreenStyle.foodImageBox}>
         <Image
-          resizeMode="contain"
+          resizeMode="cover"
           source={
             food.image || require('../../assets/images/foodCategory/pizza.png')
           }

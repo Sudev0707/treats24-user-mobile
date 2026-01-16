@@ -29,7 +29,10 @@ export const restaurantsData = [
             price: 199,
             rating: 4.6,
             isVeg: false,
-            image: require('../assets/images/foodCategory/burger.png'),
+            // image: require('../assets/images/foodCategory/burger.png'),
+            image: {
+              uri: 'https://tse1.mm.bing.net/th/id/OIP.By-7BfHD1Ioy31mkXauh7gHaFj?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'bhf2',
@@ -37,7 +40,10 @@ export const restaurantsData = [
             price: 179,
             rating: 4.4,
             isVeg: true,
-            image: require('../assets/images/foodCategory/burger.png'),
+            // image: require('../assets/images/foodCategory/burger.png'),
+            image: {
+              uri: 'https://veganuary.com/wp-content/uploads/2019/12/CaliCheese2-scaled.jpg',
+            },
           },
           {
             id: 'bhf3',
@@ -45,7 +51,10 @@ export const restaurantsData = [
             price: 249,
             rating: 4.7,
             isVeg: false,
-            image: require('../assets/images/foodCategory/burger.png'),
+            // image: require('../assets/images/foodCategory/burger.png'),
+            image: {
+              uri: 'https://tse3.mm.bing.net/th/id/OIP.EwqKyzEufRlPZ5vq1vfyBgHaE8?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'bhf4',
@@ -53,7 +62,10 @@ export const restaurantsData = [
             price: 229,
             rating: 4.5,
             isVeg: false,
-            image: require('../assets/images/foodCategory/burger.png'),
+            // image: require('../assets/images/foodCategory/burger.png'),
+            image: {
+              uri: 'https://th.bing.com/th/id/R.d604f4e1fa4065e9178530806d742bcf?rik=OheJ0kncnd%2bUWw&riu=http%3a%2f%2fcdn2.tmbi.com%2fTOH%2fImages%2fPhotos%2f37%2f1200x1200%2fexps28800_UG143377D12_18_1b_RMS.jpg&ehk=SwvIaImoVXPPc88FJO9A%2fHRHyH7AOQoWdx5AfgIfgVo%3d&risl=&pid=ImgRaw&r=0',
+            },
           },
         ],
       },
@@ -70,6 +82,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://www.licious.in/blog/wp-content/uploads/2020/12/Baked-Chicken-Nuggets.jpg',
+            },
           },
           {
             id: 'bhf6',
@@ -78,6 +93,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://www.restlesschipotle.com/wp-content/uploads/2022/08/Crispy-Oven-Baked-Chicken-Wings-feat2.jpg',
+            },
           },
           {
             id: 'bhf7',
@@ -86,6 +104,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://tse3.mm.bing.net/th/id/OIP.SkJrcluDM_TSP-FRbD_wAgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'bhf8',
@@ -94,6 +115,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://tse3.mm.bing.net/th/id/OIP.g2FAbu3AJBWf-sb61GfMvgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
         ],
       },
@@ -110,6 +134,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://goldenfingers.us/wp-content/uploads/2020/03/french_fry.jpg',
+            },
           },
           {
             id: 'bhf10',
@@ -118,6 +145,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://cookingwithparita.com/wp-content/uploads/2022/10/image-of-baked-crispy-peri-peri-fries-recipe-2.jpg',
+            },
           },
           {
             id: 'bhf11',
@@ -126,6 +156,9 @@ export const restaurantsData = [
             rating: 4.1,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://www.dinneratthezoo.com/wp-content/uploads/2019/12/onion-rings-5.jpg',
+            },
           },
           {
             id: 'bhf12',
@@ -134,6 +167,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://tse2.mm.bing.net/th/id/OIP.N35to2qUsZ7nWrfP1H4cAQHaLH?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
         ],
       },
@@ -150,6 +186,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://tse1.mm.bing.net/th/id/OIP.d8ndOAHvrapAm7PZpyt8-QHaHZ?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'bhf14',
@@ -158,6 +197,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://th.bing.com/th/id/OIP.BeO3ljis0fJaCAA_W4qQjgHaKy?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'bhf15',
@@ -166,6 +208,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://th.bing.com/th/id/OIP.0bGRUzd9rmAB_Hz3Jp4lvwHaLG?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'bhf16',
@@ -174,6 +219,9 @@ export const restaurantsData = [
             rating: 4.1,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://th.bing.com/th/id/OIP.t3_wLijQ3xRCMwfCj5Nk-wHaHa?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
         ],
       },
@@ -190,6 +238,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: false,
             //  image: require('../assets/images/foods/burger.jpg'),
+            image: {
+              uri: 'https://img.freepik.com/premium-photo/delicious-burger-fries-combo_1003686-11354.jpg',
+            },
           },
           {
             id: 'bhf18',
@@ -198,6 +249,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/burger.jpg'),
+            image: {
+              uri: 'https://3.imimg.com/data3/JB/GR/MY-12469549/veg-combo-meal-500x500.png',
+            },
           },
           {
             id: 'bhf19',
@@ -206,6 +260,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/burger.jpg'),
+            image: {
+              uri: 'https://tse1.mm.bing.net/th/id/OIP.W6sxTYxOsMoQSCtGV_w0jgHaFS?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'bhf20',
@@ -214,6 +271,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://tse1.mm.bing.net/th/id/OIP.SZur16GC0DdHlM1PiickBAHaFS?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
         ],
       },
@@ -250,6 +310,9 @@ export const restaurantsData = [
             rating: 4.7,
             isVeg: true,
             //  image: require('../assets/images/foods/pizza.jpg'),
+            image: {
+              uri: 'https://tse4.mm.bing.net/th/id/OIP.QIt_JepsNb81w_Mv65QqxgHaKl?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'psf2',
@@ -258,6 +321,9 @@ export const restaurantsData = [
             rating: 4.8,
             isVeg: false,
             //  image: require('../assets/images/foods/pizza.jpg'),
+            image: {
+              uri: 'https://th.bing.com/th/id/OIP.80ojPA6lWJB1B_Y5RYDF5wHaHa?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'psf3',
@@ -266,6 +332,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/pizza.jpg'),
+            image: {
+              uri: 'https://www.aberdeenskitchen.com/wp-content/uploads/2017/05/BBQ-Chicken-Pizza-9-680x1024.jpg',
+            },
           },
           {
             id: 'psf4',
@@ -274,6 +343,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: true,
             //  image: require('../assets/images/foods/pizza.jpg'),
+            image: {
+              uri: 'https://tse3.mm.bing.net/th/id/OIP.gWaKNnOJVndMJVgwKXL7ewHaE8?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
         ],
       },
@@ -290,6 +362,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: true,
             //  image: require('../assets/images/foods/pizza.jpg'),
+            image: {
+              uri: 'https://th.bing.com/th/id/OIP.oZMlp-fkQyZjgNDiM8wWJAHaHa?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'psf6',
@@ -298,6 +373,9 @@ export const restaurantsData = [
             rating: 4.7,
             isVeg: true,
             //  image: require('../assets/images/foods/pizza.jpg'),
+            image: {
+              uri: 'https://i.pinimg.com/736x/eb/ee/e8/ebeee82a42e0428d299f86ab74faf77a--dominos-pizza-paneer-cheese.jpg',
+            },
           },
           {
             id: 'psf7',
@@ -306,6 +384,9 @@ export const restaurantsData = [
             rating: 4.8,
             isVeg: false,
             //  image: require('../assets/images/foods/pizza.jpg'),
+            image: {
+              uri: 'https://tse4.mm.bing.net/th/id/OIP.DMBSdD1q8U0_0GTdlhvBpAHaLH?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'psf8',
@@ -314,6 +395,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/pizza.jpg'),
+            image: {
+              uri: 'https://tse3.mm.bing.net/th/id/OIP.S44RMmIyps-UghXyy6eiXQHaEL?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
         ],
       },
@@ -330,6 +414,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://th.bing.com/th/id/OIP.ad4BUY3Z2O0ix6Ka0CbhvAHaLG?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'psf10',
@@ -338,6 +425,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://recipetineats.com/wp-content/uploads/2019/01/Cheesy-Garlic-Bread_1.jpg',
+            },
           },
           {
             id: 'psf11',
@@ -346,6 +436,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://tse4.mm.bing.net/th/id/OIP.esHu06Dsi_LqcfvPDPbpmgHaLH?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'psf12',
@@ -354,6 +447,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://tse1.explicit.bing.net/th/id/OIP.p-6GTAnoG2UqvqmgylD8KAHaLG?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
         ],
       },
@@ -370,6 +466,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://th.bing.com/th/id/OIP._MgmvKhhHHv1qPt9FyyA2QHaLG?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'psf14',
@@ -378,6 +477,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://www.ruchiskitchen.com/wp-content/uploads/2020/01/Sweet-corn-soup-1-1.jpg',
+            },
           },
           {
             id: 'psf15',
@@ -386,6 +488,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: false,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://i.ytimg.com/vi/T4pzDUuPrg0/maxresdefault.jpg',
+            },
           },
           {
             id: 'psf16',
@@ -394,6 +499,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://tse1.mm.bing.net/th/id/OIP.Vn0rGk4GxNd-OcGjpP7XrgHaLT?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
         ],
       },
@@ -410,6 +518,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: true,
             //  image: require('../assets/images/foods/dessert.jpg'),
+            image: {
+              uri: 'https://tse2.mm.bing.net/th/id/OIP.bUziOFaTzKe_QhNNHV6l9gHaLH?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'psf18',
@@ -418,6 +529,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/dessert.jpg'),
+            image: {
+              uri: 'https://tse4.mm.bing.net/th/id/OIP.2eWvcwOeJpY7YgwNfRsJjAHaKX?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'psf19',
@@ -426,6 +540,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://tse2.mm.bing.net/th/id/OIP.-0IzIVUd4FE6RUKnPpGSCgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
           {
             id: 'psf20',
@@ -434,6 +551,9 @@ export const restaurantsData = [
             rating: 4.1,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://tse2.mm.bing.net/th/id/OIP.PMe5IET_kl7w5O2QyU3FuwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3',
+            },
           },
         ],
       },
@@ -470,6 +590,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw1f2',
@@ -478,6 +601,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw1f3',
@@ -486,6 +612,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw1f4',
@@ -494,6 +623,9 @@ export const restaurantsData = [
             rating: 4.7,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -510,6 +642,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw2f2',
@@ -518,6 +653,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw2f3',
@@ -526,6 +664,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: false,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw2f4',
@@ -534,6 +675,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -550,6 +694,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw3f2',
@@ -558,6 +705,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw3f3',
@@ -566,6 +716,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: false,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw3f4',
@@ -574,6 +727,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -590,6 +746,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw4f2',
@@ -598,6 +757,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw4f3',
@@ -606,6 +768,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw4f4',
@@ -614,6 +779,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -630,6 +798,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw5f2',
@@ -638,6 +809,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw5f3',
@@ -646,6 +820,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: false,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw5f4',
@@ -654,6 +831,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -690,6 +870,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an1f2',
@@ -698,6 +881,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an1f3',
@@ -706,6 +892,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: true,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an1f4',
@@ -714,6 +903,9 @@ export const restaurantsData = [
             rating: 4.7,
             isVeg: false,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -730,6 +922,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an2f2',
@@ -738,6 +933,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an2f3',
@@ -746,6 +944,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: false,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an2f4',
@@ -754,6 +955,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/noodles.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -770,6 +974,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an3f2',
@@ -778,6 +985,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an3f3',
@@ -786,6 +996,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an3f4',
@@ -794,6 +1007,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -810,6 +1026,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an4f2',
@@ -818,6 +1037,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: false,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an4f3',
@@ -826,6 +1048,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an4f4',
@@ -834,6 +1059,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -850,6 +1078,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an5f2',
@@ -858,6 +1089,9 @@ export const restaurantsData = [
             rating: 4.1,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an5f3',
@@ -866,6 +1100,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'an5f4',
@@ -874,6 +1111,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -910,6 +1150,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: true,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb1f2',
@@ -918,6 +1161,9 @@ export const restaurantsData = [
             rating: 4.7,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb1f3',
@@ -926,6 +1172,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb1f4',
@@ -934,6 +1183,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -950,6 +1202,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb2f2',
@@ -958,6 +1213,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb2f3',
@@ -966,6 +1224,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb2f4',
@@ -974,6 +1235,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -990,6 +1254,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb3f2',
@@ -998,6 +1265,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: false,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb3f3',
@@ -1006,6 +1276,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb3f4',
@@ -1014,6 +1287,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/soup.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1030,6 +1306,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb4f2',
@@ -1038,6 +1317,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb4f3',
@@ -1046,6 +1328,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb4f4',
@@ -1054,6 +1339,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1070,6 +1358,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb5f2',
@@ -1078,6 +1369,9 @@ export const restaurantsData = [
             rating: 4.1,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb5f3',
@@ -1086,6 +1380,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'hb5f4',
@@ -1094,6 +1391,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1130,6 +1430,9 @@ export const restaurantsData = [
             rating: 4.8,
             isVeg: false,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh1f2',
@@ -1138,6 +1441,9 @@ export const restaurantsData = [
             rating: 4.7,
             isVeg: false,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh1f3',
@@ -1146,6 +1452,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh1f4',
@@ -1154,6 +1463,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1170,6 +1482,9 @@ export const restaurantsData = [
             rating: 4.7,
             isVeg: false,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh2f2',
@@ -1178,6 +1493,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh2f3',
@@ -1186,6 +1504,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh2f4',
@@ -1194,6 +1515,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/rice.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1210,6 +1534,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh3f2',
@@ -1218,6 +1545,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh3f3',
@@ -1226,6 +1556,9 @@ export const restaurantsData = [
             rating: 4.7,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh3f4',
@@ -1234,6 +1567,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1250,6 +1586,9 @@ export const restaurantsData = [
             rating: 4.7,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh4f2',
@@ -1258,6 +1597,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: false,
             //  image: require('../assets/images/foods/chicken.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh4f3',
@@ -1266,6 +1608,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh4f4',
@@ -1274,6 +1619,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1290,6 +1638,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/dessert.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh5f2',
@@ -1298,6 +1649,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/dessert.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh5f3',
@@ -1306,6 +1660,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhh5f4',
@@ -1314,6 +1671,9 @@ export const restaurantsData = [
             rating: 4.1,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1350,6 +1710,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb1f2',
@@ -1358,6 +1721,9 @@ export const restaurantsData = [
             rating: 4.7,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb1f3',
@@ -1366,6 +1732,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/dessert.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb1f4',
@@ -1374,6 +1743,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1390,6 +1762,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb2f2',
@@ -1398,6 +1773,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb2f3',
@@ -1406,6 +1784,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb2f4',
@@ -1414,6 +1795,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1430,6 +1814,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb3f2',
@@ -1438,6 +1825,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb3f3',
@@ -1446,6 +1836,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb3f4',
@@ -1454,6 +1847,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1470,6 +1866,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/dessert.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb4f2',
@@ -1478,6 +1877,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: true,
             //  image: require('../assets/images/foods/dessert.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb4f3',
@@ -1486,6 +1888,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/dessert.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb4f4',
@@ -1494,6 +1899,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/dessert.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1510,6 +1918,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb5f2',
@@ -1518,6 +1929,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb5f3',
@@ -1526,6 +1940,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cb5f4',
@@ -1534,6 +1951,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1570,6 +1990,9 @@ export const restaurantsData = [
             rating: 4.6,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss1f2',
@@ -1578,6 +2001,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss1f3',
@@ -1586,6 +2012,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss1f4',
@@ -1594,6 +2023,9 @@ export const restaurantsData = [
             rating: 4.7,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1610,6 +2042,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss2f2',
@@ -1618,6 +2053,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss2f3',
@@ -1626,6 +2064,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss2f4',
@@ -1634,6 +2075,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1650,6 +2094,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss3f2',
@@ -1658,6 +2105,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss3f3',
@@ -1666,6 +2116,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss3f4',
@@ -1674,6 +2127,9 @@ export const restaurantsData = [
             rating: 4.5,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1690,6 +2146,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss4f2',
@@ -1698,6 +2157,9 @@ export const restaurantsData = [
             rating: 4.4,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss4f3',
@@ -1706,6 +2168,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss4f4',
@@ -1714,6 +2179,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/snacks.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1730,6 +2198,9 @@ export const restaurantsData = [
             rating: 4.2,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss5f2',
@@ -1738,6 +2209,9 @@ export const restaurantsData = [
             rating: 4.3,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss5f3',
@@ -1746,6 +2220,9 @@ export const restaurantsData = [
             rating: 4.1,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss5f4',
@@ -1754,6 +2231,9 @@ export const restaurantsData = [
             rating: 4.0,
             isVeg: true,
             //  image: require('../assets/images/foods/drink.jpg'),
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1785,6 +2265,9 @@ export const restaurantsData = [
             price: 249,
             rating: 4.7,
             isVeg: false,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'pt1f2',
@@ -1792,6 +2275,9 @@ export const restaurantsData = [
             price: 229,
             rating: 4.6,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1807,6 +2293,9 @@ export const restaurantsData = [
             price: 39,
             rating: 4.5,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'pt2f2',
@@ -1814,6 +2303,9 @@ export const restaurantsData = [
             price: 29,
             rating: 4.4,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1846,6 +2338,9 @@ export const restaurantsData = [
             price: 99,
             rating: 4.7,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'ss10f2',
@@ -1853,6 +2348,9 @@ export const restaurantsData = [
             price: 69,
             rating: 4.6,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1868,6 +2366,9 @@ export const restaurantsData = [
             price: 79,
             rating: 4.4,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1900,6 +2401,9 @@ export const restaurantsData = [
             price: 99,
             rating: 4.3,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'bhf2',
@@ -1907,6 +2411,9 @@ export const restaurantsData = [
             price: 129,
             rating: 4.4,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -1939,6 +2446,9 @@ export const restaurantsData = [
             price: 199,
             rating: 4.6,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'pcf2',
@@ -1946,6 +2456,9 @@ export const restaurantsData = [
             price: 249,
             rating: 4.5,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -2017,6 +2530,9 @@ export const restaurantsData = [
             price: 119,
             rating: 4.3,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cw1f2',
@@ -2024,6 +2540,9 @@ export const restaurantsData = [
             price: 139,
             rating: 4.4,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -2056,8 +2575,20 @@ export const restaurantsData = [
             price: 149,
             rating: 4.7,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
-          { id: 'stf2', name: 'Brownie', price: 99, rating: 4.6, isVeg: true },
+          {
+            id: 'stf2',
+            name: 'Brownie',
+            price: 99,
+            rating: 4.6,
+            isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
+          },
         ],
       },
     ],
@@ -2089,6 +2620,9 @@ export const restaurantsData = [
             price: 129,
             rating: 4.5,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
           {
             id: 'cbf2',
@@ -2096,6 +2630,9 @@ export const restaurantsData = [
             price: 149,
             rating: 4.6,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -2128,6 +2665,9 @@ export const restaurantsData = [
             price: 179,
             rating: 4.4,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -2160,6 +2700,9 @@ export const restaurantsData = [
             price: 229,
             rating: 4.6,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -2192,6 +2735,9 @@ export const restaurantsData = [
             price: 129,
             rating: 4.3,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },
@@ -2224,6 +2770,9 @@ export const restaurantsData = [
             price: 149,
             rating: 4.5,
             isVeg: true,
+            image: {
+              uri: 'https://your-domain.com/images/foodCategory/burger.png',
+            },
           },
         ],
       },

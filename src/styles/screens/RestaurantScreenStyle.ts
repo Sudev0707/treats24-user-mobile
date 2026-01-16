@@ -165,10 +165,12 @@ export const RestaurantScreenStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 4,
+    borderWidth:0.4,
+    borderColor:colors.borderLight
   },
   foodimage: {
-    width: '80%',
-    height: '80%',
+    width: '100%',
+    height: '100%',
     borderRadius: 10,
     backgroundColor: colors.backgroundLight,
   },

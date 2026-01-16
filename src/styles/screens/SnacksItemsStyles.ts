@@ -22,21 +22,32 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   listContainer: {
-    paddingHorizontal: 6,
+    // paddingHorizontal: 16,
     paddingVertical: 5,
   },
+  columnWrapper: {
+    justifyContent: 'space-around',
+    marginBottom: 12,
+    alignContent:'flex-start'
+  },
   snackCard: {
-    width: 150,
-    height: 140,
+    width: (Dimensions.get('window').width - 32) / 2,
+    height: 220,
     backgroundColor: colors.card,
     borderRadius: 12,
     padding: 12,
-    marginRight: 12,
+    margin: 0,
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
+  },
+  snackImage: {
+    width: '100%',
+    height: 80,
+    borderRadius: 8,
+    marginBottom: 8,
   },
   snackName: {
     fontSize: 16,
@@ -92,6 +103,44 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.textSecondary,
     textAlign: 'center',
+  },
+  actionContainer: {
+    marginTop: 8,
+    alignItems: 'center',
+  },
+  addButton: {
+    backgroundColor: colors.brandPrimary,
+    paddingHorizontal: 16,
+    paddingVertical: 6,
+    borderRadius: 6,
+  },
+  addButtonText: {
+    color: colors.textOnBrand,
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  quantityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  quantityButton: {
+    backgroundColor: colors.brandPrimary,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  quantityButtonText: {
+    color: colors.textOnBrand,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  quantityText: {
+    marginHorizontal: 12,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: colors.textPrimary,
   },
 });
 

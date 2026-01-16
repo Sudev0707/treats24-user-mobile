@@ -61,7 +61,7 @@ const TabNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Favorites"
         component={Screens.Favorites}
         options={{
@@ -74,7 +74,7 @@ const TabNavigator = () => {
             />
           ),
         }}
-      />
+      /> */}
 
       <Tab.Screen
         name="TastyDeals"

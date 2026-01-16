@@ -113,7 +113,7 @@ const Dashboard: React.FC = () => {
       // Navigate to SnacksItems for special categories
       navigation.navigate('SnacksItems', { itemType: item.name });
     } else if (item.id === '00') {
-      // navigation.navigate(" ");
+      navigation.navigate("NinetyNineStore");
     }
     setSelectedCategory(item.name);
   };

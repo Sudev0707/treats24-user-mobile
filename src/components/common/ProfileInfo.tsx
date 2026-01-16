@@ -6,6 +6,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import colors from '../../theme/colors';
@@ -16,6 +17,7 @@ import DOBInput from '../inputs/DOBInput';
 import CountryCodeInput from '../inputs/CountryCodeInput';
 import Col from '../layout/Col';
 import TextHeader from './TextHeader';
+import axiosInstance from '../../api/axios';
 
 const ProfileInfo: React.FC = () => {
   const [selectedGender, setSelectedGender] = useState<string>('');
@@ -24,7 +26,35 @@ const ProfileInfo: React.FC = () => {
     iso: string;
     code: string;
   } | null>(null);
+  const [firstName, setFirstName] = useState<string>('Sudev');
+  const [lastName, setLastName] = useState<string>('Maji');
+  const [email, setEmail] = useState<string>('sudev97gmail.com');
+  const [mobile, setMobile] = useState<string>('7488854000');
   const genderOptions = ['Male', 'Female', 'Other'];
+
+  const handleUpdate = async () => {
+    try {
+      const profileData = {
+        firstName,
+        lastName,
+        email,
+        mobile: `${countryCode?.code || ''}${mobile}`,
+        dob,
+        gender: selectedGender,
+      };
+
+      const response = await axiosInstance.put('/api/auth/profile', profileData);
+
+      if (response.status === 200) {
+        Alert.alert('Success', 'Profile updated successfully!');
+      } else {
+        Alert.alert('Error', 'Failed to update profile. Please try again.');
+      }
+    } catch (error) {
+      console.error('Update profile error:', error);
+      Alert.alert('Error', 'An error occurred while updating the profile.');
+    }
+  };
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -49,33 +79,27 @@ const ProfileInfo: React.FC = () => {
             </View>
           </View>
 
-          <TextHeader type="primary">Basic Details</TextHeader>
+          <TextHeader type="labeled" title="Basic Details" />
           <InputField
             label="First Name"
             placeholder="Enter first name"
-            value={'Sudev'}
-            onChangeText={() => {
-              ('');
-            }}
+            value={firstName}
+            onChangeText={setFirstName}
             type="text"
           />
           <InputField
             label="Last Name"
             placeholder="Enter last name"
-            value={'Maji'}
-            onChangeText={() => {
-              ('');
-            }}
+            value={lastName}
+            onChangeText={setLastName}
             type="text"
           />
 
           <InputField
             label="Email"
             placeholder="Enter email"
-            value={'sudev97gmail.com'}
-            onChangeText={() => {
-              ('');
-            }}
+            value={email}
+            onChangeText={setEmail}
             type="email"
           />
           <View style={styles.roww}>
@@ -106,7 +130,7 @@ const ProfileInfo: React.FC = () => {
           <DOBInput label="Date of birth" value={dob} onChange={setDob} />
 
           {/*  */}
-          <TextHeader type="secondary">Gender</TextHeader>
+          <TextHeader type="secondary" title="Gender" />
           <View style={styles.genderContainer}>
             {genderOptions.map(gender => (
               <TouchableOpacity
@@ -131,7 +155,12 @@ const ProfileInfo: React.FC = () => {
         </View>
 
         <View style={{ marginTop: 50 }}>
-          <Button title="Update" variant="filled" onPress={() => ''} />
+          <Button
+            title="Update"
+            variant="filled"
+            onPress={handleUpdate}
+            isPhoneValid={true}
+          />
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

@@ -46,6 +46,7 @@ export type RootStackParamList = {
   RestaurantDetails: { restaurantId: string };
   SnacksItems: { itemType: string };
   TopRestaurants: undefined;
+  NinetyNineStore: undefined;
 
 };
 
@@ -88,6 +89,7 @@ const AppRoutes = () => {
             <Stack.Screen name="SnacksItems" component={Screens.SnacksItems} />
             <Stack.Screen name="TopRestaurants" component={Screens.TopRestaurants} />
             <Stack.Screen name="foodCategories" component={Screens.Categories} />
+            <Stack.Screen name="NinetyNineStore" component={Screens.NinetyNineStore} />
 
             <Stack.Screen name="MainTabs" component={TabNavigator} />
           </Stack.Navigator>

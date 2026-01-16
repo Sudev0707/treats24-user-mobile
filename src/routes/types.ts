@@ -26,6 +26,7 @@ export type RootStackParamList = {
   PaymentSuccess: { selectedPaymentMethod: string };
   PartnerSignUp: { selectedBank?: string };
   BankSelection: undefined;
+  NinetyNineStore: undefined;
   PartnerDashBoard: {
     name: string;
     addressOne: string;

@@ -27,7 +27,7 @@ const CartItem: React.FC<CartItemProps> = ({
       <View style={cartStyle.cartItem}>
         <View style={cartStyle.foodImageBox}>
           <Image
-            resizeMode="contain"
+            resizeMode="cover"
             source={
               item.image ||
               require('../../assets/images/foods/dummy food.png')

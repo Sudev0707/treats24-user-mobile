@@ -23,6 +23,7 @@ const CountryCodeStyle = StyleSheet.create({
     paddingHorizontal: 6,
     zIndex: 10,
     fontWeight: '800',
+    color:colors.brandPrimary
   },
 })
 

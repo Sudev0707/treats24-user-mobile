@@ -80,9 +80,12 @@ export const cartStyle = StyleSheet.create({
     marginRight: 15,
   },
   itemImage: {
-    width: '80%',
-    height: '80%',
     borderRadius: 8,
+    width: '100%',
+    height: '100%',
+    backgroundColor: colors.backgroundLight,
+    borderWidth: 0.6,
+    borderColor: colors.borderLight,
     //
   },
   dummyItemImage: {
@@ -266,9 +269,9 @@ export const cartStyle = StyleSheet.create({
   randomItemContainer: {
     marginRight: 15,
     // alignItems: 'center',
-    overflow:'hidden',
+    overflow: 'hidden',
 
-    // borderWidth: 1,
+    // borderWidth: 0.6,
     // padding:10,
     borderRadius: 10,
     width: 140,
@@ -286,9 +289,17 @@ export const cartStyle = StyleSheet.create({
     backgroundColor: colors.background,
     borderColor: colors.borderLight,
   },
+  foodimage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+    backgroundColor: colors.backgroundLight,
+    borderWidth: 0.6,
+    borderColor: colors.borderLight,
+  },
   randomItemName: {
     fontSize: fonts.size.sm,
-    fontFamily:fonts.family.medium,
+    fontFamily: fonts.family.medium,
     // fontWeight: 'bold',
     marginTop: 5,
     // textAlign: 'center',
@@ -299,15 +310,14 @@ export const cartStyle = StyleSheet.create({
     textAlign: 'center',
   },
   randomItemPrice: {
-
     color: colors.brandPrimary,
-     fontSize: fonts.size.sm,
-    fontFamily:fonts.family.medium,
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.medium,
   },
   randomItemControls: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
     marginTop: 5,
     // borderWidth: 1,
   },

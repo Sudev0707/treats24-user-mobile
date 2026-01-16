@@ -122,8 +122,8 @@ const Cart: React.FC = () => {
 
     // 6️⃣ Grand total (round AFTER summing properly)
     const grandTotal = round2(
-      // round2(itemTotal) + round2(gst) + round2(deliveryCharge) - round2(couponDiscount),
-      round2(itemTotal) + round2(gst) + round2(deliveryCharge),
+      round2(itemTotal) + round2(gst) + round2(deliveryCharge) - round2(couponDiscount),
+      // round2(itemTotal) + round2(gst) + round2(deliveryCharge),
     );
 
     return {

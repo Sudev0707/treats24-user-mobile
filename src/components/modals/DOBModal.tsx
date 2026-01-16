@@ -64,13 +64,14 @@ const DOBModal: React.FC<DOBModalProps> = ({
 
           <View style={styles.buttonContainer}>
             <View style={styles.cancelButton}>
-              <Button title="Cancel" variant="outlined" onPress={onClose} />
+              <Button title="Cancel" variant="outlined" onPress={onClose} isPhoneValid={true} />
             </View>
             <View style={styles.confirmButton}>
               <Button
                 title="Confirm"
                 variant="filled"
                 onPress={handleConfirm}
+                isPhoneValid={true}
               />
             </View>
           </View>

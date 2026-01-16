@@ -30,8 +30,9 @@ export default StyleSheet.create({
     backgroundColor: '#FFF',
     paddingHorizontal: 6,
     zIndex: 10,
-    // color: colors.brandPrimary,
+    color: colors.brandPrimary,
     fontWeight: '800',
+
   },
   staticLabel: {
     fontSize: 14,

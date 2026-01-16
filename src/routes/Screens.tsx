@@ -28,3 +28,4 @@ export {default as HeaderDemo3} from '../screens/HeaderDemo3'
 export {default as HeaderDemo4} from '../screens/HeaderDemo4'
 export {default as Nearby} from '../screens/Nearby'
 export { default as Categories } from '../screens/Categories';
+export { default as NinetyNineStore } from '../screens/NinetyNineStore';
