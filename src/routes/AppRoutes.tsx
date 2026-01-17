@@ -5,6 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as Screens from './Screens';
 import TabNavigator from './TabNavigator';
 import { TabBarProvider } from '../context/TabBarContext';
+import { Address } from '../data/userData';
 
 export type RootStackParamList = {
   SplashBrand: undefined;
@@ -47,6 +48,10 @@ export type RootStackParamList = {
   SnacksItems: { itemType: string };
   TopRestaurants: undefined;
   NinetyNineStore: undefined;
+  AddAddressScreen: {
+    editingAddress?: Address;
+    callbackKey?: string;
+  };
 
 };
 
@@ -90,6 +95,7 @@ const AppRoutes = () => {
             <Stack.Screen name="TopRestaurants" component={Screens.TopRestaurants} />
             <Stack.Screen name="foodCategories" component={Screens.Categories} />
             <Stack.Screen name="NinetyNineStore" component={Screens.NinetyNineStore} />
+            <Stack.Screen name="AddAddressScreen" component={Screens.AddAddressScreen} />
 
             <Stack.Screen name="MainTabs" component={TabNavigator} />
           </Stack.Navigator>

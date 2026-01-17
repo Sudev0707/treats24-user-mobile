@@ -19,7 +19,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import ProfileInfo from '../components/common/ProfileInfo';
 import UserAddress from '../components/common/UserAddress';
 import Orders from '../components/common/Orders';
+import HelpCenter from '../components/common/HelpCenter';
+import Notifications from '../components/common/Notifications';
 import { userData } from '../data/userData';
+import { savedAddress } from '../data/savedAddress';
 import CustomAlert from '../components/common/CustomAlert';
 import auth from '@react-native-firebase/auth';
 
@@ -31,6 +34,8 @@ const Profile: React.FC = () => {
   const [showProfileInfo, setShowProfileInfo] = useState(false);
   const [showUserAddress, setShowUserAddress] = useState(false);
   const [showOrderDetails, setShowOrderDetails] = useState(false);
+  const [showHelpCenter, setShowHelpCenter] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertTitle, setAlertTitle] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
@@ -41,6 +46,19 @@ const Profile: React.FC = () => {
     undefined,
   );
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [editingAddress, setEditingAddress] = useState<any>(null);
+
+  const handleOpenModal = (address?: any) => {
+    setEditingAddress(address);
+    setShowModal(true);
+  };
+
+  const handleSaveAddress = (addressData: any) => {
+    // Handle saving address logic here
+    console.log('Saving address:', addressData);
+    setShowModal(false);
+  };
 
   const handleLogoutPress = () => {
     setAlertTitle('Logout');
@@ -71,12 +89,12 @@ const Profile: React.FC = () => {
       {
         icon: 'notifications',
         label: 'Notifications',
-        onPress: () => console.log('Notifications'),
+        onPress: () => setShowNotifications(true),
       },
       {
         icon: 'help-outline',
         label: 'Help',
-        onPress: () => console.log('Help'),
+        onPress: () => setShowHelpCenter(true),
       },
     ],
     [
@@ -129,6 +147,8 @@ const Profile: React.FC = () => {
             ? 'Saved Address'
             : showOrderDetails
             ? 'Orders'
+            : showHelpCenter
+            ? 'Help Center'
             : 'Profile'
         }
         onBackPress={
@@ -138,10 +158,14 @@ const Profile: React.FC = () => {
             ? () => setShowUserAddress(false)
             : showOrderDetails
             ? () => setShowOrderDetails(false)
+            : showHelpCenter
+            ? () => setShowHelpCenter(false)
+            : showNotifications
+            ? () => setShowNotifications(false)
             : undefined
         }
         rightMenu={
-          showProfileInfo || showUserAddress || showOrderDetails ? (
+          showProfileInfo || showUserAddress || showOrderDetails || showHelpCenter || showNotifications ? (
             <></>
           ) : (
             <TouchableOpacity style={{ padding: 8 }}>
@@ -157,9 +181,13 @@ const Profile: React.FC = () => {
       {showProfileInfo ? (
         <ProfileInfo />
       ) : showUserAddress ? (
-        <UserAddress />
+        <UserAddress  />
       ) : showOrderDetails ? (
         <Orders />
+      ) : showHelpCenter ? (
+        <HelpCenter />
+      ) : showNotifications ? (
+        <Notifications />
       ) : (
         <ScrollView
           contentContainerStyle={styles.scrollContent}
@@ -225,6 +253,7 @@ const Profile: React.FC = () => {
         onCancel={alertOnCancel}
         onClose={() => setAlertVisible(false)}
       />
+   
     </SafeAreaView>
   );
 };
