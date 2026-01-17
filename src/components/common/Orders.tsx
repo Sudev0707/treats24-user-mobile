@@ -11,9 +11,18 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import styles from '../../styles/components/OrderDetailsStyle';
 import { OrderData, OrderStatus } from '../../data/ordrr.types';
 import { RootStackParamList } from '../../routes/types';
+import OrderItem from './OrderItem';
+
+// Dummy restaurant names mapping
+const restaurantNames: { [key: string]: string } = {
+  'res_12': 'Spice Garden',
+  'res_13': 'Tandoori Delight',
+  'res_14': 'Seafood Paradise',
+  'res_15': 'Veg Haven',
+};
 
 // Dummy orders data
-const dummyOrders: OrderData[] = [
+const initialOrders: OrderData[] = [
   {
     id: 'ord_1001',
     userId: 'usr_001',
@@ -153,42 +162,55 @@ type TabType = 'Active' | 'Completed' | 'Cancelled';
 const Orders: React.FC = ({}) => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [activeTab, setActiveTab] = useState<TabType>('Active');
+  const [orders, setOrders] = useState<OrderData[]>(initialOrders);
 
   const getOrdersForTab = (tab: TabType): OrderData[] => {
     switch (tab) {
       case 'Active':
-        return dummyOrders.filter(order =>
+        return orders.filter(order =>
           ['PLACED', 'CONFIRMED', 'PREPARING', 'OUT_FOR_DELIVERY'].includes(
             order.status,
           ),
         );
       case 'Completed':
-        return dummyOrders.filter(order => order.status === 'DELIVERED');
+        return orders.filter(order => order.status === 'DELIVERED');
       case 'Cancelled':
-        return dummyOrders.filter(order => order.status === 'CANCELLED');
+        return orders.filter(order => order.status === 'CANCELLED');
       default:
         return [];
     }
   };
 
-  const renderOrderItem = (order: OrderData) => (
-    <TouchableOpacity
-      onPress={() => navigation.navigate('OrderDetails', { order })}
-      key={order.id}
-      style={styles.orderItem}
-      activeOpacity={0.8}
-    >
-      <Text style={styles.orderId}>Order #{order.id}</Text>
-      <Text style={styles.restaurantId}>Restaurant: {order.restaurantId}</Text>
-      <Text style={styles.status}>Status: {order.status}</Text>
-      <Text style={styles.total}>Total: ₹{order.price.grandTotal}</Text>
-      <Text style={styles.date}>
-        Created: {new Date(order.createdAt).toLocaleDateString()}
-      </Text>
-    </TouchableOpacity>
-  );
+  const getStatusColor = (status: OrderStatus) => {
+    switch (status) {
+      case 'PLACED':
+      case 'CONFIRMED':
+      case 'PREPARING':
+        return '#FFA500'; // Orange
+      case 'OUT_FOR_DELIVERY':
+        return '#FF4500'; // Red-Orange
+      case 'DELIVERED':
+        return '#32CD32'; // Lime Green
+      case 'CANCELLED':
+        return '#DC143C'; // Crimson
+      default:
+        return '#808080'; // Gray
+    }
+  };
 
-  const orders = getOrdersForTab(activeTab);
+  const cancelOrder = (orderId: string) => {
+    setOrders(prevOrders =>
+      prevOrders.map(order =>
+        order.id === orderId
+          ? { ...order, status: 'CANCELLED' as OrderStatus, paymentStatus: 'REFUNDED' as const, updatedAt: new Date().toISOString() }
+          : order
+      )
+    );
+  };
+
+
+
+  const filteredOrders = getOrdersForTab(activeTab);
 
   return (
     <>
@@ -213,11 +235,20 @@ const Orders: React.FC = ({}) => {
             ))}
           </View>
           <View style={styles.userDetailContainer}>
-            {/* {orders.length > 0 ? (
-              orders.map(renderOrderItem)
+            {filteredOrders.length > 0 ? (
+              filteredOrders.map(order => (
+                <OrderItem
+                  key={order.id}
+                  order={order}
+                  navigation={navigation}
+                  getStatusColor={getStatusColor}
+                  restaurantNames={restaurantNames}
+                  onCancelOrder={cancelOrder}
+                />
+              ))
             ) : (
               <Text style={styles.noOrders}>No orders in this category</Text>
-            )} */}
+            )}
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

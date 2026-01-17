@@ -12,16 +12,18 @@ const Deals: React.FC = () => {
   const scrollProps = useScrollToHideTabBar();
 
   return (
-    <>
+    <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
       <StatusBar
-        translucent={false}
-        backgroundColor={colors.background}
+        translucent={true}
+        backgroundColor="transparent"
         barStyle="dark-content"
       />
 
       {/* FIXED HEADER */}
-      <SafeAreaView edges={['top']} style={styles.headerWrapper}>
-        <Header showBackButton={true} title="Deals" />
+      <SafeAreaView edges={['top']}>
+        <View style={styles.headerWrapper}>
+          <Header showBackButton={true} title="Deals" />
+        </View>
       </SafeAreaView>
 
       {/* SCREEN CONTENT */}
@@ -29,21 +31,21 @@ const Deals: React.FC = () => {
         <ScrollView
           {...scrollProps}
           contentContainerStyle={{
+            // flexGrow: 1,
             paddingTop: HEADER_HEIGHT + 12,
             paddingBottom: 24,
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
           showsVerticalScrollIndicator={false}
         >
-          <View style={styles.container}>
-            <Text style={styles.emptyText}>No favorites added yet</Text>
-            <Text style={styles.emptyText}>No favorites added yet</Text>
-            <Text style={styles.emptyText}>No favorites added yet</Text>
-            <Text style={styles.emptyText}>No favorites added yet</Text>
-            <Text style={styles.emptyText}>No favorites added yet</Text>
-          </View>
+          <Text style={styles.emptyTitle}>No deals available</Text>
+          <Text style={styles.emptySubtitle}>
+            Please check back later for exciting offers 🎉
+          </Text>
         </ScrollView>
       </View>
-    </>
+    </View>
   );
 };
 

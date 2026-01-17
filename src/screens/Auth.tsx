@@ -36,7 +36,7 @@ import colors from '../theme/colors';
 import Button from '../components/common/Button';
 const googleIcon = require('../assets/icons/iconsgoogle.png');
 const mailIcon = require('../assets/icons/iconsmail.png');
-const brandLogo = require('../assets/brand/AppIcons/treatsss/3.png');
+const brandLogo = require('../assets/brand/treatsLogo.png');
 
 import { validatePhone } from '../utils/validate';
 import { setConfirmation } from '../services/otpSession';
@@ -167,7 +167,7 @@ const Auth: React.FC = () => {
             <Image
               source={brandLogo}
               resizeMode="contain"
-              style={{ width: 230, height: 230 }}
+              style={{ width: 200, height: 200 }}
             />
             <Text style={styles.appTagline}>Dil se delivery</Text>
           </View>

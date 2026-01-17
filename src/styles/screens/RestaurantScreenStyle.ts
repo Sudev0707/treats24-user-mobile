@@ -149,7 +149,7 @@ export const RestaurantScreenStyle = StyleSheet.create({
     borderRadius: 12,
     width: '47%',
     // margin: 2,
-    marginBottom: 10,
+    // marginBottom: 10,
     padding: 1,
     elevation: 2,
     shadowColor: '#0000009a',
@@ -165,10 +165,12 @@ export const RestaurantScreenStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 4,
+    borderWidth:0.4,
+    borderColor:colors.borderLight
   },
   foodimage: {
-    width: '80%',
-    height: '80%',
+    width: '100%',
+    height: '100%',
     borderRadius: 10,
     backgroundColor: colors.backgroundLight,
   },
@@ -221,10 +223,11 @@ export const RestaurantScreenStyle = StyleSheet.create({
     color: '#000',
   },
   actionBox: {
-    width: 90,
-    height: 32,
+    // width: 50,
+    height: 30,
     borderRadius: 6,
     overflow: 'hidden',
+    
   },
 
   addBtn: {
@@ -234,7 +237,9 @@ export const RestaurantScreenStyle = StyleSheet.create({
     borderColor: colors.brandPrimary,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: colors.brandPrimary,
+    padding:5,
+    width:35
   },
 
   addText: {
@@ -252,23 +257,39 @@ export const RestaurantScreenStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.brandPrimary,
     backgroundColor: colors.brandPrimary,
+    borderRadius: 6,
+    width:78,
+    paddingHorizontal:4,
   },
 
+  qtyBtnTouchable: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding:5,
+    // paddingHorizontal:7,
+  },
   qtyBtn: {
-    width: 28,
-    textAlign: 'center',
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: '700',
+    width: 10,
+    height: 10,
+    tintColor: '#fff',
   },
 
-  qty: {
+  qtyText: {
+    flex: 1,
+    textAlign: 'center',
+    alignItems:'center',
     color: '#fff',
-    fontSize: 14,
-    fontWeight: '700',
+    fontSize: fonts.size.md,
+    fontFamily:fonts.family.regular,
+    // borderWidth:1,
+    paddingTop:4,
+    paddingHorizontal:6
   },
   countText: {
     color: colors.brandPrimary,
+      fontSize: fonts.size.md,
+    fontFamily:fonts.family.regular,
   },
   contentContainer: {
     backgroundColor: colors.bgOffWhiteSecondary,
@@ -310,6 +331,11 @@ export const RestaurantScreenStyle = StyleSheet.create({
   favoriteIcon: {
     fontSize: 16,
   },
+  addIcon: {
+    width: 15,
+    height: 15,
+    // tintColor: colors.brandPrimary,
+  },
 });
 
 export const RestaurantHeaderStyle = StyleSheet.create({
@@ -340,13 +366,13 @@ export const RestaurantHeaderStyle = StyleSheet.create({
     backgroundColor: colors.background,
   },
   leftText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#000',
+    fontSize:fonts.size.sm,
+    fontFamily:fonts.family.semibold,
+    color: colors.darkBlack,
   },
   placeText: {
-    fontSize: 12,
-    fontWeight: 'bold',
+    fontSize:fonts.size.sm,
+     fontFamily:fonts.family.regular,
     color: '#000',
   },
   headerContainer: {

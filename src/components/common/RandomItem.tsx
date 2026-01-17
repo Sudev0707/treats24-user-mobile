@@ -26,8 +26,8 @@ const RandomItem: React.FC<RandomItemProps> = ({
                 : item.image
               : require('../../assets/images/foods/dummy food.png')
           }
-          style={{ width: '60%', height: '60%' }}
-          resizeMode="contain"
+          style={cartStyle.foodimage}
+          resizeMode="cover"
         />
       </View>
       <View style={{paddingHorizontal:5, paddingBottom:5}} >

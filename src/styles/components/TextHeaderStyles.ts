@@ -22,11 +22,12 @@ const TextHeaderStyles = StyleSheet.create({
     marginBottom: 8,
   },
   labeled: {
-    fontSize: 14,
-    color: colors.brandPrimary,
+    fontSize: fonts.size.md,
+    color: colors.darkBlack,
     // marginBottom: 6,
+    marginBottom: 12,
     paddingLeft: 4,
-    fontWeight: '800',
+    fontFamily: fonts.family.medium,
     // borderWidth: 1.5,
   },
 });

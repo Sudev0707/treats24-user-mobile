@@ -17,6 +17,7 @@ import {
   Dimensions,
   Platform,
   TextInput,
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../theme/colors';
@@ -27,7 +28,7 @@ import {
   RestaurantScreenStyle,
 } from '../styles/screens/RestaurantScreenStyle';
 import LinearGradient from 'react-native-linear-gradient';
-import { featuredRestaurants } from '../data/foodData';
+import { restaurantsData } from '../data/foodData';
 import FoodDetailsModal from '../components/modals/FoodDetailsModal';
 //
 import { addToCart, removeFromCart } from '../store/slices/cartSlice.ts';
@@ -45,6 +46,7 @@ import FoodCard from '../components/food/FoodCard';
 import FilterChip from '../components/common/FilterChip';
 import RestaurantDetailsHeader from '../components/common/RestaurantDetailsHeader.tsx';
 import { cartStyle } from '../styles/screens/CartStyles.ts';
+import { restaurantDetailsStyle } from '../styles/screens/RestaurantDetailsStyles.ts';
 import fonts from '../theme/fonts.ts';
 
 interface RestaurantItem {
@@ -125,6 +127,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   );
   const [headerBackgroundColor, setHeaderBackgroundColor] =
     useState('transparent');
+  const [showDetails, setShowDetails] = useState(false);
 
   //   const headerBackgroundColor = scrollY.interpolate({
   //   inputRange: [0, 220],
@@ -144,7 +147,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   const imageHeight = height * 0.35 + 20;
 
   // ==================
-  const restaurant = featuredRestaurants.find(r => r.id === restaurantId);
+  const restaurant = restaurantsData.find(r => r.id === restaurantId);
 
   // Sync foodCounts with cart items and set default expanded categories
   useEffect(() => {
@@ -185,6 +188,9 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
     // interpolate background color
     const bgColor = interpolateColor(scrollYValue);
     setHeaderBackgroundColor(bgColor);
+
+    // Show details when scrolled past 50
+    setShowDetails(scrollYValue > 50);
 
     if (scrollYValue > 200) {
       setBarStyle('dark-content');
@@ -319,6 +325,31 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
     }));
   };
 
+  const filterFoods = (foods: any[], activeChips: { [key: string]: boolean }) => {
+    const activeFilters = Object.keys(activeChips).filter(key => activeChips[key] && key !== 'Filters');
+    if (activeFilters.length === 0) return foods;
+    return foods.filter(food => {
+      return activeFilters.every(filter => {
+        switch (filter) {
+          case 'under 99':
+            return food.price < 99;
+          case 'Veg':
+            return food.isVeg;
+          case 'Non veg':
+            return !food.isVeg;
+          case 'Spicy':
+            return food.name.toLowerCase().includes('spicy') ||
+                   food.name.toLowerCase().includes('chilli') ||
+                   food.name.toLowerCase().includes('hot');
+          case 'Best Seller':
+            return food.rating >= 4.5;
+          default:
+            return true;
+        }
+      });
+    });
+  };
+
   //
 
   if (!restaurant) {
@@ -332,6 +363,8 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
   const handleBackPress = () => {
     navigation.goBack();
   };
+
+
 
   return (
     <>
@@ -348,6 +381,7 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
             restaurantName={restaurant.name}
             restaurant={restaurant}
             backgroundColor={headerBackgroundColor}
+            showDetails={showDetails}
           />
         </View>
       </SafeAreaView>
@@ -472,28 +506,12 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
               {restaurant.foodCategories.map(category => {
                 const isExpanded = expandedCategories[category.id] || false;
                 return (
-                  <View key={category.id} style={{ paddingHorizontal: 16 }}>
+                  <View key={category.id} style={restaurantDetailsStyle.categoryContainer}>
                     <TouchableOpacity
-                      style={{
-                        paddingVertical: 16,
-                        paddingHorizontal: 5,
-                        backgroundColor: colors.background,
-                        borderBottomWidth: 1,
-                        borderBottomColor: colors.borderLight,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        borderRadius: 10,
-                      }}
+                      style={restaurantDetailsStyle.categoryHeader}
                       onPress={() => toggleCategory(category.id)}
                     >
-                      <Text
-                        style={{
-                          fontSize: fonts.size.md,
-                          fontFamily:fonts.family.medium,
-                          color: colors.textPrimary,
-                        }}
-                      >
+                      <Text style={restaurantDetailsStyle.categoryTitle}>
                         {category.title}
                       </Text>
                       <Icon
@@ -507,15 +525,8 @@ const RestaurantDetailsScreen: React.FC<Props> = ({ route }) => {
                       />
                     </TouchableOpacity>
                     {isExpanded && (
-                      <View
-                        style={{
-                          paddingVertical: 10,
-                          flexDirection: 'row',
-                          flexWrap: 'wrap',
-                          justifyContent: 'space-around',
-                        }}
-                      >
-                        {category.items.map(food => {
+                      <View style={restaurantDetailsStyle.expandedCategoryContent}>
+                        {filterFoods(category.items, activeChips).map(food => {
                           const quantity = getQuantity(food.id);
                           return (
                             <FoodCard

@@ -39,7 +39,11 @@ const FoodCard: React.FC<FoodCardProps> = ({
   onPress,
 }) => {
   return (
-    <TouchableOpacity style={RestaurantScreenStyle.card} activeOpacity={0.9} onPress={onPress}>
+    <TouchableOpacity
+      style={RestaurantScreenStyle.card}
+      activeOpacity={0.9}
+      onPress={onPress}
+    >
       {/* Favorite Button */}
       <TouchableOpacity
         onPress={onFavorite}
@@ -56,7 +60,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
       {/* Food Image */}
       <View style={RestaurantScreenStyle.foodImageBox}>
         <Image
-          resizeMode="contain"
+          resizeMode="cover"
           source={
             food.image || require('../../assets/images/foodCategory/pizza.png')
           }
@@ -79,7 +83,9 @@ const FoodCard: React.FC<FoodCardProps> = ({
         </View>
 
         {/* Food Name */}
-        <Text numberOfLines={1} style={RestaurantScreenStyle.Foodtitle}>{food.name}</Text>
+        <Text numberOfLines={1} style={RestaurantScreenStyle.Foodtitle}>
+          {food.name}
+        </Text>
 
         {/* Bottom Row */}
         <View style={RestaurantScreenStyle.bottomRow}>
@@ -92,18 +98,36 @@ const FoodCard: React.FC<FoodCardProps> = ({
                 style={RestaurantScreenStyle.addBtn}
                 onPress={onAdd}
               >
-                <Text style={RestaurantScreenStyle.addText}>ADD</Text>
+                <Image
+                  source={require('../../assets/icons/add.png')}
+                  style={RestaurantScreenStyle.addIcon}
+                  resizeMode="contain"
+                />
               </TouchableOpacity>
             ) : (
               <View style={RestaurantScreenStyle.qtyBox}>
-                <TouchableOpacity onPress={onDecrement}>
-                  <Text style={RestaurantScreenStyle.qtyBtn}>−</Text>
+                <TouchableOpacity
+                  style={RestaurantScreenStyle.qtyBtnTouchable}
+                  onPress={onDecrement}
+                >
+                  <Image
+                    source={require('../../assets/icons/minimize-sign.png')}
+                    style={RestaurantScreenStyle.qtyBtn}
+                    resizeMode="contain"
+                  />
                 </TouchableOpacity>
 
-                <Text style={RestaurantScreenStyle.qty}>{quantity}</Text>
+                <Text style={RestaurantScreenStyle.qtyText}>{quantity}</Text>
 
-                <TouchableOpacity onPress={onAdd}>
-                  <Text style={RestaurantScreenStyle.qtyBtn}>+</Text>
+                <TouchableOpacity
+                  style={RestaurantScreenStyle.qtyBtnTouchable}
+                  onPress={onAdd}
+                >
+                  <Image
+                    source={require('../../assets/icons/add.png')}
+                    style={RestaurantScreenStyle.qtyBtn}
+                    resizeMode="contain"
+                  />
                 </TouchableOpacity>
               </View>
             )}

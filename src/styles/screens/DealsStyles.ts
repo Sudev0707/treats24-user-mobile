@@ -13,11 +13,6 @@ export default StyleSheet.create({
 
   /* FIXED HEADER */
   headerWrapper: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 100,
     backgroundColor: colors.background,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
@@ -39,10 +34,17 @@ export default StyleSheet.create({
     fontWeight: '700',
     color: colors.textPrimary,
   },
-  emptyText: {
-    // textAlign: 'center',
-    // marginTop: 40,
-    // color: '#777',
-    // fontSize: 16,
+  emptyTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: colors.textPrimary,
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  emptySubtitle: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    lineHeight: 20,
   },
 });

@@ -1,4 +1,3 @@
-
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -11,25 +10,60 @@ export type RootStackParamList = {
   Auth: undefined;
   OTPVerification: { phone: string };
   EmailOTPVerification: { email: string };
+  SetLocation: undefined;
+
+  UserPartnerSelection: undefined;
+  PartnerSignIn: undefined;
+  PartnerSignUp: { selectedBank?: string };
+  BankSelection: undefined;
+  PartnerDashBoard: {
+    name: string;
+    addressOne: string;
+    addressTwo: string;
+    city: string;
+    district: string;
+    pinCode: string;
+    email: string;
+    contact: string;
+    businessLicense: string;
+    hasFssaiLicense: boolean | null;
+    fssaiLicenseNumber: string;
+    bankName: string;
+    ifscCode: string;
+    accountNo: string;
+    accountHolder: string;
+  };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const AuthRoutes: React.FC = () => {
+interface AuthRoutesProps {
+  isLoggedOut?: boolean;
+}
+
+const AuthRoutes: React.FC<AuthRoutesProps> = ({ isLoggedOut = false }) => {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="SplashBrand"
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name="SplashBrand" component={Screens.SplashBrand} />
-          <Stack.Screen name="Auth" component={Screens.Auth} />
-          <Stack.Screen name="OTPVerification" component={Screens.OTPVerification} />
-          <Stack.Screen name="EmailOTPVerification" component={Screens.EmailOTPVerification} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <Stack.Navigator
+      initialRouteName={'SplashBrand'}
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="SplashBrand" component={Screens.SplashBrand} />
+      <Stack.Screen name="Auth" component={Screens.Auth} />
+      <Stack.Screen
+        name="OTPVerification"
+        component={Screens.OTPVerification}
+      />
+      <Stack.Screen
+        name="EmailOTPVerification"
+        component={Screens.EmailOTPVerification}
+      />
+      <Stack.Screen
+        name="SetLocation"
+        component={Screens.SetLocation}
+        options={{ presentation: 'modal' }}
+      />
+      {/*  */}
+    </Stack.Navigator>
   );
 };
 

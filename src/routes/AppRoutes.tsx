@@ -5,6 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as Screens from './Screens';
 import TabNavigator from './TabNavigator';
 import { TabBarProvider } from '../context/TabBarContext';
+import { Address } from '../data/userData';
 
 export type RootStackParamList = {
   SplashBrand: undefined;
@@ -46,64 +47,55 @@ export type RootStackParamList = {
   RestaurantDetails: { restaurantId: string };
   SnacksItems: { itemType: string };
   TopRestaurants: undefined;
-
+  NinetyNineStore: undefined;
+  AddAddressScreen: {
+    editingAddress?: Address;
+    callbackKey?: string;
+  };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppRoutes = () => {
   return (
-    <SafeAreaProvider>
-      <TabBarProvider>
-        <NavigationContainer>
-          <Stack.Navigator
-            initialRouteName="SplashBrand"
-            screenOptions={{ headerShown: false }}
-          >
-            <Stack.Screen name="SplashBrand" component={Screens.SplashBrand} />
-            <Stack.Screen name="UserPartnerSelection" component={Screens.UserPartnerSelection} />
-            <Stack.Screen name="PartnerSignIn" component={Screens.PartnerSignIn} />
-            <Stack.Screen name="PartnerSignUp">
-              {(props) => <Screens.PartnerSignUp {...props} />}
-            </Stack.Screen>
-            <Stack.Screen name="BankSelection" component={Screens.BankSelection} />
-            <Stack.Screen name="PartnerDashBoard" component={Screens.PartnerDashBoard} />
-            <Stack.Screen name="Auth" component={Screens.Auth} />
-            <Stack.Screen
-              name="OTPVerification"
-              component={Screens.OTPVerification}
-            />
-            <Stack.Screen
-              name="EmailOTPVerification"
-              component={Screens.EmailOTPVerification}
-            />
-            {/*  */}
-            <Stack.Screen
-              name="SetLocation"
-              component={Screens.SetLocation}
-              options={{ presentation: 'modal' }}
-            />
-            <Stack.Screen name="Nearby" component={Screens.Nearby} />
-            <Stack.Screen name="Favorites" component={Screens.Favorites} />
-            <Stack.Screen name="Deals" component={Screens.Deals} />
-            <Stack.Screen name="Cart" component={Screens.Cart} />
-            <Stack.Screen name="Checkout" component={Screens.Checkout} />
-            <Stack.Screen name="PaymentSuccess" component={Screens.PaymentSuccess} />
-            <Stack.Screen name="Profile" component={Screens.Profile} />
-            <Stack.Screen name="Search" component={Screens.Search} />
-            <Stack.Screen
-              name="RestaurantDetails"
-              component={Screens.RestaurantDetail}
-            />
-            <Stack.Screen name="SnacksItems" component={Screens.SnacksItems} />
-            <Stack.Screen name="TopRestaurants" component={Screens.TopRestaurants} />
-            <Stack.Screen name="foodCategories" component={Screens.Categories} />
+    <TabBarProvider>
+      <Stack.Navigator
+        initialRouteName="MainTabs"
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="Nearby" component={Screens.Nearby} />
+        <Stack.Screen name="Favorites" component={Screens.Favorites} />
+        <Stack.Screen name="Deals" component={Screens.Deals} />
+        <Stack.Screen name="Cart" component={Screens.Cart} />
+        <Stack.Screen name="Checkout" component={Screens.Checkout} />
+        <Stack.Screen
+          name="PaymentSuccess"
+          component={Screens.PaymentSuccess}
+        />
+        <Stack.Screen name="Profile" component={Screens.Profile} />
+        <Stack.Screen name="Search" component={Screens.Search} />
+        <Stack.Screen
+          name="RestaurantDetails"
+          component={Screens.RestaurantDetail}
+        />
+        <Stack.Screen name="SnacksItems" component={Screens.SnacksItems} />
+        <Stack.Screen
+          name="TopRestaurants"
+          component={Screens.TopRestaurants}
+        />
+        <Stack.Screen name="foodCategories" component={Screens.Categories} />
+        <Stack.Screen
+          name="NinetyNineStore"
+          component={Screens.NinetyNineStore}
+        />
+        <Stack.Screen
+          name="AddAddressScreen"
+          component={Screens.AddAddressScreen}
+        />
 
-            <Stack.Screen name="MainTabs" component={TabNavigator} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </TabBarProvider>
-    </SafeAreaProvider>
+        <Stack.Screen name="MainTabs" component={TabNavigator} />
+      </Stack.Navigator>
+    </TabBarProvider>
   );
 };
 

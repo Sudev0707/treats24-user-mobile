@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   FlatList,
   RefreshControl,
+  TextInput,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
@@ -23,6 +24,7 @@ import Header from '../components/common/Header';
 import CartSkeleton from '../components/common/CartSkeleton';
 import CartItem from '../components/common/CartItem';
 import PaymentSummary from '../components/common/PaymentSummary';
+import CouponItem from '../components/common/CouponItem';
 import {
   selectCartItems,
   selectCartTotal,
@@ -94,6 +96,12 @@ const Cart: React.FC = () => {
 
   const round2 = (num: number) => Math.round(num * 100) / 100;
 
+  const [couponCode, setCouponCode] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
+  const [couponDiscount, setCouponDiscount] = useState(0);
+
+
+
   const priceDetails = useMemo(() => {
     // 1️⃣ Total of all cart items
     const itemTotal = round2(
@@ -114,7 +122,8 @@ const Cart: React.FC = () => {
 
     // 6️⃣ Grand total (round AFTER summing properly)
     const grandTotal = round2(
-      round2(itemTotal) + round2(gst) + round2(deliveryCharge),
+      round2(itemTotal) + round2(gst) + round2(deliveryCharge) - round2(couponDiscount),
+      // round2(itemTotal) + round2(gst) + round2(deliveryCharge),
     );
 
     return {
@@ -125,7 +134,7 @@ const Cart: React.FC = () => {
       deliveryCharge,
       grandTotal,
     };
-  }, [cartItems]);
+  }, [cartItems, couponDiscount]);
 
   console.log('itemTotal ', priceDetails.itemTotal);
   console.log('commission ', priceDetails.commission);
@@ -146,6 +155,7 @@ const Cart: React.FC = () => {
   const navigation = useNavigation<CartScreenNavigationProp>();
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+
 
   console.log('cartItems.length', cartItems.length);
 
@@ -198,6 +208,33 @@ const Cart: React.FC = () => {
     setTimeout(() => {
       setRefreshing(false);
     }, 1000); // Adjust delay as needed
+  };
+
+  const handleApplyCoupon = () => {
+    if (!couponCode.trim()) return;
+
+    // Simulate coupon validation (in real app, this would be an API call)
+    const validCoupons = {
+      'SAVE10': 10,
+      'WELCOME20': 20,
+      'FIRST50': 50,
+    };
+
+    const discount = validCoupons[couponCode.toUpperCase() as keyof typeof validCoupons];
+
+    if (discount) {
+      setAppliedCoupon(couponCode.toUpperCase());
+      setCouponDiscount(discount);
+      setCouponCode('');
+    } else {
+      // Handle invalid coupon (could show an alert)
+      console.log('Invalid coupon code');
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    setCouponDiscount(0);
   };
 
   return (
@@ -306,7 +343,87 @@ const Cart: React.FC = () => {
               </View>
             </View>
 
-            <PaymentSummary priceDetails={priceDetails} gstRate={GST_RATE} />
+            <PaymentSummary
+              priceDetails={priceDetails}
+              gstRate={GST_RATE}
+              couponDiscount={couponDiscount}
+            />
+
+            {/* apply coupon fields */}
+            <View style={cartStyle.couponContainer}>
+              <Text style={cartStyle.couponTitle}>Have a coupon?</Text>
+
+              {appliedCoupon ? (
+                <View style={cartStyle.appliedCouponContainer}>
+                  <View style={cartStyle.appliedCoupon}>
+                    <Text style={cartStyle.appliedCouponText}>
+                      🎉 {appliedCoupon} Applied
+                    </Text>
+                    <TouchableOpacity
+                      onPress={handleRemoveCoupon}
+                      style={cartStyle.removeCouponBtn}
+                    >
+                      <Text style={cartStyle.removeCouponText}>✕</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <Text style={cartStyle.discountText}>
+                    You saved ₹{couponDiscount} on this order!
+                  </Text>
+                </View>
+              ) : (
+                <View style={cartStyle.couponInputContainer}>
+                  <TextInput
+                    style={cartStyle.couponInput}
+                    placeholder="Enter coupon code"
+                    placeholderTextColor={colors.textSecondary}
+                    value={couponCode}
+                    onChangeText={setCouponCode}
+                    autoCapitalize="characters"
+                    maxLength={20}
+                  />
+                  <TouchableOpacity
+                    style={[
+                      cartStyle.applyCouponBtn,
+                      !couponCode.trim() && cartStyle.applyCouponBtnDisabled,
+                    ]}
+                    onPress={handleApplyCoupon}
+                    disabled={!couponCode.trim()}
+                  >
+                    <Text
+                      style={[
+                        cartStyle.applyCouponBtnText,
+                        !couponCode.trim() && cartStyle.applyCouponBtnTextDisabled,
+                      ]}
+                    >
+                      Apply
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+
+              <View style={cartStyle.availableCoupons}>
+                <Text style={cartStyle.availableCouponsTitle}>Available Coupons</Text>
+                <View style={cartStyle.couponList}>
+                  <CouponItem
+                    code="SAVE10"
+                    description="Save ₹10 on orders above ₹200"
+                    onPress={() => setCouponCode('SAVE10')}
+                  />
+                  <CouponItem
+                    code="WELCOME20"
+                    description="Save ₹20 on first order"
+                    onPress={() => setCouponCode('WELCOME20')}
+                  />
+                  <CouponItem
+                    code="FIRST50"
+                    description="Save ₹50 on orders above ₹500"
+                    onPress={() => setCouponCode('FIRST50')}
+                  />
+                </View>
+              </View>
+            </View>
+
+
           </ScrollView>
         )}
         {cartItems.length > 0 && (

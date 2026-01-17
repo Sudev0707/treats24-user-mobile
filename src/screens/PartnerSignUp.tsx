@@ -7,12 +7,14 @@ import {
   Alert,
   ScrollView,
   KeyboardAvoidingView,
+  StatusBar,
 } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from '../styles/screens/PartnerSignUpStyles';
 import type { RootStackParamList } from '../routes/types';
 import { validateInput } from '../utils/validation';
+import colors from '../theme/colors';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'PartnerSignUp'>;
 
@@ -172,8 +174,8 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
 
   const handleNext = () => {
 
-     setCurrentStep(2);
-     return
+    //  setCurrentStep(2);
+    //  return
 
 
     const isNameValid = validateName(name);
@@ -210,31 +212,31 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
   };
 
   const handleSignUp = () => {
-     navigation.navigate('PartnerDashBoard', {
-      name,
-      addressOne,
-      addressTwo,
-      city,
-      district,
-      pinCode,
-      email,
-      contact,
-      businessLicense,
-      hasFssaiLicense,
-      fssaiLicenseNumber,
-      bankName,
-      ifscCode,
-      accountNo,
-      accountHolder,
-    });
-    return;
+    //  navigation.navigate('PartnerDashBoard', {
+    //   name,
+    //   addressOne,
+    //   addressTwo,
+    //   city,
+    //   district,
+    //   pinCode,
+    //   email,
+    //   contact,
+    //   businessLicense,
+    //   hasFssaiLicense,
+    //   fssaiLicenseNumber,
+    //   bankName,
+    //   ifscCode,
+    //   accountNo,
+    //   accountHolder,
+    // });
+    // return;
 
     
-    const isBusinessLicenseValid = validateBusinessLicense(businessLicense);
-    const isBankNameValid = validateBankName(bankName);
-    const isIfscCodeValid = validateIfscCode(ifscCode);
-    const isAccountNoValid = validateAccountNo(accountNo);
-    const isAccountHolderValid = validateAccountHolder(accountHolder);
+    // const isBusinessLicenseValid = validateBusinessLicense(businessLicense);
+    // const isBankNameValid = validateBankName(bankName);
+    // const isIfscCodeValid = validateIfscCode(ifscCode);
+    // const isAccountNoValid = validateAccountNo(accountNo);
+    // const isAccountHolderValid = validateAccountHolder(accountHolder);
 
     if (hasFssaiLicense === true) {
       const isFssaiLicenseNumberValid = validateFssaiLicenseNumber(fssaiLicenseNumber);
@@ -244,18 +246,18 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
       }
     }
 
-    if (
-      !isBusinessLicenseValid ||
-      !isBankNameValid ||
-      !isIfscCodeValid ||
-      !isAccountNoValid ||
-      !isAccountHolderValid
-    ) {
-      // Alert.alert('Error', 'Please correct the errors in the form');
-      return;
-    }
+    // if (
+    //   !isBusinessLicenseValid ||
+    //   !isBankNameValid ||
+    //   !isIfscCodeValid ||
+    //   !isAccountNoValid ||
+    //   !isAccountHolderValid
+    // ) {
+    //   return;
+    // }
+
     // TODO: Implement sign up logic
-    Alert.alert('Success', 'Sign up successful');
+    // Alert.alert('Success', 'Sign up successful');
     navigation.navigate('PartnerDashBoard', {
       name,
       addressOne,
@@ -276,9 +278,10 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container,{backgroundColor: colors.background,}]} >
+      <StatusBar barStyle="dark-content"  backgroundColor={colors.background} />
       {currentStep === 2 && (
-        <View style={styles.header}>
+        <View style={[styles.header,{backgroundColor:colors.background}]}>
           <TouchableOpacity
             style={styles.backButton}
             onPress={() => setCurrentStep(1)}
@@ -288,7 +291,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
         </View>
       )}
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <ScrollView contentContainerStyle={[styles.scrollContainer,{backgroundColor: colors.bgOffWhiteSecondary} ]}>
         <View style={styles.innerContainer}>
           <Text style={styles.title}>Partner Sign Up</Text>
           {currentStep === 1 ? (
@@ -297,6 +300,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Restaurant Name"
+                placeholderTextColor="#999"
                 value={name}
                 onChangeText={setName}
                 onBlur={() => validateName(name)}
@@ -307,6 +311,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Address Line 1"
+                placeholderTextColor="#999"
                 value={addressOne}
                 onChangeText={setAddressOne}
                 onBlur={() => validateAddressOne(addressOne)}
@@ -317,6 +322,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Address Line 2"
+                placeholderTextColor="#999"
                 value={addressTwo}
                 onChangeText={setAddressTwo}
                 onBlur={() => validateAddressTwo(addressTwo)}
@@ -327,6 +333,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="City"
+                placeholderTextColor="#999"
                 value={city}
                 onChangeText={setCity}
                 onBlur={() => validateCity(city)}
@@ -337,6 +344,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="District"
+                placeholderTextColor="#999"
                 value={district}
                 onChangeText={setDistrict}
                 onBlur={() => validateDistrict(district)}
@@ -347,6 +355,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Pin Code"
+                placeholderTextColor="#999"
                 value={pinCode}
                 onChangeText={setPinCode}
                 onBlur={() => validatePinCode(pinCode)}
@@ -357,6 +366,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Email"
+                placeholderTextColor="#999"
                 value={email}
                 onChangeText={setEmail}
                 onBlur={() => validateEmail(email)}
@@ -368,16 +378,19 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Contact Number"
+                placeholderTextColor="#999"
                 value={contact}
                 onChangeText={setContact}
                 onBlur={() => validateContact(contact)}
                 keyboardType="phone-pad"
+                maxLength={10}
               />
               {contactError ? <Text style={styles.errorText}>{contactError}</Text> : null}
               <Text style={styles.label}>Password</Text>
               <TextInput
                 style={styles.input}
                 placeholder="Password"
+                placeholderTextColor="#999"
                 value={password}
                 onChangeText={setPassword}
                 onBlur={() => validatePassword(password)}
@@ -388,6 +401,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Confirm Password"
+                placeholderTextColor="#999"
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
                 onBlur={() => validateConfirmPassword(confirmPassword)}
@@ -422,6 +436,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="GST Number"
+                placeholderTextColor="#999"
                 value={businessLicense}
                 onChangeText={setBusinessLicense}
                 onBlur={() => validateBusinessLicense(businessLicense)}
@@ -456,6 +471,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
                     <TextInput
                       style={styles.input}
                       placeholder="FSSAI License Number"
+                      placeholderTextColor="#999"
                       value={fssaiLicenseNumber}
                       onChangeText={setFssaiLicenseNumber}
                       onBlur={() => validateFssaiLicenseNumber(fssaiLicenseNumber)}
@@ -467,7 +483,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
                 {hasFssaiLicense === false && (
                   <TouchableOpacity style={styles.link}>
                     <Text style={styles.linkText}>
-                      Click here to apply for FSSAI License
+                      Click here Terms & Conditions
                     </Text>
                   </TouchableOpacity>
                 )}
@@ -495,6 +511,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="IFSC Code"
+                placeholderTextColor="#999"
                 value={ifscCode}
                 onChangeText={setIfscCode}
                 onBlur={() => validateIfscCode(ifscCode)}
@@ -505,6 +522,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Account Number"
+                placeholderTextColor="#999"
                 value={accountNo}
                 onChangeText={setAccountNo}
                 onBlur={() => validateAccountNo(accountNo)}
@@ -515,6 +533,7 @@ const PartnerSignUp: React.FC<Props> = ({ navigation, route }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Account Holder Name"
+                placeholderTextColor="#999"
                 value={accountHolder}
                 onChangeText={setAccountHolder}
                 onBlur={() => validateAccountHolder(accountHolder)}

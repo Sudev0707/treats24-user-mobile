@@ -9,9 +9,10 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../routes/types';
-import { featuredRestaurants } from '../data/foodData';
+import { restaurantsData } from '../data/foodData';
 import Header from '../components/common/Header';
 import SectionHeader from '../components/common/SectionHeader';
+import FoodCard from '../components/food/FoodCard';
 import styles from '../styles/screens/SnacksItemsStyles';
 
 type Props = {
@@ -31,7 +32,7 @@ const SnacksItems: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
 
   // Collect all snack items from all restaurants
-  const allSnacks: SnackItem[] = featuredRestaurants
+  const allSnacks: SnackItem[] = restaurantsData
     .flatMap(restaurant =>
       restaurant.foodCategories
         .filter(category => category.type === 'snacks')
@@ -46,21 +47,14 @@ const SnacksItems: React.FC<Props> = ({ route }) => {
     }));
 
   const renderSnackItem = ({ item }: { item: SnackItem }) => (
-    <TouchableOpacity style={styles.snackCard} activeOpacity={0.6}>
-      <View style={item.isVeg ? styles.vegIndicator : styles.nonVegIndicator}>
-        <Text style={styles.indicatorText}>
-          {item.isVeg ? 'VEG' : 'NON-VEG'}
-        </Text>
-      </View>
-      <Text style={styles.snackName} numberOfLines={2}>
-        {item.name}
-      </Text>
-      <Text style={styles.snackCategory}>
-        {item.isVeg ? 'Vegetarian' : 'Non-Vegetarian'}
-      </Text>
-      <Text style={styles.snackPrice}>₹{item.price}</Text>
-      <Text style={styles.snackRating}>⭐ {item.rating}</Text>
-    </TouchableOpacity>
+    <FoodCard
+      food={item}
+      quantity={0}
+      onAdd={() => {}}
+      onDecrement={() => {}}
+      onFavorite={() => {}}
+      isFavorite={false}
+    />
   );
 
   return (
@@ -78,8 +72,9 @@ const SnacksItems: React.FC<Props> = ({ route }) => {
                 data={allSnacks}
                 renderItem={renderSnackItem}
                 keyExtractor={item => item.id}
-                horizontal
-                showsHorizontalScrollIndicator={false}
+                numColumns={2}
+                columnWrapperStyle={styles.columnWrapper}
+                showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.listContainer}
               />
             ) : (

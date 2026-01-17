@@ -1,12 +1,16 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../theme/colors';
+import fonts from '../../theme/fonts';
 
 export const styles = StyleSheet.create({
   scrollContainer: {
-    flexGrow: 1,
+    // flexGrow: 1,
+    //  backgroundColor: colors.bgOffWhiteSecondary,
   },
   container: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    // backgroundColor: colors.background,
+     backgroundColor: colors.bgOffWhiteSecondary,
   },
   header: {
     flexDirection: 'row',
@@ -15,18 +19,20 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 40,
     paddingBottom: 10,
+    backgroundColor:colors.brandPrimary
   },
   headerLeft: {
     flex: 1,
   },
   restaurantName: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
+    fontFamily:fonts.family.medium,
+    color: colors.darkBlack,
   },
   locationText: {
-    fontSize: 14,
-    color: '#CBD5E1',
+    fontSize: fonts.size.md,
+    color: colors.darkBlack,
+    fontFamily:fonts.family.regular
   },
   notificationButton: {
     position: 'relative',
@@ -39,7 +45,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     top: -5,
     right: -5,
-    backgroundColor: '#F97316',
+    backgroundColor: '#ffffff',
     borderRadius: 10,
     width: 20,
     height: 20,
@@ -47,9 +53,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   badgeText: {
-    color: '#FFFFFF',
+    color: '#ff0000',
     fontSize: 12,
-    fontWeight: 'bold',
+    fontFamily:fonts.family.regular
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -62,25 +68,27 @@ export const styles = StyleSheet.create({
   innerContainer: {
     // alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 40,
+    paddingBottom: 40,
+    // borderWidth: 1
   },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#F97316',
+    color: colors.brandPrimary,
     marginBottom: 40,
   },
   input: {
     width: '100%',
     height: 50,
-    backgroundColor: '#1E293B',
+    backgroundColor: colors.bgInput,
     borderRadius: 8,
     paddingHorizontal: 15,
     marginBottom: 15,
-    color: '#FFFFFF',
+    color: colors.darkBlack,
+    fontFamily:fonts.family.regular
   },
   button: {
-    backgroundColor: '#F97316',
+    backgroundColor: colors.brandPrimary,
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 8,
@@ -106,9 +114,9 @@ export const styles = StyleSheet.create({
   label: {
     alignSelf: 'flex-start',
     fontSize: 16,
-    color: '#FFFFFF',
+    color: colors.darkBlack,
     marginBottom: 5,
-    fontWeight: '500',
+    fontFamily:fonts.family.regular
   },
   checkboxContainer: {
     flexDirection: 'row',
@@ -119,14 +127,14 @@ export const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderWidth: 2,
-    borderColor: '#F97316',
+    borderColor: colors.brandPrimary,
     borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 10,
   },
   checkboxChecked: {
-    backgroundColor: '#F97316',
+    backgroundColor: colors.brandPrimary,
   },
   checkmark: {
     color: '#FFFFFF',
@@ -134,8 +142,9 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   checkboxText: {
-    color: '#FFFFFF',
-    fontSize: 16,
+    color: colors.darkBlack,
+    fontSize: fonts.size.md,
+     fontFamily:fonts.family.regular
   },
   fssaiContainer: {
     marginBottom: 20,
@@ -145,7 +154,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   fssaiButton: {
-    backgroundColor: '#1E293B',
+   backgroundColor: colors.brandPrimary,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
@@ -162,44 +171,57 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
   linkText: {
-    color: '#F97316',
-    fontSize: 16,
+    color: colors.brandPrimary,
+    fontSize: fonts.size.md,
     textDecorationLine: 'underline',
+    fontFamily:fonts.family.regular
   },
   bankSelectionInput: {
     width: '100%',
     height: 50,
-    backgroundColor: '#1E293B',
+    backgroundColor: colors.bgInput,
     borderRadius: 8,
     paddingHorizontal: 15,
     marginBottom: 15,
-    color: '#FFFFFF',
+    color: colors.darkBlack,
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
   bankSelectionText: {
-    color: '#FFFFFF',
+    color: colors.darkBlack,
+     fontFamily:fonts.family.regular
   },
   bankSelectionTextPlaceholder: {
     color: '#999',
+    fontFamily:fonts.family.regular
   },
   errorText: {
-    color: '#FF6B6B',
-    fontSize: 12,
-    marginTop: 5,
+    color: '#ff0000',
+    fontSize: fonts.size.sm,
+    marginTop: 0,
     marginBottom: 10,
+    fontFamily:fonts.family.regular
   },
   subtitle: {
     fontSize: 18,
-    color: '#FFFFFF',
+    color: colors.darkBlack,
     marginBottom: 30,
     textAlign: 'center',
+     fontFamily:fonts.family.regular,
   },
   detailSection: {
-    backgroundColor: '#1E293B',
+    backgroundColor: colors.background,
     borderRadius: 12,
-    padding: 20,
+    // padding: 20,
     marginBottom: 20,
+    elevation:2,
+    overflow:'hidden',
+    borderWidth:1,
+    borderColor:colors.borderLight
+
+  },
+  innerDetailSection:{
+ padding: 20,
   },
   sectionTitle: {
     fontSize: 20,
@@ -211,20 +233,27 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 10,
     flexWrap: 'wrap',
   },
   detailLabel: {
-    fontSize: 16,
-    color: '#CBD5E1',
-    fontWeight: '500',
+    fontSize: fonts.size.md,
+    color: colors.darkBlack,
+    fontFamily:fonts.family.regular,
     flex: 1,
   },
   detailValue: {
-    fontSize: 16,
-    color: '#FFFFFF',
-    fontWeight: '600',
+    fontSize: fonts.size.md,
+    color: colors.textSecondary,
+    fontFamily:fonts.family.regular,
     flex: 2,
     textAlign: 'right',
   },
+  reviewText:{
+    backgroundColor:colors.brandPrimarySoft,
+    padding:6,
+    color:colors.textSecondary,
+    fontFamily:fonts.family.regular,
+    fontSize:fonts.size.sm
+  }
 });

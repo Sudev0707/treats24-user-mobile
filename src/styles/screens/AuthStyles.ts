@@ -65,7 +65,7 @@ const AuthStyles = StyleSheet.create({
     fontFamily: fonts.family.bold
   },  
   appTagline: {
-    marginTop: 4, 
+    // marginTop: 4, 
     fontSize: fonts.size.md,
     // fontWeight: fonts.weight.medium,
     color: colors.textOnBrand,

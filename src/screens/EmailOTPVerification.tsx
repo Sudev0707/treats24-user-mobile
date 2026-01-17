@@ -83,7 +83,7 @@ const EmailOTPVerification: React.FC = () => {
         // ✅ Login success → go to app
         navigation.reset({
           index: 0,
-          routes: [{ name: 'MainTabs' as never }],
+          routes: [{ name: 'SetLocation' as never }],
         });
       }
     } catch (error) {

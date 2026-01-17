@@ -25,16 +25,16 @@ import { RootStackParamList } from '../routes/types';
 import DashboardHeader from '../components/common/DashboardHeader';
 import BannerSlider from '../components/common/BannerSlider';
 import SectionHeader from '../components/common/SectionHeader';
+import PopularItemCard from '../components/common/PopularItemCard';
 import colors from '../theme/colors';
 import { getCurrentLocationWithAddress } from '../utils/locationService';
 import { useEffect, useRef, useState } from 'react';
-import { featuredRestaurants } from '../data/foodData';
+import { restaurantsData } from '../data/foodData';
 
 import {
   CATEGORIES,
   RESTAURANTS,
   topOffers,
-  topPicks,
 } from '../data/dummyFoodData';
 import { bannerData } from '../data/foodData';
 
@@ -71,7 +71,7 @@ interface RestaurantItem {
   price: string;
   delivery: string;
   isOpen: boolean;
-  image: ImageSourcePropType;
+  image?: ImageSourcePropType;
   foodCategories: {
     id: string;
     title: string;
@@ -113,7 +113,7 @@ const Dashboard: React.FC = () => {
       // Navigate to SnacksItems for special categories
       navigation.navigate('SnacksItems', { itemType: item.name });
     } else if (item.id === '00') {
-      // navigation.navigate(" ");
+      navigation.navigate("NinetyNineStore");
     }
     setSelectedCategory(item.name);
   };
@@ -146,9 +146,28 @@ const Dashboard: React.FC = () => {
 
   //
   // const topRestaurants = useMemo(
-  //   () => featuredRestaurants.slice(0, 5),
-  //   [featuredRestaurants],
+  //   () => restaurantsData.slice(0, 5),
+  //   [restaurantsData],
   // );
+
+  const topPicks = useMemo(
+    () =>
+      restaurantsData
+        // .slice(5) // Exclude the first 5 restaurants used in Top Restaurants
+        .sort((a, b) => b.rating - a.rating)
+        .slice(0, 5)
+        .map((item) => ({
+          id: item.id,
+          title: item.name,
+          image: item.image,
+          rating: item.rating,
+          time: item.time,
+          distance: item.place,
+          offer: item.delivery,
+          restaurantId: item.id,
+        })),
+    [restaurantsData],
+  );
 
   //
 
@@ -274,126 +293,98 @@ const Dashboard: React.FC = () => {
               </View>
             </View>
 
-            <View style={{ marginBottom: 20 }}>
-              {/*  */}
-              <SectionHeader
-                title="Top Restaurants"
-                actionText="View all"
-                onActionPress={() => navigation.navigate('TopRestaurants')}
-              />
-              <FlatList
-                data={featuredRestaurants.slice(0, 5)}
-                keyExtractor={(item, index) => index.toString()}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{
-                  paddingHorizontal: 7,
-                  paddingVertical: 3,
-                }}
-                renderItem={({ item }: { item: RestaurantItem }) => (
-                  <TouchableOpacity
-                    style={styles.restaurantCard}
-                    activeOpacity={0.85}
-                    onPress={() => handleRestaurantPress(item)}
-                  >
-                    <ImageBackground
-                      source={item.image}
-                      style={styles.image}
-                      imageStyle={styles.imageRadius}
-                    >
-                      {/* <View style={styles.extraDark} /> */}
-                      <LinearGradient
-                        colors={[
-                          'rgba(0,0,0,0.0)',
-                          'rgba(0,0,0,0.6)',
-                          'rgba(0,0,0,0.85)',
-                          'rgba(0,0,0,1)',
-                          'rgba(0,0,0,1)',
-                        ]}
-                        locations={[0, 0.35, 0.6, 0.85, 1]}
-                        style={styles.gradient}
-                      >
-                        <View style={styles.row}>
-                          <Text style={styles.title}>{item.name}</Text>
-                          <View style={styles.ratingBox}>
-                            <Text style={styles.ratingTextWhite}>
-                              {item.rating} ★
-                            </Text>
-                          </View>
-                        </View>
-
-                        <View style={styles.row}>
-                          <Text style={styles.placeName}>
-                            Bistupur, Jamshedpur
-                          </Text>
-                          <Text style={styles.distance}>📍 {item.time}</Text>
-                        </View>
-
-                        <View style={styles.distanceRow}></View>
-                      </LinearGradient>
-                    </ImageBackground>
-                  </TouchableOpacity>
-                )}
-              />
-            </View>
-
-            <View style={{ marginBottom: 20 }}>
-              <SectionHeader title="Popular near you" />
-
-              {topPicks.map(item => (
-                <TouchableOpacity
-                  key={item.id}
-                  style={styles.CardContainer}
-                  activeOpacity={4}
-                >
-                  <ImageBackground
-                    source={item.image}
-                    style={styles.smallImage}
-                    imageStyle={styles.smallImageRadius}
-                  >
-                    {/* BOTTOM GRADIENT */}
-                    {/* <LinearGradient
-                    colors={[
-                      'rgba(255, 255, 255, 0)',
-                      'rgba(255, 255, 255, 0.65)',
-                      'rgba(255, 255, 255, 0.9)',
-                      'rgba(255, 255, 255, 1)',
-                    ]}
-                    locations={[0, 0.25, 0.45, 0.75, 1]}
-                    style={styles.smallGradient}
-                  >
-
-                  </LinearGradient> */}
-                  </ImageBackground>
-                  <View style={{ paddingHorizontal: 10, paddingBottom: 10 }}>
-                    <View style={styles.row}>
-                      <Text style={styles.titleText}>{item.title}</Text>
-                      <View style={styles.ratingBox}>
-                        <Text style={styles.ratingTextWhite}>{item.rating} ★</Text>
-                      </View>
-                    </View>
-                    <View style={styles.metaRow}>
-                      <Text style={styles.metaText}>{item.time}</Text>
-                      <Text style={styles.dot}>•</Text>
-                      <Text style={styles.metaText}>{item.distance}</Text>
-                    </View>
-                    <Text style={styles.offerTexttt}>{item.offer}</Text>
-                  </View>
-                </TouchableOpacity>
-              ))}
-            </View>
-
-            <View>
-              <View style={styles.sectionHeaderRow}>
-                <Text style={styles.sectionTitle}>Top Offers</Text>
+            {restaurantsData.length === 0 ? (
+              <View style={{ alignItems: 'center', padding: 20 }}>
+                <Text style={{ fontSize: 18, color: colors.textPrimary }}>
+                  No restaurants available in your location.
+                </Text>
               </View>
+            ) : (
+              <>
+                <View style={{ marginBottom: 20 }}>
+                  {/*  */}
+                  <SectionHeader
+                    title="Top Restaurants"
+                    actionText="View all"
+                    onActionPress={() => navigation.navigate('TopRestaurants')}
+                  />
+                  <FlatList<RestaurantItem>
+                    data={restaurantsData.slice(0, 5)}
+                    keyExtractor={(item) => item.id}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={{
+                      paddingHorizontal: 7,
+                      paddingVertical: 3,
+                    }}
+                    renderItem={({ item }) => (
+                      <TouchableOpacity
+                        style={styles.restaurantCard}
+                        activeOpacity={0.85}
+                        onPress={() => handleRestaurantPress(item)}
+                      >
+                        <ImageBackground
+                          source={item.image}
+                          style={styles.image}
+                          imageStyle={styles.imageRadius}
+                        >
+                          {/* <View style={styles.extraDark} /> */}
+                          <LinearGradient
+                            colors={[
+                              'rgba(0,0,0,0.0)',
+                              'rgba(0,0,0,0.6)',
+                              'rgba(0,0,0,0.85)',
+                              'rgba(0,0,0,1)',
+                              'rgba(0,0,0,1)',
+                            ]}
+                            locations={[0, 0.35, 0.6, 0.85, 1]}
+                            style={styles.gradient}
+                          >
+                            <View style={styles.row}>
+                              <Text style={styles.title}>{item.name}</Text>
+                              <View style={styles.ratingBox}>
+                                <Text style={styles.ratingTextWhite}>
+                                  {item.rating} ★
+                                </Text>
+                              </View>
+                            </View>
 
-              {topOffers.map(item => (
-                <View key={item.id} style={styles.offerCard}>
-                  <Text style={styles.offerText}>{item.offer}</Text>
+                            <View style={styles.row}>
+                              <Text style={styles.placeName}>
+                                Bistupur, Jamshedpur
+                              </Text>
+                              <Text style={styles.distance}>📍 {item.time}</Text>
+                            </View>
+
+                            <View style={styles.distanceRow}></View>
+                          </LinearGradient>
+                        </ImageBackground>
+                      </TouchableOpacity>
+                    )}
+                  />
                 </View>
-              ))}
-            </View>
+
+                <View style={{ marginBottom: 20 }}>
+                  <SectionHeader title="Popular near you" />
+
+                  {topPicks.map(item => (
+                    <PopularItemCard key={item.id} item={item} />
+                  ))}
+                </View>
+
+                <View>
+                  <View style={styles.sectionHeaderRow}>
+                    <Text style={styles.sectionTitle}>Top Offers</Text>
+                  </View>
+
+                  {topOffers.map(item => (
+                    <View key={item.id} style={styles.offerCard}>
+                      <Text style={styles.offerText}>{item.offer}</Text>
+                    </View>
+                  ))}
+                </View>
+              </>
+            )}
           </ScrollView>
         </View>
       </View>
