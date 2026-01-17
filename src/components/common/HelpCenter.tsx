@@ -135,10 +135,10 @@ const HelpCenter: React.FC = () => {
       </View>
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Policies</Text>
-        <TouchableOpacity onPress={() => Linking.openURL('https://foodee.com/privacy-policy')}>
+        <TouchableOpacity onPress={() => Linking.openURL('')} >
           <Text style={styles.policyLink}>Privacy Policy</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => Linking.openURL('https://foodee.com/terms-of-service')}>
+        <TouchableOpacity onPress={() => Linking.openURL('')}>
           <Text style={styles.policyLink}>Terms of Service</Text>
         </TouchableOpacity>
       </View>

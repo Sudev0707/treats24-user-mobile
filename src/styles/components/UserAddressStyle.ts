@@ -6,7 +6,7 @@ import RowColStyles from '../../theme/RowColStyles';
 const UserAddressStyle = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: colors.bgOffWhiteSecondary,
+    backgroundColor: colors.bgOffWhiteSecondary,
     paddingBottom: 80,
     borderRadius: 15,
   },
@@ -24,7 +24,7 @@ const UserAddressStyle = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: colors.background,
     borderRadius: 10,
-    // elevation: 2,
+    elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
@@ -86,11 +86,14 @@ const UserAddressStyle = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: colors.background,
+    paddingHorizontal:  20,
+    paddingBottom:  20,
+    paddingTop:9
   },
   addAddressButton: {
     backgroundColor: colors.brandPrimary,
     padding: 15,
-    paddingBottom: 30,
+    // paddingBottom: 30,
     borderRadius: 8,
     alignItems: 'center',
   },
@@ -115,6 +118,72 @@ const UserAddressStyle = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 5,
+  },
+  overlay: {
+    flex: 1,
+    // backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'flex-start',
+  },
+  menu: {
+    position: 'absolute',
+    backgroundColor: colors.background,
+    borderRadius: 8,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 5,
+    minWidth: 120,
+  },
+  menuItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 4,
+    paddingHorizontal: 5,
+  },
+  menuItemText: {
+    fontSize: fonts.size.sm,
+    color: colors.textPrimary,
+    fontFamily: fonts.family.regular,
+    marginLeft: 10,
+  },
+  addressItemInner: {
+    borderRadius: 15,
+    padding: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  addressItemLabelRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  addressItemLabelText: {
+    fontSize: 16,
+    fontFamily: fonts.family.regular,
+    marginLeft: 10,
+    color: colors.textPrimary,
+  },
+  addressItemDefaultText: {
+    color: colors.brandPrimary,
+  },
+  addressItemNameText: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    marginBottom: 4,
+  },
+  addressItemAddressText: {
+    fontSize: 14,
+    color: colors.textPrimary,
+  },
+  addressItemMenuButton: {
+    height: 30,
+    padding: 5,
+  },
+  addressItemMenuIcon: {
+    width: 20,
+    height: 20,
   },
 });
 

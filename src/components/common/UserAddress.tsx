@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -6,12 +6,12 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   TouchableOpacity,
-  Alert,
   Animated,
   FlatList,
   Modal,
   Platform,
   Image,
+  Dimensions,
 } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -25,10 +25,18 @@ import colors from '../../theme/colors';
 import fonts from '../../theme/fonts';
 import { callbackRegistry } from '../../utils/callbackRegistry';
 import { RootStackParamList } from '../../routes/AppRoutes';
+import AddressItem from './AddressItem';
+import CustomAlert from './CustomAlert';
 
 const UserAddress: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [addresses, setAddresses] = useState<Address[]>(userData.addresses);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+  const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [addressToDelete, setAddressToDelete] = useState<string | null>(null);
+  const menuIconRef = useRef<View>(null);
 
   const addressTypes = [
     { label: 'HOME', icon: 'home', color: '#4CAF50' },
@@ -59,63 +67,64 @@ const UserAddress: React.FC = () => {
   };
 
   const handleDeleteAddress = (addressId: string) => {
-    Alert.alert(
-      'Delete Address',
-      'Are you sure you want to delete this address?',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: () => setAddresses(prev => prev.filter(addr => addr.id !== addressId)),
-        },
-      ]
-    );
+    setAddressToDelete(addressId);
+    setAlertVisible(true);
   };
 
-  const renderAddressItem = ({ item }: { item: Address }) => {
-    const typeInfo = addressTypes.find(type => type.label === item.label);
-    return (
-      <TouchableOpacity
-        style={UserAddressStyle.addressItem}
-        onPress={() => handleEditAddress(item)}
-      >
-        <View style={{ borderRadius:15, padding: 15, borderWidth:0.8, flexDirection:'row', justifyContent:'space-between' }}>
-          <View>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
-            <Icon name={typeInfo?.icon || 'map-pin'} size={20} color={typeInfo?.color || '#666'} />
-            <Text style={{ fontSize: 16, fontWeight: 'bold', marginLeft: 10, color: colors.textPrimary }}>
-              {item.label.charAt(0) + item.label.slice(1).toLowerCase()}
-              {item.isDefault && <Text style={{ color: colors.brandPrimary }}> (Default)</Text>}
-            </Text>
-             </View>
-            <Text style={{ fontSize: 14, color: colors.textSecondary, marginBottom: 4 }}>
-              {item.name} • {item.mobile}
-            </Text>
-            <Text style={{ fontSize: 14, color: colors.textPrimary }}>
-              {item.street}, {item.area}, {item.city}, {item.state} {item.pincode}
-            </Text>
-          </View>
-          <View>
-            <TouchableOpacity style={{ borderWidth:0.8,}} >
-              <Image style={{width:20, height:20, }} source={require('../../assets/icons/iconsmenu.png')}/>
-            </TouchableOpacity>
-          </View>
-        
-        </View>
-
-
-        <View style={UserAddressStyle.addressActions}>
-          <TouchableOpacity
-            style={[UserAddressStyle.actionButton, UserAddressStyle.deleteButton]}
-            onPress={() => handleDeleteAddress(item.id)}
-          >
-            <Text style={UserAddressStyle.deleteText}>Delete</Text>
-          </TouchableOpacity>
-        </View>
-      </TouchableOpacity>
-    );
+  const handleConfirmDelete = () => {
+    if (addressToDelete) {
+      setAddresses(prev => prev.filter(addr => addr.id !== addressToDelete));
+      setAddressToDelete(null);
+    }
+    setAlertVisible(false);
   };
+
+  const handleCancelDelete = () => {
+    setAddressToDelete(null);
+    setAlertVisible(false);
+  };
+
+  const handleMenuPress = (address: Address, ref: View | null) => {
+    if (ref) {
+      ref.measureInWindow((x: number, y: number, width: number, height: number) => {
+        // setMenuPosition({ x: x - 50, y: y + height });
+        setMenuPosition({ x: x - 110, y: y + height });
+        setSelectedAddress(address);
+        setMenuVisible(true);
+      });
+    }
+  };
+
+  const handleMenuClose = () => {
+    setMenuVisible(false);
+    setSelectedAddress(null);
+  };
+
+  const handleMenuEdit = () => {
+    if (selectedAddress) {
+      handleEditAddress(selectedAddress);
+      handleMenuClose();
+    }
+  };
+
+  const handleMenuDelete = () => {
+    if (selectedAddress) {
+      handleDeleteAddress(selectedAddress.id);
+      handleMenuClose();
+    }
+  };
+
+  const handleMenuSetDefault = () => {
+    if (selectedAddress) {
+      setAddresses(prev => prev.map(addr => ({
+        ...addr,
+        isDefault: addr.id === selectedAddress.id
+      })));
+      handleMenuClose();
+    }
+  };
+
+  const renderAddressItem = ({ item }: { item: Address }) => <AddressItem item={item} onMenuPress={handleMenuPress} />;
 
   return (
     <View style={UserAddressStyle.container}>
@@ -143,6 +152,39 @@ const UserAddress: React.FC = () => {
           <Text style={UserAddressStyle.addAddressText}>+ Add New Address</Text>
         </TouchableOpacity>
       </View>
+
+      <Modal visible={menuVisible} transparent animationType="fade">
+        <TouchableOpacity
+          style={UserAddressStyle.overlay}
+          activeOpacity={1}
+          onPress={handleMenuClose}
+        >
+          <View style={[UserAddressStyle.menu, { left: menuPosition.x, top: menuPosition.y }]}>
+            <TouchableOpacity style={UserAddressStyle.menuItem} onPress={handleMenuEdit}>
+              <Icon name="edit" size={15} color={colors.textPrimary} />
+              <Text style={UserAddressStyle.menuItemText}>Edit</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={UserAddressStyle.menuItem} onPress={handleMenuSetDefault}>
+              <Icon name="star"  size={15} color={colors.brandPrimary} />
+              <Text style={UserAddressStyle.menuItemText}>Set Default</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={UserAddressStyle.menuItem} onPress={handleMenuDelete}>
+              <Icon name="trash"  size={15} color={colors.error} />
+              <Text style={[UserAddressStyle.menuItemText, { color: colors.error }]}>Delete</Text>
+            </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
+      </Modal>
+
+      <CustomAlert
+        visible={alertVisible}
+        title="Delete Address"
+        message="Are you sure you want to delete this address?"
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+        confirmText="Delete"
+        cancelText="Cancel"
+      />
     </View>
   );
 };
