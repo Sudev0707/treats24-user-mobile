@@ -102,7 +102,6 @@ ios/build/
 ios/DerivedData/
 
 # Docs
-TODO.md
 implementation.txt
 endpoint_requirements.txt
 
