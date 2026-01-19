@@ -6,7 +6,7 @@ import fonts from '../theme/fonts';
 
 type RootStackParamList = {
   SplashBrand: undefined;
-  UserPartnerSelection: undefined;
+  Auth:undefined
 };
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SplashBrand'>;
@@ -14,7 +14,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'SplashBrand'>;
 const SplashBrand: React.FC<Props> = ({ navigation }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigation.replace('UserPartnerSelection');
+      navigation.replace('Auth');
     }, 5000);
 
     return () => clearTimeout(timeout);
