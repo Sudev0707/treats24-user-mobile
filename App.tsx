@@ -83,13 +83,13 @@ const App: React.FC = () => {
   }, []);
 
   //
-  if (initializing) {
-    return (
-      <View >
-        <ActivityIndicator size="large" color={colors.brandPrimary} />
-      </View>
-    );
-  }
+  // if (initializing) {
+  //   return (
+  //     <View >
+  //       <ActivityIndicator size="large" color={colors.brandPrimary} />
+  //     </View>
+  //   );
+  // }
 
   return (
     <Provider store={store}>

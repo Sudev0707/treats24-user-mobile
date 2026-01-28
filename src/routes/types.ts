@@ -61,4 +61,8 @@ export type RootStackParamList = {
     accountNo: string;
     accountHolder: string;
   };
+  AddAddressScreen: {
+    editingAddress?: any;
+    callbackKey?: string;
+  };
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   Alert,
   Dimensions,
   RefreshControl,
+  TextInput,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -17,9 +18,11 @@ import colors from '../theme/colors';
 import Header from '../components/common/Header';
 import SavedAddressCard from '../components/common/SavedAddressCard';
 import CustomAlert from '../components/common/CustomAlert';
-import { savedAddress } from '../data/savedAddress';
+import { savedAddress as initialSavedAddress } from '../data/savedAddress';
 import { checkoutStyle } from '../styles/screens/CheckoutStyles';
 import SectionHeader from '../components/common/SectionHeader';
+import { callbackRegistry } from '../utils/callbackRegistry';
+import { Address } from '../data/userData';
 
 type CheckoutScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -28,16 +31,37 @@ type CheckoutScreenNavigationProp = NativeStackNavigationProp<
 
 const Checkout: React.FC = () => {
   const navigation = useNavigation<CheckoutScreenNavigationProp>();
+  const [savedAddress, setSavedAddress] = useState(initialSavedAddress);
   const [selectedAddress, setSelectedAddress] = useState<string | null>(null);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertTitle, setAlertTitle] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
   const [refreshing, setRefreshing] = useState(false);
+  const [deliveryInstructions, setDeliveryInstructions] = useState('');
   const { height } = Dimensions.get('window');
 
+  // Dummy order data for demo
+  const orderItems = [
+    { id: '1', name: 'Margherita Pizza', quantity: 2, price: 250 },
+    { id: '2', name: 'Chicken Burger', quantity: 1, price: 150 },
+    { id: '3', name: 'French Fries', quantity: 1, price: 80 },
+  ];
+
+  const subtotal = orderItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
+  const tax = Math.round(subtotal * 0.18);
+  const deliveryFee = 40;
+  const total = subtotal + tax + deliveryFee;
+
   const paymentOptions = [
-    { id: 'cod', name: 'Cash on Delivery', description: 'Pay when you receive' },
+    {
+      id: 'cod',
+      name: 'Cash on Delivery',
+      description: 'Pay when you receive',
+    },
     { id: 'card', name: 'Credit/Debit Card', description: 'Pay with card' },
     { id: 'upi', name: 'UPI', description: 'Pay with UPI' },
     { id: 'wallet', name: 'Wallet', description: 'Pay with wallet' },
@@ -57,9 +81,11 @@ const Checkout: React.FC = () => {
       console.log('Processing payment for:', selectedPayment);
     }
     // Navigate to payment success screen
-    const selectedPaymentOption = paymentOptions.find(option => option.id === selectedPayment);
+    const selectedPaymentOption = paymentOptions.find(
+      option => option.id === selectedPayment,
+    );
     navigation.navigate('PaymentSuccess', {
-      selectedPaymentMethod: selectedPaymentOption?.name || 'UPI'
+      selectedPaymentMethod: selectedPaymentOption?.name || 'UPI',
     });
   };
 
@@ -71,10 +97,42 @@ const Checkout: React.FC = () => {
     }, 1000); // Adjust delay as needed
   };
 
+  const handleChangeAddress = () => {
+    if (!selectedAddress) {
+      setAlertTitle('Error');
+      setAlertMessage('Please select an address to change');
+      setAlertVisible(true);
+      return;
+    }
+    const addressToEdit = savedAddress.find(addr => addr.id === selectedAddress);
+    if (!addressToEdit) return;
+    const callbackKey = `checkout_edit_${Date.now()}`;
+    callbackRegistry.set(callbackKey, (updatedAddress: Address) => {
+      const formattedAddress = {
+        id: updatedAddress.id,
+        title: updatedAddress.label.charAt(0) + updatedAddress.label.slice(1).toLowerCase(),
+        address: `${updatedAddress.street}, ${updatedAddress.area}, ${updatedAddress.city}, ${updatedAddress.state} ${updatedAddress.pincode}`,
+        icon: updatedAddress.label === 'HOME' ? 'home' : updatedAddress.label === 'WORK' ? 'briefcase' : 'map-pin',
+        isDefault: updatedAddress.isDefault,
+      };
+      setSavedAddress(prev => {
+        const existingIndex = prev.findIndex(addr => addr.id === formattedAddress.id);
+        if (existingIndex !== -1) {
+          const updated = [...prev];
+          updated[existingIndex] = formattedAddress;
+          return updated;
+        } else {
+          return [...prev, formattedAddress];
+        }
+      });
+    });
+    navigation.navigate('AddAddressScreen', { editingAddress: addressToEdit, callbackKey });
+  };
+
   return (
     <>
       <StatusBar
-        translucent={false}
+        // translucent={false}
         backgroundColor={colors.background}
         barStyle="dark-content"
       />
@@ -94,10 +152,28 @@ const Checkout: React.FC = () => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        {/* Delivery Address Section */}
+        {/* Delivery Instructions Section */}
         <View style={checkoutStyle.section}>
-          {savedAddress.map((address) => (
-            <TouchableOpacity activeOpacity={0.7}
+          <SectionHeader title="Delivery Instructions" />
+          <View style={checkoutStyle.deliveryInstructionsCard}>
+            <TextInput
+              style={checkoutStyle.deliveryInstructionsInput}
+              placeholder="Add delivery instructions (optional)"
+              placeholderTextColor={colors.textSecondary}
+              value={deliveryInstructions}
+              onChangeText={setDeliveryInstructions}
+              multiline
+              maxLength={200}
+            />
+          </View>
+        </View>
+
+        {/* Delivery Address Section, user cna chnage  */}
+        <View style={checkoutStyle.section}>
+          <SectionHeader title="Delivery Address" />
+          {savedAddress.map(address => (
+            <TouchableOpacity
+              activeOpacity={0.8}
               key={address.id}
               onPress={() => setSelectedAddress(address.id)}
               style={[
@@ -105,12 +181,11 @@ const Checkout: React.FC = () => {
                 selectedAddress === address.id && checkoutStyle.selectedAddress,
               ]}
             >
-             
               <SavedAddressCard
                 title={address.title}
                 address={address.address}
-                distance={address.distance}
                 icon={address.icon}
+                distance={address.distance}
               />
               {selectedAddress === address.id && (
                 <View style={checkoutStyle.checkmark}>
@@ -119,13 +194,21 @@ const Checkout: React.FC = () => {
               )}
             </TouchableOpacity>
           ))}
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={handleChangeAddress}
+            style={checkoutStyle.addAddressButton}
+          >
+            <Text style={checkoutStyle.addAddressText}>Change Address</Text>
+          </TouchableOpacity>
         </View>
 
         {/* Payment Options Section */}
         <View style={checkoutStyle.section}>
-          <SectionHeader title='Payment Method'/>
-          {paymentOptions.map((option) => (
-            <TouchableOpacity activeOpacity={0.8}
+          <SectionHeader title="Payment Method" />
+          {paymentOptions.map(option => (
+            <TouchableOpacity
+              activeOpacity={0.8}
               key={option.id}
               onPress={() => setSelectedPayment(option.id)}
               style={[
@@ -144,7 +227,7 @@ const Checkout: React.FC = () => {
                   <Text style={checkoutStyle.checkmarkText}>✓</Text>
                 </View>
               )}
-          </TouchableOpacity>
+            </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
