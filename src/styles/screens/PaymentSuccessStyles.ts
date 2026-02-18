@@ -1,0 +1,503 @@
+import { StyleSheet } from 'react-native';
+import colors from '../../theme/colors';
+import fonts from '../../theme/fonts';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // backgroundColor: colors.bgOffWhiteSecondary,
+    backgroundColor: colors.success,
+  },
+  scrollContent: {
+    // padding: 16,
+    // paddingBottom: 100,
+  },
+
+  // Success Header Section
+  header: {
+    alignItems: 'center',
+    marginBottom: 24,
+    paddingTop: 10,
+    paddingHorizontal: 10,
+  },
+  successContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  statusIconOuter: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: colors.successSoft,
+    // backgroundColor: colors.success,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    borderWidth: 3,
+    borderColor: colors.background,
+  },
+  statusIcon: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: fonts.size['2xl'],
+    fontFamily: fonts.family.bold,
+    color: colors.textWhite,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  message: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.regular,
+    // color: colors.textSecondary,
+     color: colors.textWhite,
+    textAlign: 'center',
+    lineHeight: 22,
+    paddingHorizontal: 10,
+  },
+
+  orderInfoContent: {
+    padding: 16,
+    backgroundColor: colors.bgOffWhiteSecondary,
+    // borderWidth: 0.7,
+    borderRadius: 25,
+  },
+
+  // Restaurant Info Card
+  restaurantCard: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  restaurantImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 12,
+    backgroundColor: colors.brandPrimarySoft,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 14,
+  },
+  restaurantImageText: {
+    fontSize: fonts.size['2xl'],
+    fontFamily: fonts.family.bold,
+    color: colors.brandPrimary,
+  },
+  restaurantInfo: {
+    flex: 1,
+  },
+  restaurantName: {
+    fontSize: fonts.size.lg,
+    fontFamily: fonts.family.semibold,
+    color: colors.textPrimary,
+    marginBottom: 4,
+  },
+  restaurantOrderId: {
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.regular,
+    color: colors.textSecondary,
+  },
+  orderIdChip: {
+    backgroundColor: colors.brandPrimarySoft,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 20,
+    marginTop: 6,
+    alignSelf: 'flex-start',
+  },
+  orderIdText: {
+    fontSize: fonts.size.xs,
+    fontFamily: fonts.family.medium,
+    color: colors.brandPrimary,
+  },
+
+  // Order Timeline
+  timelineContainer: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  timelineTitle: {
+    fontSize: fonts.size.lg,
+    fontFamily: fonts.family.semibold,
+    color: colors.textPrimary,
+    marginBottom: 16,
+  },
+  timelineItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 16,
+  },
+  timelineDot: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: colors.success,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 14,
+  },
+  timelineDotInactive: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: colors.borderMuted,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 14,
+  },
+  timelineContent: {
+    flex: 1,
+  },
+  timelineLabel: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.semibold,
+    color: colors.textPrimary,
+    marginBottom: 2,
+  },
+  timelineLabelCompleted: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.semibold,
+    color: colors.textPrimary,
+    marginBottom: 2,
+  },
+  timelineSubLabel: {
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.regular,
+    color: colors.textSecondary,
+  },
+  timelineLine: {
+    position: 'absolute',
+    left: 11,
+    top: 28,
+    width: 2,
+    height: 30,
+    backgroundColor: colors.borderMuted,
+  },
+
+  // Section
+  section: {
+    marginBottom: 16,
+  },
+  sectionTitle: {
+    fontSize: fonts.size.lg,
+    fontFamily: fonts.family.semibold,
+    color: colors.textPrimary,
+    marginBottom: 12,
+    paddingHorizontal: 4,
+  },
+
+  // Order Items Card
+  orderItemsCard: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  itemRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.borderMuted,
+  },
+  itemInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  vegIndicator: {
+    width: 18,
+    height: 18,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: colors.vegGreen,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  vegIndicatorInner: {
+    width: 10,
+    height: 10,
+    borderRadius: 2,
+    backgroundColor: colors.vegGreen,
+  },
+  nonVegIndicator: {
+    width: 18,
+    height: 18,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: colors.nonVegRed,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  nonVegIndicatorInner: {
+    width: 10,
+    height: 10,
+    borderRadius: 2,
+    backgroundColor: colors.nonVegRed,
+  },
+  itemName: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.medium,
+    color: colors.textPrimary,
+    marginBottom: 2,
+  },
+  itemQuantity: {
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.regular,
+    color: colors.textSecondary,
+  },
+  itemPrice: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.semibold,
+    color: colors.textPrimary,
+  },
+
+  // Delivery Address Card
+  addressCard: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  addressHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  addressIconContainer: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: colors.brandPrimarySoft,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  addressInfo: {
+    flex: 1,
+  },
+  addressTitle: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.semibold,
+    color: colors.textPrimary,
+    marginBottom: 2,
+  },
+  addressType: {
+    fontSize: fonts.size.xs,
+    fontFamily: fonts.family.medium,
+    color: colors.brandPrimary,
+    backgroundColor: colors.brandPrimarySoft,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 4,
+    alignSelf: 'flex-start',
+  },
+  addressText: {
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.regular,
+    color: colors.textSecondary,
+    lineHeight: 20,
+  },
+  deliveryTime: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 14,
+    paddingTop: 14,
+    borderTopWidth: 1,
+    borderTopColor: colors.borderMuted,
+  },
+  deliveryTimeIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: colors.successSoft,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  deliveryTimeText: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.medium,
+    color: colors.textPrimary,
+  },
+  deliveryTimeSubText: {
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.regular,
+    color: colors.textSecondary,
+    marginTop: 2,
+  },
+
+  // Price Breakdown Card
+  priceBreakdown: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  priceRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  priceLabel: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.regular,
+    color: colors.textSecondary,
+  },
+  priceValue: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.medium,
+    color: colors.textPrimary,
+  },
+  totalRow: {
+    borderTopWidth: 1,
+    borderTopColor: colors.borderMuted,
+    paddingTop: 14,
+    marginTop: 8,
+  },
+  totalLabel: {
+    fontSize: fonts.size.lg,
+    fontFamily: fonts.family.semibold,
+    color: colors.textPrimary,
+  },
+  totalValue: {
+    fontSize: fonts.size.xl,
+    fontFamily: fonts.family.bold,
+    color: colors.brandPrimary,
+  },
+
+  // Payment Method Card
+  paymentCard: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  paymentIconContainer: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: colors.brandPrimarySoft,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 14,
+  },
+  paymentText: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.medium,
+    color: colors.textPrimary,
+    flex: 1,
+  },
+  paymentStatus: {
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    borderRadius: 20,
+  },
+  paymentStatusText: {
+    color: colors.textWhite,
+    fontSize: fonts.size.xs,
+    fontFamily: fonts.family.semibold,
+    textTransform: 'uppercase',
+  },
+
+  // Buttons
+  buttonContainer: {
+    marginTop: 24,
+    marginBottom: 20,
+  },
+  primaryButton: {
+    backgroundColor: colors.brandPrimary,
+    paddingVertical: 16,
+    paddingHorizontal: 30,
+    borderRadius: 28,
+    alignItems: 'center',
+    shadowColor: colors.brandPrimary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  primaryButtonText: {
+    color: colors.textWhite,
+    fontSize: fonts.size.lg,
+    fontFamily: fonts.family.bold,
+  },
+  secondaryButton: {
+    backgroundColor: colors.card,
+    paddingVertical: 16,
+    paddingHorizontal: 30,
+    borderRadius: 28,
+    alignItems: 'center',
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: colors.borderMuted,
+  },
+  secondaryButtonText: {
+    color: colors.textPrimary,
+    fontSize: fonts.size.lg,
+    fontFamily: fonts.family.semibold,
+  },
+
+  // Order Card (for Order ID)
+  orderCard: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  orderId: {
+    fontSize: fonts.size.md,
+    fontFamily: fonts.family.semibold,
+    color: colors.textPrimary,
+    marginBottom: 4,
+  },
+  orderDate: {
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.regular,
+    color: colors.textSecondary,
+  },
+});
+
+export default styles;

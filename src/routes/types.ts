@@ -1,0 +1,75 @@
+import { OrderData } from '../data/ordrr.types';
+
+export interface BillDetails {
+  itemTotal: number;
+  commission: number;
+  orderValue: number;
+  gst: number;
+  deliveryCharge: number;
+  grandTotal: number;
+}
+
+export type RootStackParamList = {
+  SplashBrand: undefined;
+  Auth: undefined;
+  OTPVerification: undefined;
+  EmailOTPVerification: { email: string };
+  SetLocation: undefined;
+  Profile: undefined;
+  Nearby: undefined;
+  Favorites: undefined;
+  Deals: undefined;
+  Cart: undefined;
+  Checkout: { billDetails: BillDetails };
+  AddAddressScreen: undefined;
+  MainTabs: undefined;
+  Search: undefined;
+  RestaurantDetails: { restaurantId: string };
+  SnacksItems: { itemType: string };
+  TopRestaurants: undefined;
+  foodCategories: undefined;
+  HeaderDemo1: undefined;
+  HeaderDemo2: undefined;
+  HeaderDemo3: undefined;
+  HeaderDemo4: undefined;
+  OrderDetails: { order: OrderData };
+  LiveTrackOrder: { order: OrderData };
+  PaymentSuccess: { selectedPaymentMethod: string };
+  PartnerSignUp: { selectedBank?: string };
+  BankSelection: undefined;
+  NinetyNineStore: undefined;
+  PartnerDashBoard: {
+    name: string;
+    addressOne: string;
+    addressTwo: string;
+    city: string;
+    district: string;
+    pinCode: string;
+    email: string;
+    contact: string;
+    businessLicense: string;
+    hasFssaiLicense: boolean | null;
+    fssaiLicenseNumber: string;
+    bankName: string;
+    ifscCode: string;
+    accountNo: string;
+    accountHolder: string;
+  };
+  PartnerProfile: {
+    name: string;
+    addressOne: string;
+    addressTwo: string;
+    city: string;
+    district: string;
+    pinCode: string;
+    email: string;
+    contact: string;
+    businessLicense: string;
+    hasFssaiLicense: boolean | null;
+    fssaiLicenseNumber: string;
+    bankName: string;
+    ifscCode: string;
+    accountNo: string;
+    accountHolder: string;
+  };
+};
