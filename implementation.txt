@@ -1,0 +1,12 @@
+
+*
+generate an OTP, send it to phone (SMS) or email:
+(verify it in React Native, you need a backend service + server-side OTP logic. React Native cannot send SMS or email directly)
+
+1 — Phone OTP using Firebase Authentication
+    npm install @react-native-firebase/app @react-native-firebase/auth
+
+
+2 — Send OTP via Email (Node.js Backend / Java Mail)
+
+3 — SMS OTP Without Firebase (Twilio / MSG91 / Fast2SMS)

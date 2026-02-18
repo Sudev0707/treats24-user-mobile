@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "551027923418",
+    "project_id": "treats24-d657c",
+    "storage_bucket": "treats24-d657c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551027923418:android:b52bbb5d893140b2d588e3",
+        "android_client_info": {
+          "package_name": "com.treats24"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM38a5RRCar9qBRjwukTDWGsXzgqjYWnQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
